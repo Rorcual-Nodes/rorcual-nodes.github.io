@@ -1,7 +1,7 @@
-port module Main exposing (..)
+port module Main_test exposing (..)
 
 import Browser exposing (Document, UrlRequest(..))
-import Browser.Dom as Dom
+import Browser.Dom as Dom exposing (setViewport)
 import Browser.Navigation as Navigation exposing (Key)
 import Data exposing (..)
 import Delay
@@ -12,6 +12,7 @@ import Json.Decode as Decode exposing (Decoder, field, float, list, string)
 import Json.Decode.Pipeline exposing (hardcoded, optional, required)
 import List exposing (any)
 import Routing exposing (parseUrlToRoute)
+import Set
 import Task
 import Types exposing (..)
 import Url exposing (Protocol(..), Url)
@@ -35,6 +36,13 @@ init flags url key =
     let
         parsedUrl =
             parseUrlToRoute url
+
+        _ =
+            Debug.log "In: " url
+
+        _ =
+            Debug.log "parsedUrl"
+                parsedUrl
 
         newModel =
             { projects = []
@@ -76,7 +84,13 @@ getProjects =
         { url = apiUrl ++ "/projects"
         , expect =
             Http.expectJson
-                GotProjects
+                (\response1 ->
+                    let
+                        _ =
+                            Debug.log "A: "
+                    in
+                    GotProjects response1
+                )
                 projectDecoder
         }
 
@@ -115,7 +129,13 @@ fetchData =
         { url = apiUrl ++ "/contracts"
         , expect =
             Http.expectJson
-                GotContracts
+                (\response2 ->
+                    let
+                        _ =
+                            Debug.log "Error: "
+                    in
+                    GotContracts response2
+                )
                 contractDecoder
         }
 
@@ -142,7 +162,13 @@ getRates =
         { url = "https://lcd.kaiyo.kujira.setten.io/oracle/denoms/exchange_rates"
         , expect =
             Http.expectJson
-                GotRates
+                (\response1 ->
+                    let
+                        _ =
+                            Debug.log "Exchange: Rates " response1
+                    in
+                    GotRates response1
+                )
                 ratesDecoder
         }
 
@@ -255,6 +281,9 @@ update msg model =
 
         GotContracts (Err error) ->
             let
+                _ =
+                    Debug.log "GC Error" error
+
                 errorMessage =
                     case error of
                         Http.Timeout ->
@@ -271,6 +300,9 @@ update msg model =
 
                         Http.BadUrl url ->
                             "Bad request URL: " ++ url
+
+                _ =
+                    Debug.log "ErrorMsg" errorMessage
 
                 notification =
                     Error errorMessage
@@ -284,6 +316,9 @@ update msg model =
 
         GotRates (Err error) ->
             let
+                _ =
+                    Debug.log "GR Error" error
+
                 errorMessage =
                     case error of
                         Http.Timeout ->
@@ -300,6 +335,9 @@ update msg model =
 
                         Http.BadUrl url ->
                             "Bad request URL: " ++ url
+
+                _ =
+                    Debug.log "ErrorMsg" errorMessage
 
                 notification =
                     Error errorMessage
@@ -339,10 +377,28 @@ update msg model =
         UserChangedRoute newRoute ->
             ( { model | currentRoute = newRoute }, Cmd.none )
 
+        GotText (Ok str) ->
+            let
+                _ =
+                    Debug.toString str
+            in
+            ( model, Cmd.none )
+
+        GotText (Err err) ->
+            let
+                _ =
+                    Debug.toString err
+            in
+            ( model, Cmd.none )
+
         Copy str ->
             ( model, copyToClipboard str )
 
         PopUp notification ->
+            let
+                _ =
+                    Debug.log "Notif: " notification
+            in
             ( { model | notification = notification, popUp = True }, Cmd.batch [ Delay.after 4000 HidePopUp ] )
 
         HidePopUp ->
@@ -358,6 +414,18 @@ update msg model =
 
 view : Model -> Document Msg
 view model =
+    let
+        _ =
+            Debug.log model.copyString
+
+        _ =
+            Debug.log "Latest: " (List.reverse (List.map (\project -> project.info.createDate) model.projects))
+
+        -- _ =
+        --     Debug.log "Projects" model.projects
+        -- _ =
+        --     Debug.log "Contracts: " List.length (List.map (\project -> project.contracts) model.projects)
+    in
     { title = "Rorcual Nodes"
     , body = bodyView model
     }
@@ -369,6 +437,10 @@ view model =
 
 onUrlRequest : UrlRequest -> Msg
 onUrlRequest urlRequest =
+    let
+        _ =
+            Debug.log " got url request" urlRequest
+    in
     case urlRequest of
         External externalUrl ->
             SendUserToExternalUrl externalUrl

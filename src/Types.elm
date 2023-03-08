@@ -146,20 +146,3 @@ type Notification
     = Success String
     | Error String
     | Warning String
-
-
-
--- JSON QUERY
--- {
---   "ID": 9,
---   "Name": "Local Money",
---   "Team": "Local Money",
---   "Website": "https://localmoney.io",
---   "Twitter": "https://twitter.com/TeamLocalMoney",
---   "Discord": "https://discord.com/invite/meXhfQ8TWr",
---   "Telegram": "t.me/localmoneyupdates",
---   "Category": "Defi",
---   "tags": ["Marketplace", "Payments", "DEX"],
---   "Description": "Local is a decentralized P2P marketplace for the crypto multi-chain world.",
---   "Ids": [75,76,77,78,79]
--- }

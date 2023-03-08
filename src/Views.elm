@@ -242,7 +242,6 @@ latestProjects model =
     let
         latest =
             List.take 3 <| List.reverse (List.sortBy (\project -> project.info.createDate) model.projects)
-
     in
     [ h1 [ class "text-center text-md-left mb-2" ] [ text "Latest Projects" ]
     , div [ class "row" ]
@@ -340,82 +339,78 @@ subEcosystemsView model project =
                                     [ img [ src ("assets/protocols/" ++ project.info.logo), alt "Icon", class "avatar" ] [] ]
                                 ]
                             , div [ class "ValidatorBox__social flex mb-2" ]
-                                [ a
-                                    [ class "social"
-                                    , href
-                                        (case project.info.twitter of
-                                            Just url ->
-                                                Url.toString url
+                                [ case project.info.twitter of
+                                    Just url ->
+                                        a
+                                            [ class "social"
+                                            , href
+                                                (Url.toString url)
+                                            , target "_blank"
+                                            , Html.Attributes.style "text-decoration" "none"
+                                            , Html.Attributes.style "color" "#fff"
+                                            ]
+                                            [ img
+                                                [ src "assets/socials/twitter.svg"
+                                                ]
+                                                []
+                                            ]
 
-                                            Nothing ->
-                                                "#"
-                                        )
-                                    , target "_blank"
-                                    , Html.Attributes.style "text-decoration" "none"
-                                    , Html.Attributes.style "color" "#fff"
-                                    ]
-                                    [ img
-                                        [ src "assets/socials/twitter.svg"
-                                        ]
-                                        []
-                                    ]
-                                , a
-                                    [ class "social"
-                                    , href
-                                        (case project.info.discord of
-                                            Just url ->
-                                                Url.toString url
+                                    Nothing ->
+                                        div [] []
+                                , case project.info.discord of
+                                    Just url ->
+                                        a
+                                            [ class "social"
+                                            , href
+                                                (Url.toString url)
+                                            , target "_blank"
+                                            , Html.Attributes.style "text-decoration" "none"
+                                            , Html.Attributes.style "color" "#fff"
+                                            ]
+                                            [ img
+                                                [ src "assets/socials/discord.svg"
+                                                ]
+                                                []
+                                            ]
 
-                                            Nothing ->
-                                                "#"
-                                        )
-                                    , target "_blank"
-                                    , Html.Attributes.style "text-decoration" "none"
-                                    , Html.Attributes.style "color" "#fff"
-                                    ]
-                                    [ img
-                                        [ src "assets/socials/discord.svg"
-                                        ]
-                                        []
-                                    ]
-                                , a
-                                    [ class "social"
-                                    , href
-                                        (case project.info.telegram of
-                                            Just url ->
-                                                Url.toString url
+                                    Nothing ->
+                                        div [] []
+                                , case project.info.telegram of
+                                    Just url ->
+                                        a
+                                            [ class "social"
+                                            , href
+                                                (Url.toString url)
+                                            , target "_blank"
+                                            , Html.Attributes.style "text-decoration" "none"
+                                            , Html.Attributes.style "color" "#fff"
+                                            ]
+                                            [ img
+                                                [ src "assets/socials/telegram.svg"
+                                                ]
+                                                []
+                                            ]
 
-                                            Nothing ->
-                                                "#"
-                                        )
-                                    , target "_blank"
-                                    , Html.Attributes.style "text-decoration" "none"
-                                    , Html.Attributes.style "color" "#fff"
-                                    ]
-                                    [ img
-                                        [ src "assets/socials/telegram.svg"
-                                        ]
-                                        []
-                                    ]
-                                , a
-                                    [ class "social"
-                                    , href
-                                        (case project.info.github of
-                                            Just url ->
-                                                Url.toString url
+                                    Nothing ->
+                                        div [] []
+                                , case project.info.github of
+                                    Just url ->
+                                        a
+                                            [ class "social"
+                                            , href
+                                                (Url.toString url)
+                                            , target "_blank"
+                                            , Html.Attributes.style "text-decoration" "none"
+                                            , Html.Attributes.style "color" "#fff"
+                                            ]
+                                            [ img
+                                                [ src "assets/socials/github.svg"
+                                                ]
+                                                []
+                                            ]
 
-                                            Nothing ->
-                                                "#"
-                                        )
-                                    , target "_blank"
-                                    , Html.Attributes.style "text-decoration" "none"
-                                    , Html.Attributes.style "color" "#fff"
-                                    ]
-                                    [ img
-                                        [ src "assets/socials/github.svg"
-                                        ]
-                                        []
-                                    ]
+                                    Nothing ->
+                                        div [] []
                                 ]
                             , h4 [ class "condensed mt-1" ] [ text "Team" ]
                             , p [] [ span [ class "value" ] [ text project.info.team ] ]
@@ -441,6 +436,7 @@ subEcosystemsView model project =
                         ]
                     ]
                 ]
+
             --Second Div
             , case project.contracts of
                 [] ->
@@ -577,7 +573,6 @@ subContractsView model contract =
                 , contracts = []
                 }
                 (List.head <| List.filter (\p -> List.member currentContract.code_id p.info.ids) model.projects)
-
     in
     div [ class "col-12 col-md-8 col-lg-9 col-xga-8 mt-4 mt-md-3 govern" ]
         [ a [ class "proposal__back mb-2 ml-2", href "/contracts", onClick (Current SmartContracts) ] [ img [ src "assets/icons/arrow-left.svg" ] [], text "Back to Contracts" ]
@@ -665,6 +660,7 @@ rawText =
             "extension": null
         }
     }"""
+
 
 
 -- View Utilities
@@ -1206,26 +1202,38 @@ dropdownListTeam model contracts =
 
         teamOptions : List (Html Msg)
         teamOptions =
-            List.map
-                (\( team, icon ) ->
-                    a [ onClick (TeamSelected team), href "#" ]
-                        [ img [ src ("assets/teams/" ++ Maybe.withDefault "unknown.svg" (Just icon)), alt "Icon" ] []
-                        , text
-                            (team
-                                ++ " ("
-                                ++ String.fromInt
-                                    (case team of
-                                        "All" ->
-                                            List.length contracts
-
-                                        _ ->
-                                            List.length (List.filter (\contract -> getContractParentTeam model contract == Just team) contracts)
-                                    )
-                                ++ ")"
-                            )
-                        ]
+            List.filterMap
+                (\(team, icon) ->
+                    let
+                        teamContracts = List.filter (\contract -> getContractParentTeam model contract == Just team) contracts
+                    in
+                    if List.length teamContracts == 0 then
+                        Nothing
+                    else
+                        Just (a
+                            [ onClick (TeamSelected team), href "#" ]
+                            [ img
+                                [ src ("assets/teams/" ++ Maybe.withDefault "unknown.svg" (Just icon))
+                                , alt "Icon"
+                                ]
+                                []
+                            , text
+                                ( team
+                                    ++ " ("
+                                    ++ String.fromInt
+                                        (case team of
+                                            "All" ->
+                                                List.length contracts
+                                            _ ->
+                                                List.length teamContracts
+                                        )
+                                    ++ ")"
+                                )
+                            ]
+                        )
                 )
                 filteredTeams
+
     in
     div [ class "swap-input condensed swap-input--team swap-input--open" ]
         [ div [ class "swap-input__selected" ]
