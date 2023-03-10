@@ -24,14 +24,7 @@ pushUrl key route =
                     "/about"
 
                 SubEcosystem subProject ->
-                    let
-                        { info, contracts } =
-                            subProject
-
-                        { name, team, website, twitter, discord, telegram, category, tags, description } =
-                            info
-                    in
-                    "/ecosystem/" ++ info.name
+                    "/ecosystem/" ++ subProject
 
                 SubContracts subContract ->
                     "/contracts/" ++ subContract
@@ -46,8 +39,11 @@ routeParser : Parser.Parser (Route -> a) a
 routeParser =
     Parser.oneOf
         [ Parser.map Home Parser.top
+        , Parser.map Ecosystem (Parser.s "ecosystem")
         , Parser.map SmartContracts (Parser.s "contracts")
         , Parser.map AboutUs (Parser.s "about")
+        , Parser.map SubContracts (Parser.s "contracts" </> Parser.string)
+        , Parser.map SubEcosystem (Parser.s "ecosystem" </> Parser.string)
         , Parser.map NotFound (Parser.s "not_found")
         ]
 

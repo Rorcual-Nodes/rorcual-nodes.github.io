@@ -26,6 +26,16 @@ type alias Model =
     }
 
 
+type Route
+    = Home
+    | SmartContracts
+    | AboutUs
+    | Ecosystem
+    | SubEcosystem String
+    | SubContracts String
+    | NotFound
+
+
 type alias Project =
     { info : ProjectInfo
     , contracts : List Contract
@@ -65,7 +75,7 @@ type Category
     | Infra
     | Tools
     | Exchange
-    | Integration
+    | Integrations
 
 
 type CategorySelected
@@ -100,16 +110,6 @@ type Tag
     | None
 
 
-type Route
-    = Home
-    | SmartContracts
-    | AboutUs
-    | Ecosystem
-    | SubEcosystem Project
-    | SubContracts String
-    | NotFound
-
-
 type alias Rates =
     { denom : String
     , rate : Float
@@ -140,9 +140,36 @@ type Msg
     | PopUp Notification
     | HidePopUp
     | ScrollToTop
+    | Back
 
 
 type Notification
     = Success String
     | Error String
     | Warning String
+
+
+zeroProject : Project
+zeroProject =
+    { info = zeroInfo
+    , contracts = []
+    }
+
+
+zeroInfo : ProjectInfo
+zeroInfo =
+    { id = 0
+    , createDate = ""
+    , ids = []
+    , name = ""
+    , team = ""
+    , website = Nothing
+    , twitter = Nothing
+    , discord = Nothing
+    , telegram = Nothing
+    , github = Nothing
+    , category = Defi
+    , tags = [ None ]
+    , logo = ""
+    , description = ""
+    }

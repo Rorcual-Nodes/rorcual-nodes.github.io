@@ -68,7 +68,7 @@ teamIcons =
 
 categoryOptions : List Category
 categoryOptions =
-    [ Culture, Defi, Infra, Tools, Exchange, Integration ]
+    [ Culture, Defi, Infra, Tools, Exchange, Integrations ]
 
 
 categoryToString : Category -> String
@@ -89,8 +89,8 @@ categoryToString category =
         Exchange ->
             "Exchange"
 
-        Integration ->
-            "Integration"
+        Integrations ->
+            "Integrations"
 
 
 stringToCategory : String -> Category
@@ -111,8 +111,8 @@ stringToCategory category =
         "Exchange" ->
             Exchange
 
-        "Integration" ->
-            Integration
+        "Integrations" ->
+            Integrations
 
         _ ->
             Defi

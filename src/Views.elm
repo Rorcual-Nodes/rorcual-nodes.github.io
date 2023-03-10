@@ -63,13 +63,13 @@ bodyView model =
                     [ div [ class "notification-visible", Html.Attributes.style "visibility" "visible" ]
                         (case model.notification of
                             Success message ->
-                                [ div [ class "notification-wrapper" ] [ img [ src "assets/icons/checkmark.svg" ] [] ], text message ]
+                                [ div [ class "notification-wrapper" ] [ img [ src "../assets/icons/checkmark.svg" ] [] ], text message ]
 
                             Error error ->
-                                [ div [ class "notification-wrapper" ] [ img [ src "assets/icons/xmark.svg" ] [] ], text error ]
+                                [ div [ class "notification-wrapper" ] [ img [ src "../assets/icons/xmark.svg" ] [] ], text error ]
 
                             Warning warning ->
-                                [ div [ class "notification-wrapper" ] [ img [ src "assets/icons/alert.svg" ] [] ], text warning ]
+                                [ div [ class "notification-wrapper" ] [ img [ src "../assets/icons/alert.svg" ] [] ], text warning ]
                         )
                     ]
 
@@ -295,10 +295,24 @@ ecosystemView model =
         ]
 
 
-subEcosystemsView : Model -> Project -> Html Msg
-subEcosystemsView model project =
+subEcosystemsView : Model -> String -> Html Msg
+subEcosystemsView model projectName =
+    let
+        project =
+            model.projects
+                |> List.filterMap
+                    (\p ->
+                        if String.toLower p.info.name == String.toLower (String.replace "-" " " projectName) then
+                            Just p
+
+                        else
+                            Nothing
+                    )
+                |> List.head
+                |> Maybe.withDefault { info = zeroInfo, contracts = [] }
+    in
     div [ class "col-12 col-md-8 col-lg-9 col-xga-8 mt-4 mt-md-3 govern" ]
-        [ a [ class "proposal__back mb-2 ml-2", href "/ecosystem", onClick (Current Ecosystem) ] [ img [ src "assets/icons/arrow-left.svg" ] [], text "Back to all Projects" ]
+        [ a [ class "proposal__back mb-2 ml-2", href "#", onClick Back ] [ img [ src "../assets/icons/arrow-left.svg" ] [], text "Back to all Projects" ]
         , div [ class "row" ]
             -- FirstDiv
             [ div [ class "col-12 col-xl-9" ]
@@ -336,7 +350,7 @@ subEcosystemsView model project =
                                         ]
                                     ]
                                 , div [ class "avatar-wrapper" ]
-                                    [ img [ src ("assets/protocols/" ++ project.info.logo), alt "Icon", class "avatar" ] [] ]
+                                    [ img [ src ("../assets/protocols/" ++ project.info.logo), alt "Icon", class "avatar" ] [] ]
                                 ]
                             , div [ class "ValidatorBox__social flex mb-2" ]
                                 [ case project.info.twitter of
@@ -350,7 +364,7 @@ subEcosystemsView model project =
                                             , Html.Attributes.style "color" "#fff"
                                             ]
                                             [ img
-                                                [ src "assets/socials/twitter.svg"
+                                                [ src "../assets/socials/twitter.svg"
                                                 ]
                                                 []
                                             ]
@@ -368,7 +382,7 @@ subEcosystemsView model project =
                                             , Html.Attributes.style "color" "#fff"
                                             ]
                                             [ img
-                                                [ src "assets/socials/discord.svg"
+                                                [ src "../assets/socials/discord.svg"
                                                 ]
                                                 []
                                             ]
@@ -386,7 +400,7 @@ subEcosystemsView model project =
                                             , Html.Attributes.style "color" "#fff"
                                             ]
                                             [ img
-                                                [ src "assets/socials/telegram.svg"
+                                                [ src "../assets/socials/telegram.svg"
                                                 ]
                                                 []
                                             ]
@@ -404,7 +418,7 @@ subEcosystemsView model project =
                                             , Html.Attributes.style "color" "#fff"
                                             ]
                                             [ img
-                                                [ src "assets/socials/github.svg"
+                                                [ src "../assets/socials/github.svg"
                                                 ]
                                                 []
                                             ]
@@ -467,7 +481,7 @@ subEcosystemsView model project =
                                                         [ td [] [ text (String.fromInt contract.code_id) ]
                                                         , td []
                                                             [ a
-                                                                [ href ("/contracts/" ++ contract.address)
+                                                                [ href "#"
                                                                 , Html.Attributes.style "text-decoration" "none"
                                                                 , Html.Attributes.style "color" "#fff"
                                                                 , onClick (Current (SubContracts contract.address))
@@ -575,7 +589,7 @@ subContractsView model contract =
                 (List.head <| List.filter (\p -> List.member currentContract.code_id p.info.ids) model.projects)
     in
     div [ class "col-12 col-md-8 col-lg-9 col-xga-8 mt-4 mt-md-3 govern" ]
-        [ a [ class "proposal__back mb-2 ml-2", href "/contracts", onClick (Current SmartContracts) ] [ img [ src "assets/icons/arrow-left.svg" ] [], text "Back to Contracts" ]
+        [ a [ class "proposal__back mb-2 ml-2", href "/contracts", onClick Back ] [ img [ src "../assets/icons/arrow-left.svg" ] [], text "Back to Contracts" ]
         , div [ class "row" ]
             [ div [ class "col-12 col-lg-6 col-fhd-4 flex" ]
                 [ section [ class "ValidatorBox box mb-4" ]
@@ -589,7 +603,7 @@ subContractsView model contract =
                                 , div [ class "avatar-wrapper" ]
                                     [ img
                                         [ src
-                                            ("assets/protocols/"
+                                            ("../assets/protocols/"
                                                 ++ (case
                                                         Dict.get
                                                             (case getContractParentName model currentContract of
@@ -637,7 +651,7 @@ subContractsView model contract =
                                     [ text
                                         rawText
                                     ]
-                                , span [ class "copy-button", onClick (Copy rawText) ] [ img [ src "assets/icons/copy.svg" ] [] ]
+                                , span [ class "copy-button", onClick (Copy rawText) ] [ img [ src "../assets/icons/copy.svg" ] [] ]
                                 ]
                             ]
                         ]
@@ -670,8 +684,8 @@ projectView : Project -> Html Msg
 projectView project =
     a
         [ class "col-12 col-lg-4 col-fhd-4 flex"
-        , href ("/projects/" ++ project.info.name)
-        , onClick (Current (SubEcosystem project))
+        , href "#"
+        , onClick (Current (SubEcosystem (String.replace " " "-" project.info.name)))
         , Html.Attributes.style "text-decoration" "none"
         , Html.Attributes.style "color" "#fff"
         ]
@@ -709,7 +723,7 @@ projectView project =
                                 ]
                             ]
                         , div [ class "avatar-wrapper" ]
-                            [ img [ src ("assets/protocols/" ++ project.info.logo), alt "Icon", class "avatar" ] [] ]
+                            [ img [ src ("../assets/protocols/" ++ project.info.logo), alt "Icon", class "avatar" ] [] ]
                         ]
                     , div [ class "ValidatorBox__social flex mb-2" ]
                         [ case project.info.twitter of
@@ -723,7 +737,7 @@ projectView project =
                                     , Html.Attributes.style "color" "#fff"
                                     ]
                                     [ img
-                                        [ src "assets/socials/twitter.svg"
+                                        [ src "../assets/socials/twitter.svg"
                                         ]
                                         []
                                     ]
@@ -741,7 +755,7 @@ projectView project =
                                     , Html.Attributes.style "color" "#fff"
                                     ]
                                     [ img
-                                        [ src "assets/socials/discord.svg"
+                                        [ src "../assets/socials/discord.svg"
                                         ]
                                         []
                                     ]
@@ -759,7 +773,7 @@ projectView project =
                                     , Html.Attributes.style "color" "#fff"
                                     ]
                                     [ img
-                                        [ src "assets/socials/telegram.svg"
+                                        [ src "../assets/socials/telegram.svg"
                                         ]
                                         []
                                     ]
@@ -777,7 +791,7 @@ projectView project =
                                     , Html.Attributes.style "color" "#fff"
                                     ]
                                     [ img
-                                        [ src "assets/socials/github.svg"
+                                        [ src "../assets/socials/github.svg"
                                         ]
                                         []
                                     ]
@@ -894,7 +908,7 @@ menutabs model =
                 ""
             )
         , onClick (Current Home)
-        , href "/"
+        , href "#"
         ]
         [ img [ src "assets/icons/ratesbar.svg" ] [], span [] [ text "Dashboard" ] ]
     , a
@@ -906,7 +920,7 @@ menutabs model =
                 ""
             )
         , onClick (Current Ecosystem)
-        , href "/ecosystem"
+        , href "#"
         ]
         [ img [ src "assets/icons/ecosystem.svg" ] [], span [] [ text "Ecosystem" ] ]
     , a
@@ -922,7 +936,7 @@ menutabs model =
                     ""
             )
         , onClick (Current SmartContracts)
-        , href "/contracts"
+        , href "#"
         ]
         [ img [ src "assets/icons/contracts.svg" ] [], span [] [ text "Smart Contracts" ] ]
     , a
@@ -934,7 +948,7 @@ menutabs model =
                 ""
             )
         , onClick (Current AboutUs)
-        , href "/about"
+        , href "#"
         ]
         [ img [ src "assets/icons/info.svg" ] [], span [] [ text "About Us" ] ]
     ]
@@ -1203,37 +1217,40 @@ dropdownListTeam model contracts =
         teamOptions : List (Html Msg)
         teamOptions =
             List.filterMap
-                (\(team, icon) ->
+                (\( team, icon ) ->
                     let
-                        teamContracts = List.filter (\contract -> getContractParentTeam model contract == Just team) contracts
+                        teamContracts =
+                            List.filter (\contract -> getContractParentTeam model contract == Just team) contracts
                     in
                     if List.length teamContracts == 0 then
                         Nothing
+
                     else
-                        Just (a
-                            [ onClick (TeamSelected team), href "#" ]
-                            [ img
-                                [ src ("assets/teams/" ++ Maybe.withDefault "unknown.svg" (Just icon))
-                                , alt "Icon"
+                        Just
+                            (a
+                                [ onClick (TeamSelected team), href "#" ]
+                                [ img
+                                    [ src ("assets/teams/" ++ Maybe.withDefault "unknown.svg" (Just icon))
+                                    , alt "Icon"
+                                    ]
+                                    []
+                                , text
+                                    (team
+                                        ++ " ("
+                                        ++ String.fromInt
+                                            (case team of
+                                                "All" ->
+                                                    List.length contracts
+
+                                                _ ->
+                                                    List.length teamContracts
+                                            )
+                                        ++ ")"
+                                    )
                                 ]
-                                []
-                            , text
-                                ( team
-                                    ++ " ("
-                                    ++ String.fromInt
-                                        (case team of
-                                            "All" ->
-                                                List.length contracts
-                                            _ ->
-                                                List.length teamContracts
-                                        )
-                                    ++ ")"
-                                )
-                            ]
-                        )
+                            )
                 )
                 filteredTeams
-
     in
     div [ class "swap-input condensed swap-input--team swap-input--open" ]
         [ div [ class "swap-input__selected" ]

@@ -77,7 +77,7 @@ function A9(fun, a, b, c, d, e, f, g, h, i) {
   return fun.a === 9 ? fun.f(a, b, c, d, e, f, g, h, i) : fun(a)(b)(c)(d)(e)(f)(g)(h)(i);
 }
 
-console.warn('Compiled in DEV mode. Follow the advice at https://elm-lang.org/0.19.1/optimize for better performance and smaller assets.');
+
 
 
 // EQUALITY
@@ -113,7 +113,7 @@ function _Utils_eqHelp(x, y, depth, stack)
 		return true;
 	}
 
-	/**/
+	/**_UNUSED/
 	if (x.$ === 'Set_elm_builtin')
 	{
 		x = $elm$core$Set$toList(x);
@@ -126,7 +126,7 @@ function _Utils_eqHelp(x, y, depth, stack)
 	}
 	//*/
 
-	/**_UNUSED/
+	/**/
 	if (x.$ < 0)
 	{
 		x = $elm$core$Dict$toList(x);
@@ -161,7 +161,7 @@ function _Utils_cmp(x, y, ord)
 		return x === y ? /*EQ*/ 0 : x < y ? /*LT*/ -1 : /*GT*/ 1;
 	}
 
-	/**/
+	/**_UNUSED/
 	if (x instanceof String)
 	{
 		var a = x.valueOf();
@@ -170,10 +170,10 @@ function _Utils_cmp(x, y, ord)
 	}
 	//*/
 
-	/**_UNUSED/
+	/**/
 	if (typeof x.$ === 'undefined')
 	//*/
-	/**/
+	/**_UNUSED/
 	if (x.$[0] === '#')
 	//*/
 	{
@@ -203,17 +203,17 @@ var _Utils_compare = F2(function(x, y)
 
 // COMMON VALUES
 
-var _Utils_Tuple0_UNUSED = 0;
-var _Utils_Tuple0 = { $: '#0' };
+var _Utils_Tuple0 = 0;
+var _Utils_Tuple0_UNUSED = { $: '#0' };
 
-function _Utils_Tuple2_UNUSED(a, b) { return { a: a, b: b }; }
-function _Utils_Tuple2(a, b) { return { $: '#2', a: a, b: b }; }
+function _Utils_Tuple2(a, b) { return { a: a, b: b }; }
+function _Utils_Tuple2_UNUSED(a, b) { return { $: '#2', a: a, b: b }; }
 
-function _Utils_Tuple3_UNUSED(a, b, c) { return { a: a, b: b, c: c }; }
-function _Utils_Tuple3(a, b, c) { return { $: '#3', a: a, b: b, c: c }; }
+function _Utils_Tuple3(a, b, c) { return { a: a, b: b, c: c }; }
+function _Utils_Tuple3_UNUSED(a, b, c) { return { $: '#3', a: a, b: b, c: c }; }
 
-function _Utils_chr_UNUSED(c) { return c; }
-function _Utils_chr(c) { return new String(c); }
+function _Utils_chr(c) { return c; }
+function _Utils_chr_UNUSED(c) { return new String(c); }
 
 
 // RECORDS
@@ -264,11 +264,11 @@ function _Utils_ap(xs, ys)
 
 
 
-var _List_Nil_UNUSED = { $: 0 };
-var _List_Nil = { $: '[]' };
+var _List_Nil = { $: 0 };
+var _List_Nil_UNUSED = { $: '[]' };
 
-function _List_Cons_UNUSED(hd, tl) { return { $: 1, a: hd, b: tl }; }
-function _List_Cons(hd, tl) { return { $: '::', a: hd, b: tl }; }
+function _List_Cons(hd, tl) { return { $: 1, a: hd, b: tl }; }
+function _List_Cons_UNUSED(hd, tl) { return { $: '::', a: hd, b: tl }; }
 
 
 var _List_cons = F2(_List_Cons);
@@ -499,12 +499,12 @@ var _JsArray_appendN = F3(function(n, dest, source)
 
 // LOG
 
-var _Debug_log_UNUSED = F2(function(tag, value)
+var _Debug_log = F2(function(tag, value)
 {
 	return value;
 });
 
-var _Debug_log = F2(function(tag, value)
+var _Debug_log_UNUSED = F2(function(tag, value)
 {
 	console.log(tag + ': ' + _Debug_toString(value));
 	return value;
@@ -530,12 +530,12 @@ function _Debug_todoCase(moduleName, region, value)
 
 // TO STRING
 
-function _Debug_toString_UNUSED(value)
+function _Debug_toString(value)
 {
 	return '<internals>';
 }
 
-function _Debug_toString(value)
+function _Debug_toString_UNUSED(value)
 {
 	return _Debug_toAnsiString(false, value);
 }
@@ -720,13 +720,13 @@ function _Debug_toHexDigit(n)
 // CRASH
 
 
-function _Debug_crash_UNUSED(identifier)
+function _Debug_crash(identifier)
 {
 	throw new Error('https://github.com/elm/core/blob/1.0.0/hints/' + identifier + '.md');
 }
 
 
-function _Debug_crash(identifier, fact1, fact2, fact3, fact4)
+function _Debug_crash_UNUSED(identifier, fact1, fact2, fact3, fact4)
 {
 	switch(identifier)
 	{
@@ -784,11 +784,11 @@ function _Debug_crash(identifier, fact1, fact2, fact3, fact4)
 
 function _Debug_regionToString(region)
 {
-	if (region.start.line === region.end.line)
+	if (region.O.z === region._.z)
 	{
-		return 'on line ' + region.start.line;
+		return 'on line ' + region.O.z;
 	}
-	return 'on lines ' + region.start.line + ' through ' + region.end.line;
+	return 'on lines ' + region.O.z + ' through ' + region._.z;
 }
 
 
@@ -1212,7 +1212,7 @@ function _Char_toLocaleLower(char)
 
 
 
-/**/
+/**_UNUSED/
 function _Json_errorToString(error)
 {
 	return $elm$json$Json$Decode$errorToString(error);
@@ -1616,11 +1616,11 @@ var _Json_encode = F2(function(indentLevel, value)
 	return JSON.stringify(_Json_unwrap(value), null, indentLevel) + '';
 });
 
-function _Json_wrap(value) { return { $: 0, a: value }; }
-function _Json_unwrap(value) { return value.a; }
+function _Json_wrap_UNUSED(value) { return { $: 0, a: value }; }
+function _Json_unwrap_UNUSED(value) { return value.a; }
 
-function _Json_wrap_UNUSED(value) { return value; }
-function _Json_unwrap_UNUSED(value) { return value; }
+function _Json_wrap(value) { return value; }
+function _Json_unwrap(value) { return value; }
 
 function _Json_emptyArray() { return []; }
 function _Json_emptyObject() { return {}; }
@@ -1857,9 +1857,9 @@ var _Platform_worker = F4(function(impl, flagDecoder, debugMetadata, args)
 	return _Platform_initialize(
 		flagDecoder,
 		args,
-		impl.init,
-		impl.update,
-		impl.subscriptions,
+		impl.a6,
+		impl.bl,
+		impl.bi,
 		function() { return function() {} }
 	);
 });
@@ -1872,7 +1872,7 @@ var _Platform_worker = F4(function(impl, flagDecoder, debugMetadata, args)
 function _Platform_initialize(flagDecoder, args, init, update, subscriptions, stepperBuilder)
 {
 	var result = A2(_Json_run, flagDecoder, _Json_wrap(args ? args['flags'] : undefined));
-	$elm$core$Result$isOk(result) || _Debug_crash(2 /**/, _Json_errorToString(result.a) /**/);
+	$elm$core$Result$isOk(result) || _Debug_crash(2 /**_UNUSED/, _Json_errorToString(result.a) /**/);
 	var managers = {};
 	var initPair = init(result.a);
 	var model = initPair.a;
@@ -2316,7 +2316,7 @@ function _Platform_setupIncomingPort(name, sendToApp)
 //
 
 
-function _Platform_export_UNUSED(exports)
+function _Platform_export(exports)
 {
 	scope['Elm']
 		? _Platform_mergeExportsProd(scope['Elm'], exports)
@@ -2337,7 +2337,7 @@ function _Platform_mergeExportsProd(obj, exports)
 }
 
 
-function _Platform_export(exports)
+function _Platform_export_UNUSED(exports)
 {
 	scope['Elm']
 		? _Platform_mergeExportsDebug('Elm', scope['Elm'], exports)
@@ -2377,10 +2377,10 @@ var _VirtualDom_init = F4(function(virtualNode, flagDecoder, debugMetadata, args
 {
 	// NOTE: this function needs _Platform_export available to work
 
-	/**_UNUSED/
+	/**/
 	var node = args['node'];
 	//*/
-	/**/
+	/**_UNUSED/
 	var node = args && args['node'] ? args['node'] : _Debug_crash(0);
 	//*/
 
@@ -2655,14 +2655,14 @@ function _VirtualDom_noInnerHtmlOrFormAction(key)
 function _VirtualDom_noJavaScriptUri(value)
 {
 	return _VirtualDom_RE_js.test(value)
-		? /**_UNUSED/''//*//**/'javascript:alert("This is an XSS vector. Please use ports or web components instead.")'//*/
+		? /**/''//*//**_UNUSED/'javascript:alert("This is an XSS vector. Please use ports or web components instead.")'//*/
 		: value;
 }
 
 function _VirtualDom_noJavaScriptOrHtmlUri(value)
 {
 	return _VirtualDom_RE_js_html.test(value)
-		? /**_UNUSED/''//*//**/'javascript:alert("This is an XSS vector. Please use ports or web components instead.")'//*/
+		? /**/''//*//**_UNUSED/'javascript:alert("This is an XSS vector. Please use ports or web components instead.")'//*/
 		: value;
 }
 
@@ -2670,7 +2670,7 @@ function _VirtualDom_noJavaScriptOrHtmlJson(value)
 {
 	return (typeof _Json_unwrap(value) === 'string' && _VirtualDom_RE_js_html.test(_Json_unwrap(value)))
 		? _Json_wrap(
-			/**_UNUSED/''//*//**/'javascript:alert("This is an XSS vector. Please use ports or web components instead.")'//*/
+			/**/''//*//**_UNUSED/'javascript:alert("This is an XSS vector. Please use ports or web components instead.")'//*/
 		) : value;
 }
 
@@ -2719,9 +2719,9 @@ var _VirtualDom_mapEventTuple = F2(function(func, tuple)
 var _VirtualDom_mapEventRecord = F2(function(func, record)
 {
 	return {
-		message: func(record.message),
-		stopPropagation: record.stopPropagation,
-		preventDefault: record.preventDefault
+		o: func(record.o),
+		P: record.P,
+		L: record.L
 	}
 });
 
@@ -2989,11 +2989,11 @@ function _VirtualDom_makeCallback(eventNode, initialHandler)
 		// 3 = Custom
 
 		var value = result.a;
-		var message = !tag ? value : tag < 3 ? value.a : value.message;
-		var stopPropagation = tag == 1 ? value.b : tag == 3 && value.stopPropagation;
+		var message = !tag ? value : tag < 3 ? value.a : value.o;
+		var stopPropagation = tag == 1 ? value.b : tag == 3 && value.P;
 		var currentEventNode = (
 			stopPropagation && event.stopPropagation(),
-			(tag == 2 ? value.b : tag == 3 && value.preventDefault) && event.preventDefault(),
+			(tag == 2 ? value.b : tag == 3 && value.L) && event.preventDefault(),
 			eventNode
 		);
 		var tagger;
@@ -3943,15 +3943,15 @@ var _Browser_element = _Debugger_element || F4(function(impl, flagDecoder, debug
 	return _Platform_initialize(
 		flagDecoder,
 		args,
-		impl.init,
-		impl.update,
-		impl.subscriptions,
+		impl.a6,
+		impl.bl,
+		impl.bi,
 		function(sendToApp, initialModel) {
-			var view = impl.view;
-			/**_UNUSED/
+			var view = impl.bm;
+			/**/
 			var domNode = args['node'];
 			//*/
-			/**/
+			/**_UNUSED/
 			var domNode = args && args['node'] ? args['node'] : _Debug_crash(0);
 			//*/
 			var currNode = _VirtualDom_virtualize(domNode);
@@ -3979,12 +3979,12 @@ var _Browser_document = _Debugger_document || F4(function(impl, flagDecoder, deb
 	return _Platform_initialize(
 		flagDecoder,
 		args,
-		impl.init,
-		impl.update,
-		impl.subscriptions,
+		impl.a6,
+		impl.bl,
+		impl.bi,
 		function(sendToApp, initialModel) {
-			var divertHrefToApp = impl.setup && impl.setup(sendToApp)
-			var view = impl.view;
+			var divertHrefToApp = impl.N && impl.N(sendToApp)
+			var view = impl.bm;
 			var title = _VirtualDom_doc.title;
 			var bodyNode = _VirtualDom_doc.body;
 			var currNode = _VirtualDom_virtualize(bodyNode);
@@ -3992,12 +3992,12 @@ var _Browser_document = _Debugger_document || F4(function(impl, flagDecoder, deb
 			{
 				_VirtualDom_divertHrefToApp = divertHrefToApp;
 				var doc = view(model);
-				var nextNode = _VirtualDom_node('body')(_List_Nil)(doc.body);
+				var nextNode = _VirtualDom_node('body')(_List_Nil)(doc.aW);
 				var patches = _VirtualDom_diff(currNode, nextNode);
 				bodyNode = _VirtualDom_applyPatches(bodyNode, currNode, patches, sendToApp);
 				currNode = nextNode;
 				_VirtualDom_divertHrefToApp = 0;
-				(title !== doc.title) && (_VirtualDom_doc.title = title = doc.title);
+				(title !== doc.bk) && (_VirtualDom_doc.title = title = doc.bk);
 			});
 		}
 	);
@@ -4053,12 +4053,12 @@ function _Browser_makeAnimator(model, draw)
 
 function _Browser_application(impl)
 {
-	var onUrlChange = impl.onUrlChange;
-	var onUrlRequest = impl.onUrlRequest;
+	var onUrlChange = impl.a9;
+	var onUrlRequest = impl.ba;
 	var key = function() { key.a(onUrlChange(_Browser_getUrl())); };
 
 	return _Browser_document({
-		setup: function(sendToApp)
+		N: function(sendToApp)
 		{
 			key.a = sendToApp;
 			_Browser_window.addEventListener('popstate', key);
@@ -4074,9 +4074,9 @@ function _Browser_application(impl)
 					var next = $elm$url$Url$fromString(href).a;
 					sendToApp(onUrlRequest(
 						(next
-							&& curr.protocol === next.protocol
-							&& curr.host === next.host
-							&& curr.port_.a === next.port_.a
+							&& curr.au === next.au
+							&& curr.ag === next.ag
+							&& curr.ar.a === next.ar.a
 						)
 							? $elm$browser$Browser$Internal(next)
 							: $elm$browser$Browser$External(href)
@@ -4084,13 +4084,13 @@ function _Browser_application(impl)
 				}
 			});
 		},
-		init: function(flags)
+		a6: function(flags)
 		{
-			return A3(impl.init, flags, _Browser_getUrl(), key);
+			return A3(impl.a6, flags, _Browser_getUrl(), key);
 		},
-		view: impl.view,
-		update: impl.update,
-		subscriptions: impl.subscriptions
+		bm: impl.bm,
+		bl: impl.bl,
+		bi: impl.bi
 	});
 }
 
@@ -4156,17 +4156,17 @@ var _Browser_decodeEvent = F2(function(decoder, event)
 function _Browser_visibilityInfo()
 {
 	return (typeof _VirtualDom_doc.hidden !== 'undefined')
-		? { hidden: 'hidden', change: 'visibilitychange' }
+		? { a3: 'hidden', aX: 'visibilitychange' }
 		:
 	(typeof _VirtualDom_doc.mozHidden !== 'undefined')
-		? { hidden: 'mozHidden', change: 'mozvisibilitychange' }
+		? { a3: 'mozHidden', aX: 'mozvisibilitychange' }
 		:
 	(typeof _VirtualDom_doc.msHidden !== 'undefined')
-		? { hidden: 'msHidden', change: 'msvisibilitychange' }
+		? { a3: 'msHidden', aX: 'msvisibilitychange' }
 		:
 	(typeof _VirtualDom_doc.webkitHidden !== 'undefined')
-		? { hidden: 'webkitHidden', change: 'webkitvisibilitychange' }
-		: { hidden: 'hidden', change: 'visibilitychange' };
+		? { a3: 'webkitHidden', aX: 'webkitvisibilitychange' }
+		: { a3: 'hidden', aX: 'visibilitychange' };
 }
 
 
@@ -4247,12 +4247,12 @@ var _Browser_call = F2(function(functionName, id)
 function _Browser_getViewport()
 {
 	return {
-		scene: _Browser_getScene(),
-		viewport: {
-			x: _Browser_window.pageXOffset,
-			y: _Browser_window.pageYOffset,
-			width: _Browser_doc.documentElement.clientWidth,
-			height: _Browser_doc.documentElement.clientHeight
+		aA: _Browser_getScene(),
+		aM: {
+			aP: _Browser_window.pageXOffset,
+			aQ: _Browser_window.pageYOffset,
+			aO: _Browser_doc.documentElement.clientWidth,
+			af: _Browser_doc.documentElement.clientHeight
 		}
 	};
 }
@@ -4262,8 +4262,8 @@ function _Browser_getScene()
 	var body = _Browser_doc.body;
 	var elem = _Browser_doc.documentElement;
 	return {
-		width: Math.max(body.scrollWidth, body.offsetWidth, elem.scrollWidth, elem.offsetWidth, elem.clientWidth),
-		height: Math.max(body.scrollHeight, body.offsetHeight, elem.scrollHeight, elem.offsetHeight, elem.clientHeight)
+		aO: Math.max(body.scrollWidth, body.offsetWidth, elem.scrollWidth, elem.offsetWidth, elem.clientWidth),
+		af: Math.max(body.scrollHeight, body.offsetHeight, elem.scrollHeight, elem.offsetHeight, elem.clientHeight)
 	};
 }
 
@@ -4286,15 +4286,15 @@ function _Browser_getViewportOf(id)
 	return _Browser_withNode(id, function(node)
 	{
 		return {
-			scene: {
-				width: node.scrollWidth,
-				height: node.scrollHeight
+			aA: {
+				aO: node.scrollWidth,
+				af: node.scrollHeight
 			},
-			viewport: {
-				x: node.scrollLeft,
-				y: node.scrollTop,
-				width: node.clientWidth,
-				height: node.clientHeight
+			aM: {
+				aP: node.scrollLeft,
+				aQ: node.scrollTop,
+				aO: node.clientWidth,
+				af: node.clientHeight
 			}
 		};
 	});
@@ -4324,18 +4324,18 @@ function _Browser_getElement(id)
 		var x = _Browser_window.pageXOffset;
 		var y = _Browser_window.pageYOffset;
 		return {
-			scene: _Browser_getScene(),
-			viewport: {
-				x: x,
-				y: y,
-				width: _Browser_doc.documentElement.clientWidth,
-				height: _Browser_doc.documentElement.clientHeight
+			aA: _Browser_getScene(),
+			aM: {
+				aP: x,
+				aQ: y,
+				aO: _Browser_doc.documentElement.clientWidth,
+				af: _Browser_doc.documentElement.clientHeight
 			},
-			element: {
-				x: x + rect.left,
-				y: y + rect.top,
-				width: rect.width,
-				height: rect.height
+			a1: {
+				aP: x + rect.left,
+				aQ: y + rect.top,
+				aO: rect.width,
+				af: rect.height
 			}
 		};
 	});
@@ -4380,25 +4380,25 @@ var _Http_toTask = F3(function(router, toTask, request)
 	return _Scheduler_binding(function(callback)
 	{
 		function done(response) {
-			callback(toTask(request.expect.a(response)));
+			callback(toTask(request.G.a(response)));
 		}
 
 		var xhr = new XMLHttpRequest();
 		xhr.addEventListener('error', function() { done($elm$http$Http$NetworkError_); });
 		xhr.addEventListener('timeout', function() { done($elm$http$Http$Timeout_); });
-		xhr.addEventListener('load', function() { done(_Http_toResponse(request.expect.b, xhr)); });
-		$elm$core$Maybe$isJust(request.tracker) && _Http_track(router, xhr, request.tracker.a);
+		xhr.addEventListener('load', function() { done(_Http_toResponse(request.G.b, xhr)); });
+		$elm$core$Maybe$isJust(request.aK) && _Http_track(router, xhr, request.aK.a);
 
 		try {
-			xhr.open(request.method, request.url, true);
+			xhr.open(request.a8, request.Q, true);
 		} catch (e) {
-			return done($elm$http$Http$BadUrl_(request.url));
+			return done($elm$http$Http$BadUrl_(request.Q));
 		}
 
 		_Http_configureRequest(xhr, request);
 
-		request.body.a && xhr.setRequestHeader('Content-Type', request.body.a);
-		xhr.send(request.body.b);
+		request.aW.a && xhr.setRequestHeader('Content-Type', request.aW.a);
+		xhr.send(request.aW.b);
 
 		return function() { xhr.c = true; xhr.abort(); };
 	});
@@ -4409,13 +4409,13 @@ var _Http_toTask = F3(function(router, toTask, request)
 
 function _Http_configureRequest(xhr, request)
 {
-	for (var headers = request.headers; headers.b; headers = headers.b) // WHILE_CONS
+	for (var headers = request.ae; headers.b; headers = headers.b) // WHILE_CONS
 	{
 		xhr.setRequestHeader(headers.a.a, headers.a.b);
 	}
-	xhr.timeout = request.timeout.a || 0;
-	xhr.responseType = request.expect.d;
-	xhr.withCredentials = request.allowCookiesFromOtherDomains;
+	xhr.timeout = request.bj.a || 0;
+	xhr.responseType = request.G.d;
+	xhr.withCredentials = request.aU;
 }
 
 
@@ -4436,10 +4436,10 @@ function _Http_toResponse(toBody, xhr)
 function _Http_toMetadata(xhr)
 {
 	return {
-		url: xhr.responseURL,
-		statusCode: xhr.status,
-		statusText: xhr.statusText,
-		headers: _Http_parseHeaders(xhr.getAllResponseHeaders())
+		Q: xhr.responseURL,
+		bg: xhr.status,
+		bh: xhr.statusText,
+		ae: _Http_parseHeaders(xhr.getAllResponseHeaders())
 	};
 }
 
@@ -4534,15 +4534,15 @@ function _Http_track(router, xhr, tracker)
 	xhr.upload.addEventListener('progress', function(event) {
 		if (xhr.c) { return; }
 		_Scheduler_rawSpawn(A2($elm$core$Platform$sendToSelf, router, _Utils_Tuple2(tracker, $elm$http$Http$Sending({
-			sent: event.loaded,
-			size: event.total
+			bf: event.loaded,
+			aD: event.total
 		}))));
 	});
 	xhr.addEventListener('progress', function(event) {
 		if (xhr.c) { return; }
 		_Scheduler_rawSpawn(A2($elm$core$Platform$sendToSelf, router, _Utils_Tuple2(tracker, $elm$http$Http$Receiving({
-			received: event.loaded,
-			size: event.lengthComputable ? $elm$core$Maybe$Just(event.total) : $elm$core$Maybe$Nothing
+			bd: event.loaded,
+			aD: event.lengthComputable ? $elm$core$Maybe$Just(event.total) : $elm$core$Maybe$Nothing
 		}))));
 	});
 }
@@ -4562,15 +4562,15 @@ function _Url_percentDecode(string)
 	{
 		return $elm$core$Maybe$Nothing;
 	}
-}var $elm$core$Basics$EQ = {$: 'EQ'};
-var $elm$core$Basics$GT = {$: 'GT'};
-var $elm$core$Basics$LT = {$: 'LT'};
+}var $elm$core$Basics$EQ = 1;
+var $elm$core$Basics$GT = 2;
+var $elm$core$Basics$LT = 0;
 var $elm$core$List$cons = _List_cons;
 var $elm$core$Dict$foldr = F3(
 	function (func, acc, t) {
 		foldr:
 		while (true) {
-			if (t.$ === 'RBEmpty_elm_builtin') {
+			if (t.$ === -2) {
 				return acc;
 			} else {
 				var key = t.b;
@@ -4615,7 +4615,7 @@ var $elm$core$Dict$keys = function (dict) {
 		dict);
 };
 var $elm$core$Set$toList = function (_v0) {
-	var dict = _v0.a;
+	var dict = _v0;
 	return $elm$core$Dict$keys(dict);
 };
 var $elm$core$Elm$JsArray$foldr = _JsArray_foldr;
@@ -4625,7 +4625,7 @@ var $elm$core$Array$foldr = F3(
 		var tail = _v0.d;
 		var helper = F2(
 			function (node, acc) {
-				if (node.$ === 'SubTree') {
+				if (!node.$) {
 					var subTree = node.a;
 					return A3($elm$core$Elm$JsArray$foldr, helper, acc, subTree);
 				} else {
@@ -4643,32 +4643,32 @@ var $elm$core$Array$toList = function (array) {
 	return A3($elm$core$Array$foldr, $elm$core$List$cons, _List_Nil, array);
 };
 var $elm$core$Result$Err = function (a) {
-	return {$: 'Err', a: a};
+	return {$: 1, a: a};
 };
 var $elm$json$Json$Decode$Failure = F2(
 	function (a, b) {
-		return {$: 'Failure', a: a, b: b};
+		return {$: 3, a: a, b: b};
 	});
 var $elm$json$Json$Decode$Field = F2(
 	function (a, b) {
-		return {$: 'Field', a: a, b: b};
+		return {$: 0, a: a, b: b};
 	});
 var $elm$json$Json$Decode$Index = F2(
 	function (a, b) {
-		return {$: 'Index', a: a, b: b};
+		return {$: 1, a: a, b: b};
 	});
 var $elm$core$Result$Ok = function (a) {
-	return {$: 'Ok', a: a};
+	return {$: 0, a: a};
 };
 var $elm$json$Json$Decode$OneOf = function (a) {
-	return {$: 'OneOf', a: a};
+	return {$: 2, a: a};
 };
-var $elm$core$Basics$False = {$: 'False'};
+var $elm$core$Basics$False = 1;
 var $elm$core$Basics$add = _Basics_add;
 var $elm$core$Maybe$Just = function (a) {
-	return {$: 'Just', a: a};
+	return {$: 0, a: a};
 };
-var $elm$core$Maybe$Nothing = {$: 'Nothing'};
+var $elm$core$Maybe$Nothing = {$: 1};
 var $elm$core$String$all = _String_all;
 var $elm$core$Basics$and = _Basics_and;
 var $elm$core$Basics$append = _Utils_append;
@@ -4793,12 +4793,12 @@ var $elm$json$Json$Decode$errorToStringHelp = F2(
 		errorToStringHelp:
 		while (true) {
 			switch (error.$) {
-				case 'Field':
+				case 0:
 					var f = error.a;
 					var err = error.b;
 					var isSimple = function () {
 						var _v1 = $elm$core$String$uncons(f);
-						if (_v1.$ === 'Nothing') {
+						if (_v1.$ === 1) {
 							return false;
 						} else {
 							var _v2 = _v1.a;
@@ -4813,7 +4813,7 @@ var $elm$json$Json$Decode$errorToStringHelp = F2(
 					error = $temp$error;
 					context = $temp$context;
 					continue errorToStringHelp;
-				case 'Index':
+				case 1:
 					var i = error.a;
 					var err = error.b;
 					var indexName = '[' + ($elm$core$String$fromInt(i) + ']');
@@ -4822,7 +4822,7 @@ var $elm$json$Json$Decode$errorToStringHelp = F2(
 					error = $temp$error;
 					context = $temp$context;
 					continue errorToStringHelp;
-				case 'OneOf':
+				case 2:
 					var errors = error.a;
 					if (!errors.b) {
 						return 'Ran into a Json.Decode.oneOf with no possibilities' + function () {
@@ -4886,7 +4886,7 @@ var $elm$json$Json$Decode$errorToStringHelp = F2(
 var $elm$core$Array$branchFactor = 32;
 var $elm$core$Array$Array_elm_builtin = F4(
 	function (a, b, c, d) {
-		return {$: 'Array_elm_builtin', a: a, b: b, c: c, d: d};
+		return {$: 0, a: a, b: b, c: c, d: d};
 	});
 var $elm$core$Elm$JsArray$empty = _JsArray_empty;
 var $elm$core$Basics$ceiling = _Basics_ceiling;
@@ -4901,7 +4901,7 @@ var $elm$core$Array$shiftStep = $elm$core$Basics$ceiling(
 var $elm$core$Array$empty = A4($elm$core$Array$Array_elm_builtin, 0, $elm$core$Array$shiftStep, $elm$core$Elm$JsArray$empty, $elm$core$Elm$JsArray$empty);
 var $elm$core$Elm$JsArray$initialize = _JsArray_initialize;
 var $elm$core$Array$Leaf = function (a) {
-	return {$: 'Leaf', a: a};
+	return {$: 1, a: a};
 };
 var $elm$core$Basics$apL = F2(
 	function (f, x) {
@@ -4921,7 +4921,7 @@ var $elm$core$Basics$max = F2(
 	});
 var $elm$core$Basics$mul = _Basics_mul;
 var $elm$core$Array$SubTree = function (a) {
-	return {$: 'SubTree', a: a};
+	return {$: 0, a: a};
 };
 var $elm$core$Elm$JsArray$initializeFromList = _JsArray_initializeFromList;
 var $elm$core$Array$compressNodes = F2(
@@ -4968,25 +4968,25 @@ var $elm$core$Array$treeFromBuilder = F2(
 	});
 var $elm$core$Array$builderToArray = F2(
 	function (reverseNodeList, builder) {
-		if (!builder.nodeListSize) {
+		if (!builder.a) {
 			return A4(
 				$elm$core$Array$Array_elm_builtin,
-				$elm$core$Elm$JsArray$length(builder.tail),
+				$elm$core$Elm$JsArray$length(builder.c),
 				$elm$core$Array$shiftStep,
 				$elm$core$Elm$JsArray$empty,
-				builder.tail);
+				builder.c);
 		} else {
-			var treeLen = builder.nodeListSize * $elm$core$Array$branchFactor;
+			var treeLen = builder.a * $elm$core$Array$branchFactor;
 			var depth = $elm$core$Basics$floor(
 				A2($elm$core$Basics$logBase, $elm$core$Array$branchFactor, treeLen - 1));
-			var correctNodeList = reverseNodeList ? $elm$core$List$reverse(builder.nodeList) : builder.nodeList;
-			var tree = A2($elm$core$Array$treeFromBuilder, correctNodeList, builder.nodeListSize);
+			var correctNodeList = reverseNodeList ? $elm$core$List$reverse(builder.d) : builder.d;
+			var tree = A2($elm$core$Array$treeFromBuilder, correctNodeList, builder.a);
 			return A4(
 				$elm$core$Array$Array_elm_builtin,
-				$elm$core$Elm$JsArray$length(builder.tail) + treeLen,
+				$elm$core$Elm$JsArray$length(builder.c) + treeLen,
 				A2($elm$core$Basics$max, 5, depth * $elm$core$Array$shiftStep),
 				tree,
-				builder.tail);
+				builder.c);
 		}
 	});
 var $elm$core$Basics$idiv = _Basics_idiv;
@@ -4999,7 +4999,7 @@ var $elm$core$Array$initializeHelp = F5(
 				return A2(
 					$elm$core$Array$builderToArray,
 					false,
-					{nodeList: nodeList, nodeListSize: (len / $elm$core$Array$branchFactor) | 0, tail: tail});
+					{d: nodeList, a: (len / $elm$core$Array$branchFactor) | 0, c: tail});
 			} else {
 				var leaf = $elm$core$Array$Leaf(
 					A3($elm$core$Elm$JsArray$initialize, $elm$core$Array$branchFactor, fromIndex, fn));
@@ -5029,9 +5029,9 @@ var $elm$core$Array$initialize = F2(
 			return A5($elm$core$Array$initializeHelp, fn, initialFromIndex, len, _List_Nil, tail);
 		}
 	});
-var $elm$core$Basics$True = {$: 'True'};
+var $elm$core$Basics$True = 0;
 var $elm$core$Result$isOk = function (result) {
-	if (result.$ === 'Ok') {
+	if (!result.$) {
 		return true;
 	} else {
 		return false;
@@ -5042,33 +5042,31 @@ var $elm$json$Json$Decode$map2 = _Json_map2;
 var $elm$json$Json$Decode$succeed = _Json_succeed;
 var $elm$virtual_dom$VirtualDom$toHandlerInt = function (handler) {
 	switch (handler.$) {
-		case 'Normal':
+		case 0:
 			return 0;
-		case 'MayStopPropagation':
+		case 1:
 			return 1;
-		case 'MayPreventDefault':
+		case 2:
 			return 2;
 		default:
 			return 3;
 	}
 };
 var $elm$browser$Browser$External = function (a) {
-	return {$: 'External', a: a};
+	return {$: 1, a: a};
 };
 var $elm$browser$Browser$Internal = function (a) {
-	return {$: 'Internal', a: a};
+	return {$: 0, a: a};
 };
 var $elm$core$Basics$identity = function (x) {
 	return x;
 };
-var $elm$browser$Browser$Dom$NotFound = function (a) {
-	return {$: 'NotFound', a: a};
-};
-var $elm$url$Url$Http = {$: 'Http'};
-var $elm$url$Url$Https = {$: 'Https'};
+var $elm$browser$Browser$Dom$NotFound = $elm$core$Basics$identity;
+var $elm$url$Url$Http = 0;
+var $elm$url$Url$Https = 1;
 var $elm$url$Url$Url = F6(
 	function (protocol, host, port_, path, query, fragment) {
-		return {fragment: fragment, host: host, path: path, port_: port_, protocol: protocol, query: query};
+		return {ac: fragment, ag: host, ap: path, ar: port_, au: protocol, av: query};
 	});
 var $elm$core$String$contains = _String_contains;
 var $elm$core$String$length = _String_length;
@@ -5104,7 +5102,7 @@ var $elm$url$Url$chompBeforePath = F5(
 					var i = _v0.a;
 					var _v1 = $elm$core$String$toInt(
 						A2($elm$core$String$dropLeft, i + 1, str));
-					if (_v1.$ === 'Nothing') {
+					if (_v1.$ === 1) {
 						return $elm$core$Maybe$Nothing;
 					} else {
 						var port_ = _v1;
@@ -5187,26 +5185,24 @@ var $elm$core$String$startsWith = _String_startsWith;
 var $elm$url$Url$fromString = function (str) {
 	return A2($elm$core$String$startsWith, 'http://', str) ? A2(
 		$elm$url$Url$chompAfterProtocol,
-		$elm$url$Url$Http,
+		0,
 		A2($elm$core$String$dropLeft, 7, str)) : (A2($elm$core$String$startsWith, 'https://', str) ? A2(
 		$elm$url$Url$chompAfterProtocol,
-		$elm$url$Url$Https,
+		1,
 		A2($elm$core$String$dropLeft, 8, str)) : $elm$core$Maybe$Nothing);
 };
 var $elm$core$Basics$never = function (_v0) {
 	never:
 	while (true) {
-		var nvr = _v0.a;
+		var nvr = _v0;
 		var $temp$_v0 = nvr;
 		_v0 = $temp$_v0;
 		continue never;
 	}
 };
-var $elm$core$Task$Perform = function (a) {
-	return {$: 'Perform', a: a};
-};
+var $elm$core$Task$Perform = $elm$core$Basics$identity;
 var $elm$core$Task$succeed = _Scheduler_succeed;
-var $elm$core$Task$init = $elm$core$Task$succeed(_Utils_Tuple0);
+var $elm$core$Task$init = $elm$core$Task$succeed(0);
 var $elm$core$List$foldrHelper = F4(
 	function (fn, acc, ctr, ls) {
 		if (!ls.b) {
@@ -5312,7 +5308,7 @@ var $elm$core$Task$sequence = function (tasks) {
 var $elm$core$Platform$sendToApp = _Platform_sendToApp;
 var $elm$core$Task$spawnCmd = F2(
 	function (router, _v0) {
-		var task = _v0.a;
+		var task = _v0;
 		return _Scheduler_spawn(
 			A2(
 				$elm$core$Task$andThen,
@@ -5324,7 +5320,7 @@ var $elm$core$Task$onEffects = F3(
 		return A2(
 			$elm$core$Task$map,
 			function (_v0) {
-				return _Utils_Tuple0;
+				return 0;
 			},
 			$elm$core$Task$sequence(
 				A2(
@@ -5334,58 +5330,56 @@ var $elm$core$Task$onEffects = F3(
 	});
 var $elm$core$Task$onSelfMsg = F3(
 	function (_v0, _v1, _v2) {
-		return $elm$core$Task$succeed(_Utils_Tuple0);
+		return $elm$core$Task$succeed(0);
 	});
 var $elm$core$Task$cmdMap = F2(
 	function (tagger, _v0) {
-		var task = _v0.a;
-		return $elm$core$Task$Perform(
-			A2($elm$core$Task$map, tagger, task));
+		var task = _v0;
+		return A2($elm$core$Task$map, tagger, task);
 	});
 _Platform_effectManagers['Task'] = _Platform_createManager($elm$core$Task$init, $elm$core$Task$onEffects, $elm$core$Task$onSelfMsg, $elm$core$Task$cmdMap);
 var $elm$core$Task$command = _Platform_leaf('Task');
 var $elm$core$Task$perform = F2(
 	function (toMessage, task) {
 		return $elm$core$Task$command(
-			$elm$core$Task$Perform(
-				A2($elm$core$Task$map, toMessage, task)));
+			A2($elm$core$Task$map, toMessage, task));
 	});
 var $elm$browser$Browser$application = _Browser_application;
-var $author$project$Types$All = {$: 'All'};
-var $author$project$Types$Close = {$: 'Close'};
-var $author$project$Types$Home = {$: 'Home'};
+var $author$project$Types$All = {$: 0};
+var $author$project$Types$Close = 1;
+var $author$project$Types$Home = {$: 0};
 var $author$project$Types$Success = function (a) {
-	return {$: 'Success', a: a};
+	return {$: 0, a: a};
 };
 var $elm$core$Platform$Cmd$batch = _Platform_batch;
 var $author$project$Types$GotProjects = function (a) {
-	return {$: 'GotProjects', a: a};
+	return {$: 0, a: a};
 };
 var $author$project$Main$apiUrl = 'http://api.rorcualnodes.com:3000';
 var $elm$json$Json$Decode$decodeString = _Json_runOnString;
 var $elm$http$Http$BadStatus_ = F2(
 	function (a, b) {
-		return {$: 'BadStatus_', a: a, b: b};
+		return {$: 3, a: a, b: b};
 	});
 var $elm$http$Http$BadUrl_ = function (a) {
-	return {$: 'BadUrl_', a: a};
+	return {$: 0, a: a};
 };
 var $elm$http$Http$GoodStatus_ = F2(
 	function (a, b) {
-		return {$: 'GoodStatus_', a: a, b: b};
+		return {$: 4, a: a, b: b};
 	});
-var $elm$http$Http$NetworkError_ = {$: 'NetworkError_'};
+var $elm$http$Http$NetworkError_ = {$: 2};
 var $elm$http$Http$Receiving = function (a) {
-	return {$: 'Receiving', a: a};
+	return {$: 1, a: a};
 };
 var $elm$http$Http$Sending = function (a) {
-	return {$: 'Sending', a: a};
+	return {$: 0, a: a};
 };
-var $elm$http$Http$Timeout_ = {$: 'Timeout_'};
-var $elm$core$Dict$RBEmpty_elm_builtin = {$: 'RBEmpty_elm_builtin'};
+var $elm$http$Http$Timeout_ = {$: 1};
+var $elm$core$Dict$RBEmpty_elm_builtin = {$: -2};
 var $elm$core$Dict$empty = $elm$core$Dict$RBEmpty_elm_builtin;
 var $elm$core$Maybe$isJust = function (maybe) {
-	if (maybe.$ === 'Just') {
+	if (!maybe.$) {
 		return true;
 	} else {
 		return false;
@@ -5397,7 +5391,7 @@ var $elm$core$Dict$get = F2(
 	function (targetKey, dict) {
 		get:
 		while (true) {
-			if (dict.$ === 'RBEmpty_elm_builtin') {
+			if (dict.$ === -2) {
 				return $elm$core$Maybe$Nothing;
 			} else {
 				var key = dict.b;
@@ -5405,14 +5399,14 @@ var $elm$core$Dict$get = F2(
 				var left = dict.d;
 				var right = dict.e;
 				var _v1 = A2($elm$core$Basics$compare, targetKey, key);
-				switch (_v1.$) {
-					case 'LT':
+				switch (_v1) {
+					case 0:
 						var $temp$targetKey = targetKey,
 							$temp$dict = left;
 						targetKey = $temp$targetKey;
 						dict = $temp$dict;
 						continue get;
-					case 'EQ':
+					case 1:
 						return $elm$core$Maybe$Just(value);
 					default:
 						var $temp$targetKey = targetKey,
@@ -5424,21 +5418,21 @@ var $elm$core$Dict$get = F2(
 			}
 		}
 	});
-var $elm$core$Dict$Black = {$: 'Black'};
+var $elm$core$Dict$Black = 1;
 var $elm$core$Dict$RBNode_elm_builtin = F5(
 	function (a, b, c, d, e) {
-		return {$: 'RBNode_elm_builtin', a: a, b: b, c: c, d: d, e: e};
+		return {$: -1, a: a, b: b, c: c, d: d, e: e};
 	});
-var $elm$core$Dict$Red = {$: 'Red'};
+var $elm$core$Dict$Red = 0;
 var $elm$core$Dict$balance = F5(
 	function (color, key, value, left, right) {
-		if ((right.$ === 'RBNode_elm_builtin') && (right.a.$ === 'Red')) {
+		if ((right.$ === -1) && (!right.a)) {
 			var _v1 = right.a;
 			var rK = right.b;
 			var rV = right.c;
 			var rLeft = right.d;
 			var rRight = right.e;
-			if ((left.$ === 'RBNode_elm_builtin') && (left.a.$ === 'Red')) {
+			if ((left.$ === -1) && (!left.a)) {
 				var _v3 = left.a;
 				var lK = left.b;
 				var lV = left.c;
@@ -5446,22 +5440,22 @@ var $elm$core$Dict$balance = F5(
 				var lRight = left.e;
 				return A5(
 					$elm$core$Dict$RBNode_elm_builtin,
-					$elm$core$Dict$Red,
+					0,
 					key,
 					value,
-					A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Black, lK, lV, lLeft, lRight),
-					A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Black, rK, rV, rLeft, rRight));
+					A5($elm$core$Dict$RBNode_elm_builtin, 1, lK, lV, lLeft, lRight),
+					A5($elm$core$Dict$RBNode_elm_builtin, 1, rK, rV, rLeft, rRight));
 			} else {
 				return A5(
 					$elm$core$Dict$RBNode_elm_builtin,
 					color,
 					rK,
 					rV,
-					A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Red, key, value, left, rLeft),
+					A5($elm$core$Dict$RBNode_elm_builtin, 0, key, value, left, rLeft),
 					rRight);
 			}
 		} else {
-			if ((((left.$ === 'RBNode_elm_builtin') && (left.a.$ === 'Red')) && (left.d.$ === 'RBNode_elm_builtin')) && (left.d.a.$ === 'Red')) {
+			if ((((left.$ === -1) && (!left.a)) && (left.d.$ === -1)) && (!left.d.a)) {
 				var _v5 = left.a;
 				var lK = left.b;
 				var lV = left.c;
@@ -5474,11 +5468,11 @@ var $elm$core$Dict$balance = F5(
 				var lRight = left.e;
 				return A5(
 					$elm$core$Dict$RBNode_elm_builtin,
-					$elm$core$Dict$Red,
+					0,
 					lK,
 					lV,
-					A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Black, llK, llV, llLeft, llRight),
-					A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Black, key, value, lRight, right));
+					A5($elm$core$Dict$RBNode_elm_builtin, 1, llK, llV, llLeft, llRight),
+					A5($elm$core$Dict$RBNode_elm_builtin, 1, key, value, lRight, right));
 			} else {
 				return A5($elm$core$Dict$RBNode_elm_builtin, color, key, value, left, right);
 			}
@@ -5486,8 +5480,8 @@ var $elm$core$Dict$balance = F5(
 	});
 var $elm$core$Dict$insertHelp = F3(
 	function (key, value, dict) {
-		if (dict.$ === 'RBEmpty_elm_builtin') {
-			return A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Red, key, value, $elm$core$Dict$RBEmpty_elm_builtin, $elm$core$Dict$RBEmpty_elm_builtin);
+		if (dict.$ === -2) {
+			return A5($elm$core$Dict$RBNode_elm_builtin, 0, key, value, $elm$core$Dict$RBEmpty_elm_builtin, $elm$core$Dict$RBEmpty_elm_builtin);
 		} else {
 			var nColor = dict.a;
 			var nKey = dict.b;
@@ -5495,8 +5489,8 @@ var $elm$core$Dict$insertHelp = F3(
 			var nLeft = dict.d;
 			var nRight = dict.e;
 			var _v1 = A2($elm$core$Basics$compare, key, nKey);
-			switch (_v1.$) {
-				case 'LT':
+			switch (_v1) {
+				case 0:
 					return A5(
 						$elm$core$Dict$balance,
 						nColor,
@@ -5504,7 +5498,7 @@ var $elm$core$Dict$insertHelp = F3(
 						nValue,
 						A3($elm$core$Dict$insertHelp, key, value, nLeft),
 						nRight);
-				case 'EQ':
+				case 1:
 					return A5($elm$core$Dict$RBNode_elm_builtin, nColor, nKey, value, nLeft, nRight);
 				default:
 					return A5(
@@ -5520,13 +5514,13 @@ var $elm$core$Dict$insertHelp = F3(
 var $elm$core$Dict$insert = F3(
 	function (key, value, dict) {
 		var _v0 = A3($elm$core$Dict$insertHelp, key, value, dict);
-		if ((_v0.$ === 'RBNode_elm_builtin') && (_v0.a.$ === 'Red')) {
+		if ((_v0.$ === -1) && (!_v0.a)) {
 			var _v1 = _v0.a;
 			var k = _v0.b;
 			var v = _v0.c;
 			var l = _v0.d;
 			var r = _v0.e;
-			return A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Black, k, v, l, r);
+			return A5($elm$core$Dict$RBNode_elm_builtin, 1, k, v, l, r);
 		} else {
 			var x = _v0;
 			return x;
@@ -5535,7 +5529,7 @@ var $elm$core$Dict$insert = F3(
 var $elm$core$Dict$getMin = function (dict) {
 	getMin:
 	while (true) {
-		if ((dict.$ === 'RBNode_elm_builtin') && (dict.d.$ === 'RBNode_elm_builtin')) {
+		if ((dict.$ === -1) && (dict.d.$ === -1)) {
 			var left = dict.d;
 			var $temp$dict = left;
 			dict = $temp$dict;
@@ -5546,8 +5540,8 @@ var $elm$core$Dict$getMin = function (dict) {
 	}
 };
 var $elm$core$Dict$moveRedLeft = function (dict) {
-	if (((dict.$ === 'RBNode_elm_builtin') && (dict.d.$ === 'RBNode_elm_builtin')) && (dict.e.$ === 'RBNode_elm_builtin')) {
-		if ((dict.e.d.$ === 'RBNode_elm_builtin') && (dict.e.d.a.$ === 'Red')) {
+	if (((dict.$ === -1) && (dict.d.$ === -1)) && (dict.e.$ === -1)) {
+		if ((dict.e.d.$ === -1) && (!dict.e.d.a)) {
 			var clr = dict.a;
 			var k = dict.b;
 			var v = dict.c;
@@ -5570,17 +5564,17 @@ var $elm$core$Dict$moveRedLeft = function (dict) {
 			var rRight = _v2.e;
 			return A5(
 				$elm$core$Dict$RBNode_elm_builtin,
-				$elm$core$Dict$Red,
+				0,
 				rlK,
 				rlV,
 				A5(
 					$elm$core$Dict$RBNode_elm_builtin,
-					$elm$core$Dict$Black,
+					1,
 					k,
 					v,
-					A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Red, lK, lV, lLeft, lRight),
+					A5($elm$core$Dict$RBNode_elm_builtin, 0, lK, lV, lLeft, lRight),
 					rlL),
-				A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Black, rK, rV, rlR, rRight));
+				A5($elm$core$Dict$RBNode_elm_builtin, 1, rK, rV, rlR, rRight));
 		} else {
 			var clr = dict.a;
 			var k = dict.b;
@@ -5597,22 +5591,22 @@ var $elm$core$Dict$moveRedLeft = function (dict) {
 			var rV = _v5.c;
 			var rLeft = _v5.d;
 			var rRight = _v5.e;
-			if (clr.$ === 'Black') {
+			if (clr === 1) {
 				return A5(
 					$elm$core$Dict$RBNode_elm_builtin,
-					$elm$core$Dict$Black,
+					1,
 					k,
 					v,
-					A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Red, lK, lV, lLeft, lRight),
-					A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Red, rK, rV, rLeft, rRight));
+					A5($elm$core$Dict$RBNode_elm_builtin, 0, lK, lV, lLeft, lRight),
+					A5($elm$core$Dict$RBNode_elm_builtin, 0, rK, rV, rLeft, rRight));
 			} else {
 				return A5(
 					$elm$core$Dict$RBNode_elm_builtin,
-					$elm$core$Dict$Black,
+					1,
 					k,
 					v,
-					A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Red, lK, lV, lLeft, lRight),
-					A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Red, rK, rV, rLeft, rRight));
+					A5($elm$core$Dict$RBNode_elm_builtin, 0, lK, lV, lLeft, lRight),
+					A5($elm$core$Dict$RBNode_elm_builtin, 0, rK, rV, rLeft, rRight));
 			}
 		}
 	} else {
@@ -5620,8 +5614,8 @@ var $elm$core$Dict$moveRedLeft = function (dict) {
 	}
 };
 var $elm$core$Dict$moveRedRight = function (dict) {
-	if (((dict.$ === 'RBNode_elm_builtin') && (dict.d.$ === 'RBNode_elm_builtin')) && (dict.e.$ === 'RBNode_elm_builtin')) {
-		if ((dict.d.d.$ === 'RBNode_elm_builtin') && (dict.d.d.a.$ === 'Red')) {
+	if (((dict.$ === -1) && (dict.d.$ === -1)) && (dict.e.$ === -1)) {
+		if ((dict.d.d.$ === -1) && (!dict.d.d.a)) {
 			var clr = dict.a;
 			var k = dict.b;
 			var v = dict.c;
@@ -5644,17 +5638,17 @@ var $elm$core$Dict$moveRedRight = function (dict) {
 			var rRight = _v4.e;
 			return A5(
 				$elm$core$Dict$RBNode_elm_builtin,
-				$elm$core$Dict$Red,
+				0,
 				lK,
 				lV,
-				A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Black, llK, llV, llLeft, llRight),
+				A5($elm$core$Dict$RBNode_elm_builtin, 1, llK, llV, llLeft, llRight),
 				A5(
 					$elm$core$Dict$RBNode_elm_builtin,
-					$elm$core$Dict$Black,
+					1,
 					k,
 					v,
 					lRight,
-					A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Red, rK, rV, rLeft, rRight)));
+					A5($elm$core$Dict$RBNode_elm_builtin, 0, rK, rV, rLeft, rRight)));
 		} else {
 			var clr = dict.a;
 			var k = dict.b;
@@ -5671,22 +5665,22 @@ var $elm$core$Dict$moveRedRight = function (dict) {
 			var rV = _v6.c;
 			var rLeft = _v6.d;
 			var rRight = _v6.e;
-			if (clr.$ === 'Black') {
+			if (clr === 1) {
 				return A5(
 					$elm$core$Dict$RBNode_elm_builtin,
-					$elm$core$Dict$Black,
+					1,
 					k,
 					v,
-					A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Red, lK, lV, lLeft, lRight),
-					A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Red, rK, rV, rLeft, rRight));
+					A5($elm$core$Dict$RBNode_elm_builtin, 0, lK, lV, lLeft, lRight),
+					A5($elm$core$Dict$RBNode_elm_builtin, 0, rK, rV, rLeft, rRight));
 			} else {
 				return A5(
 					$elm$core$Dict$RBNode_elm_builtin,
-					$elm$core$Dict$Black,
+					1,
 					k,
 					v,
-					A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Red, lK, lV, lLeft, lRight),
-					A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Red, rK, rV, rLeft, rRight));
+					A5($elm$core$Dict$RBNode_elm_builtin, 0, lK, lV, lLeft, lRight),
+					A5($elm$core$Dict$RBNode_elm_builtin, 0, rK, rV, rLeft, rRight));
 			}
 		}
 	} else {
@@ -5695,7 +5689,7 @@ var $elm$core$Dict$moveRedRight = function (dict) {
 };
 var $elm$core$Dict$removeHelpPrepEQGT = F7(
 	function (targetKey, dict, color, key, value, left, right) {
-		if ((left.$ === 'RBNode_elm_builtin') && (left.a.$ === 'Red')) {
+		if ((left.$ === -1) && (!left.a)) {
 			var _v1 = left.a;
 			var lK = left.b;
 			var lV = left.c;
@@ -5707,13 +5701,13 @@ var $elm$core$Dict$removeHelpPrepEQGT = F7(
 				lK,
 				lV,
 				lLeft,
-				A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Red, key, value, lRight, right));
+				A5($elm$core$Dict$RBNode_elm_builtin, 0, key, value, lRight, right));
 		} else {
 			_v2$2:
 			while (true) {
-				if ((right.$ === 'RBNode_elm_builtin') && (right.a.$ === 'Black')) {
-					if (right.d.$ === 'RBNode_elm_builtin') {
-						if (right.d.a.$ === 'Black') {
+				if ((right.$ === -1) && (right.a === 1)) {
+					if (right.d.$ === -1) {
+						if (right.d.a === 1) {
 							var _v3 = right.a;
 							var _v4 = right.d;
 							var _v5 = _v4.a;
@@ -5734,7 +5728,7 @@ var $elm$core$Dict$removeHelpPrepEQGT = F7(
 		}
 	});
 var $elm$core$Dict$removeMin = function (dict) {
-	if ((dict.$ === 'RBNode_elm_builtin') && (dict.d.$ === 'RBNode_elm_builtin')) {
+	if ((dict.$ === -1) && (dict.d.$ === -1)) {
 		var color = dict.a;
 		var key = dict.b;
 		var value = dict.c;
@@ -5742,8 +5736,8 @@ var $elm$core$Dict$removeMin = function (dict) {
 		var lColor = left.a;
 		var lLeft = left.d;
 		var right = dict.e;
-		if (lColor.$ === 'Black') {
-			if ((lLeft.$ === 'RBNode_elm_builtin') && (lLeft.a.$ === 'Red')) {
+		if (lColor === 1) {
+			if ((lLeft.$ === -1) && (!lLeft.a)) {
 				var _v3 = lLeft.a;
 				return A5(
 					$elm$core$Dict$RBNode_elm_builtin,
@@ -5754,7 +5748,7 @@ var $elm$core$Dict$removeMin = function (dict) {
 					right);
 			} else {
 				var _v4 = $elm$core$Dict$moveRedLeft(dict);
-				if (_v4.$ === 'RBNode_elm_builtin') {
+				if (_v4.$ === -1) {
 					var nColor = _v4.a;
 					var nKey = _v4.b;
 					var nValue = _v4.c;
@@ -5786,7 +5780,7 @@ var $elm$core$Dict$removeMin = function (dict) {
 };
 var $elm$core$Dict$removeHelp = F2(
 	function (targetKey, dict) {
-		if (dict.$ === 'RBEmpty_elm_builtin') {
+		if (dict.$ === -2) {
 			return $elm$core$Dict$RBEmpty_elm_builtin;
 		} else {
 			var color = dict.a;
@@ -5795,10 +5789,10 @@ var $elm$core$Dict$removeHelp = F2(
 			var left = dict.d;
 			var right = dict.e;
 			if (_Utils_cmp(targetKey, key) < 0) {
-				if ((left.$ === 'RBNode_elm_builtin') && (left.a.$ === 'Black')) {
+				if ((left.$ === -1) && (left.a === 1)) {
 					var _v4 = left.a;
 					var lLeft = left.d;
-					if ((lLeft.$ === 'RBNode_elm_builtin') && (lLeft.a.$ === 'Red')) {
+					if ((lLeft.$ === -1) && (!lLeft.a)) {
 						var _v6 = lLeft.a;
 						return A5(
 							$elm$core$Dict$RBNode_elm_builtin,
@@ -5809,7 +5803,7 @@ var $elm$core$Dict$removeHelp = F2(
 							right);
 					} else {
 						var _v7 = $elm$core$Dict$moveRedLeft(dict);
-						if (_v7.$ === 'RBNode_elm_builtin') {
+						if (_v7.$ === -1) {
 							var nColor = _v7.a;
 							var nKey = _v7.b;
 							var nValue = _v7.c;
@@ -5845,7 +5839,7 @@ var $elm$core$Dict$removeHelp = F2(
 	});
 var $elm$core$Dict$removeHelpEQGT = F2(
 	function (targetKey, dict) {
-		if (dict.$ === 'RBNode_elm_builtin') {
+		if (dict.$ === -1) {
 			var color = dict.a;
 			var key = dict.b;
 			var value = dict.c;
@@ -5853,7 +5847,7 @@ var $elm$core$Dict$removeHelpEQGT = F2(
 			var right = dict.e;
 			if (_Utils_eq(targetKey, key)) {
 				var _v1 = $elm$core$Dict$getMin(right);
-				if (_v1.$ === 'RBNode_elm_builtin') {
+				if (_v1.$ === -1) {
 					var minKey = _v1.b;
 					var minValue = _v1.c;
 					return A5(
@@ -5882,13 +5876,13 @@ var $elm$core$Dict$removeHelpEQGT = F2(
 var $elm$core$Dict$remove = F2(
 	function (key, dict) {
 		var _v0 = A2($elm$core$Dict$removeHelp, key, dict);
-		if ((_v0.$ === 'RBNode_elm_builtin') && (_v0.a.$ === 'Red')) {
+		if ((_v0.$ === -1) && (!_v0.a)) {
 			var _v1 = _v0.a;
 			var k = _v0.b;
 			var v = _v0.c;
 			var l = _v0.d;
 			var r = _v0.e;
-			return A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Black, k, v, l, r);
+			return A5($elm$core$Dict$RBNode_elm_builtin, 1, k, v, l, r);
 		} else {
 			var x = _v0;
 			return x;
@@ -5898,7 +5892,7 @@ var $elm$core$Dict$update = F3(
 	function (targetKey, alter, dictionary) {
 		var _v0 = alter(
 			A2($elm$core$Dict$get, targetKey, dictionary));
-		if (_v0.$ === 'Just') {
+		if (!_v0.$) {
 			var value = _v0.a;
 			return A3($elm$core$Dict$insert, targetKey, value, dictionary);
 		} else {
@@ -5920,7 +5914,7 @@ var $elm$http$Http$expectStringResponse = F2(
 	});
 var $elm$core$Result$mapError = F2(
 	function (f, result) {
-		if (result.$ === 'Ok') {
+		if (!result.$) {
 			var v = result.a;
 			return $elm$core$Result$Ok(v);
 		} else {
@@ -5930,31 +5924,31 @@ var $elm$core$Result$mapError = F2(
 		}
 	});
 var $elm$http$Http$BadBody = function (a) {
-	return {$: 'BadBody', a: a};
+	return {$: 4, a: a};
 };
 var $elm$http$Http$BadStatus = function (a) {
-	return {$: 'BadStatus', a: a};
+	return {$: 3, a: a};
 };
 var $elm$http$Http$BadUrl = function (a) {
-	return {$: 'BadUrl', a: a};
+	return {$: 0, a: a};
 };
-var $elm$http$Http$NetworkError = {$: 'NetworkError'};
-var $elm$http$Http$Timeout = {$: 'Timeout'};
+var $elm$http$Http$NetworkError = {$: 2};
+var $elm$http$Http$Timeout = {$: 1};
 var $elm$http$Http$resolve = F2(
 	function (toResult, response) {
 		switch (response.$) {
-			case 'BadUrl_':
+			case 0:
 				var url = response.a;
 				return $elm$core$Result$Err(
 					$elm$http$Http$BadUrl(url));
-			case 'Timeout_':
+			case 1:
 				return $elm$core$Result$Err($elm$http$Http$Timeout);
-			case 'NetworkError_':
+			case 2:
 				return $elm$core$Result$Err($elm$http$Http$NetworkError);
-			case 'BadStatus_':
+			case 3:
 				var metadata = response.a;
 				return $elm$core$Result$Err(
-					$elm$http$Http$BadStatus(metadata.statusCode));
+					$elm$http$Http$BadStatus(metadata.bg));
 			default:
 				var body = response.b;
 				return A2(
@@ -5978,11 +5972,11 @@ var $elm$http$Http$expectJson = F2(
 	});
 var $elm$http$Http$emptyBody = _Http_emptyBody;
 var $elm$http$Http$Request = function (a) {
-	return {$: 'Request', a: a};
+	return {$: 1, a: a};
 };
 var $elm$http$Http$State = F2(
 	function (reqs, subs) {
-		return {reqs: reqs, subs: subs};
+		return {ax: reqs, aE: subs};
 	});
 var $elm$http$Http$init = $elm$core$Task$succeed(
 	A2($elm$http$Http$State, $elm$core$Dict$empty, _List_Nil));
@@ -5997,10 +5991,10 @@ var $elm$http$Http$updateReqs = F3(
 			} else {
 				var cmd = cmds.a;
 				var otherCmds = cmds.b;
-				if (cmd.$ === 'Cancel') {
+				if (!cmd.$) {
 					var tracker = cmd.a;
 					var _v2 = A2($elm$core$Dict$get, tracker, reqs);
-					if (_v2.$ === 'Nothing') {
+					if (_v2.$ === 1) {
 						var $temp$router = router,
 							$temp$cmds = otherCmds,
 							$temp$reqs = reqs;
@@ -6026,8 +6020,8 @@ var $elm$http$Http$updateReqs = F3(
 					return A2(
 						$elm$core$Task$andThen,
 						function (pid) {
-							var _v4 = req.tracker;
-							if (_v4.$ === 'Nothing') {
+							var _v4 = req.aK;
+							if (_v4.$ === 1) {
 								return A3($elm$http$Http$updateReqs, router, otherCmds, reqs);
 							} else {
 								var tracker = _v4.a;
@@ -6056,12 +6050,12 @@ var $elm$http$Http$onEffects = F4(
 				return $elm$core$Task$succeed(
 					A2($elm$http$Http$State, reqs, subs));
 			},
-			A3($elm$http$Http$updateReqs, router, cmds, state.reqs));
+			A3($elm$http$Http$updateReqs, router, cmds, state.ax));
 	});
 var $elm$core$List$maybeCons = F3(
 	function (f, mx, xs) {
 		var _v0 = f(mx);
-		if (_v0.$ === 'Just') {
+		if (!_v0.$) {
 			var x = _v0.a;
 			return A2($elm$core$List$cons, x, xs);
 		} else {
@@ -6099,34 +6093,34 @@ var $elm$http$Http$onSelfMsg = F3(
 				A2(
 					$elm$core$List$filterMap,
 					A3($elm$http$Http$maybeSend, router, tracker, progress),
-					state.subs)));
+					state.aE)));
 	});
 var $elm$http$Http$Cancel = function (a) {
-	return {$: 'Cancel', a: a};
+	return {$: 0, a: a};
 };
 var $elm$http$Http$cmdMap = F2(
 	function (func, cmd) {
-		if (cmd.$ === 'Cancel') {
+		if (!cmd.$) {
 			var tracker = cmd.a;
 			return $elm$http$Http$Cancel(tracker);
 		} else {
 			var r = cmd.a;
 			return $elm$http$Http$Request(
 				{
-					allowCookiesFromOtherDomains: r.allowCookiesFromOtherDomains,
-					body: r.body,
-					expect: A2(_Http_mapExpect, func, r.expect),
-					headers: r.headers,
-					method: r.method,
-					timeout: r.timeout,
-					tracker: r.tracker,
-					url: r.url
+					aU: r.aU,
+					aW: r.aW,
+					G: A2(_Http_mapExpect, func, r.G),
+					ae: r.ae,
+					a8: r.a8,
+					bj: r.bj,
+					aK: r.aK,
+					Q: r.Q
 				});
 		}
 	});
 var $elm$http$Http$MySub = F2(
 	function (a, b) {
-		return {$: 'MySub', a: a, b: b};
+		return {$: 0, a: a, b: b};
 	});
 var $elm$http$Http$subMap = F2(
 	function (func, _v0) {
@@ -6143,11 +6137,11 @@ var $elm$http$Http$subscription = _Platform_leaf('Http');
 var $elm$http$Http$request = function (r) {
 	return $elm$http$Http$command(
 		$elm$http$Http$Request(
-			{allowCookiesFromOtherDomains: false, body: r.body, expect: r.expect, headers: r.headers, method: r.method, timeout: r.timeout, tracker: r.tracker, url: r.url}));
+			{aU: false, aW: r.aW, G: r.G, ae: r.ae, a8: r.a8, bj: r.bj, aK: r.aK, Q: r.Q}));
 };
 var $elm$http$Http$get = function (r) {
 	return $elm$http$Http$request(
-		{body: $elm$http$Http$emptyBody, expect: r.expect, headers: _List_Nil, method: 'GET', timeout: $elm$core$Maybe$Nothing, tracker: $elm$core$Maybe$Nothing, url: r.url});
+		{aW: $elm$http$Http$emptyBody, G: r.G, ae: _List_Nil, a8: 'GET', bj: $elm$core$Maybe$Nothing, aK: $elm$core$Maybe$Nothing, Q: r.Q});
 };
 var $author$project$Types$ProjectInfo = function (id) {
 	return function (createDate) {
@@ -6163,7 +6157,7 @@ var $author$project$Types$ProjectInfo = function (id) {
 											return function (description) {
 												return function (logo) {
 													return function (ids) {
-														return {category: category, createDate: createDate, description: description, discord: discord, github: github, id: id, ids: ids, logo: logo, name: name, tags: tags, team: team, telegram: telegram, twitter: twitter, website: website};
+														return {T: category, W: createDate, Y: description, Z: discord, ad: github, ah: id, a4: ids, ak: logo, am: name, aG: tags, aH: team, aJ: telegram, aL: twitter, aN: website};
 													};
 												};
 											};
@@ -6267,13 +6261,13 @@ var $NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$optionalDecoder = F3
 				$elm$json$Json$Decode$decodeValue,
 				A2($elm$json$Json$Decode$at, path, $elm$json$Json$Decode$value),
 				input);
-			if (_v0.$ === 'Ok') {
+			if (!_v0.$) {
 				var rawValue = _v0.a;
 				var _v1 = A2(
 					$elm$json$Json$Decode$decodeValue,
 					nullOr(valDecoder),
 					rawValue);
-				if (_v1.$ === 'Ok') {
+				if (!_v1.$) {
 					var finalResult = _v1.a;
 					return $elm$json$Json$Decode$succeed(finalResult);
 				} else {
@@ -6308,109 +6302,109 @@ var $NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required = F3(
 			decoder);
 	});
 var $elm$json$Json$Decode$string = _Json_decodeString;
-var $author$project$Types$Culture = {$: 'Culture'};
-var $author$project$Types$Defi = {$: 'Defi'};
-var $author$project$Types$Exchange = {$: 'Exchange'};
-var $author$project$Types$Infra = {$: 'Infra'};
-var $author$project$Types$Integration = {$: 'Integration'};
-var $author$project$Types$Tools = {$: 'Tools'};
+var $author$project$Types$Culture = 0;
+var $author$project$Types$Defi = 1;
+var $author$project$Types$Exchange = 4;
+var $author$project$Types$Infra = 2;
+var $author$project$Types$Integrations = 5;
+var $author$project$Types$Tools = 3;
 var $author$project$Data$stringToCategory = function (category) {
 	switch (category) {
 		case 'Culture':
-			return $author$project$Types$Culture;
+			return 0;
 		case 'Defi':
-			return $author$project$Types$Defi;
+			return 1;
 		case 'Infrastructure':
-			return $author$project$Types$Infra;
+			return 2;
 		case 'Tools':
-			return $author$project$Types$Tools;
+			return 3;
 		case 'Exchange':
-			return $author$project$Types$Exchange;
-		case 'Integration':
-			return $author$project$Types$Integration;
+			return 4;
+		case 'Integrations':
+			return 5;
 		default:
-			return $author$project$Types$Defi;
+			return 1;
 	}
 };
-var $author$project$Types$Analytics = {$: 'Analytics'};
-var $author$project$Types$Bridge = {$: 'Bridge'};
-var $author$project$Types$CEX = {$: 'CEX'};
-var $author$project$Types$Community = {$: 'Community'};
-var $author$project$Types$DAO = {$: 'DAO'};
-var $author$project$Types$DEX = {$: 'DEX'};
-var $author$project$Types$Derivatives = {$: 'Derivatives'};
-var $author$project$Types$Explorer = {$: 'Explorer'};
-var $author$project$Types$Gaming = {$: 'Gaming'};
-var $author$project$Types$Infrastructure = {$: 'Infrastructure'};
-var $author$project$Types$Launchpad = {$: 'Launchpad'};
-var $author$project$Types$Liquid = {$: 'Liquid'};
-var $author$project$Types$MM = {$: 'MM'};
-var $author$project$Types$Marketplace = {$: 'Marketplace'};
-var $author$project$Types$NFT = {$: 'NFT'};
-var $author$project$Types$Node = {$: 'Node'};
-var $author$project$Types$None = {$: 'None'};
-var $author$project$Types$Oracle = {$: 'Oracle'};
-var $author$project$Types$Payments = {$: 'Payments'};
-var $author$project$Types$RiskMgmt = {$: 'RiskMgmt'};
-var $author$project$Types$Security = {$: 'Security'};
-var $author$project$Types$Staking = {$: 'Staking'};
-var $author$project$Types$Wallet = {$: 'Wallet'};
-var $author$project$Types$Yield = {$: 'Yield'};
+var $author$project$Types$Analytics = 15;
+var $author$project$Types$Bridge = 10;
+var $author$project$Types$CEX = 18;
+var $author$project$Types$Community = 21;
+var $author$project$Types$DAO = 3;
+var $author$project$Types$DEX = 17;
+var $author$project$Types$Derivatives = 7;
+var $author$project$Types$Explorer = 16;
+var $author$project$Types$Gaming = 2;
+var $author$project$Types$Infrastructure = 19;
+var $author$project$Types$Launchpad = 8;
+var $author$project$Types$Liquid = 6;
+var $author$project$Types$MM = 5;
+var $author$project$Types$Marketplace = 0;
+var $author$project$Types$NFT = 1;
+var $author$project$Types$Node = 11;
+var $author$project$Types$None = 23;
+var $author$project$Types$Oracle = 12;
+var $author$project$Types$Payments = 14;
+var $author$project$Types$RiskMgmt = 9;
+var $author$project$Types$Security = 22;
+var $author$project$Types$Staking = 20;
+var $author$project$Types$Wallet = 13;
+var $author$project$Types$Yield = 4;
 var $author$project$Data$stringToTag = function (string) {
 	switch (string) {
 		case 'Marketplace':
-			return $author$project$Types$Marketplace;
+			return 0;
 		case 'NFT':
-			return $author$project$Types$NFT;
+			return 1;
 		case 'Gaming':
-			return $author$project$Types$Gaming;
+			return 2;
 		case 'DAO':
-			return $author$project$Types$DAO;
+			return 3;
 		case 'Yield':
-			return $author$project$Types$Yield;
+			return 4;
 		case 'MM':
-			return $author$project$Types$MM;
+			return 5;
 		case 'Liquid':
-			return $author$project$Types$Liquid;
+			return 6;
 		case 'Derivatives':
-			return $author$project$Types$Derivatives;
+			return 7;
 		case 'Launchpad':
-			return $author$project$Types$Launchpad;
+			return 8;
 		case 'RiskMgmt':
-			return $author$project$Types$RiskMgmt;
+			return 9;
 		case 'Bridge':
-			return $author$project$Types$Bridge;
+			return 10;
 		case 'Node':
-			return $author$project$Types$Node;
+			return 11;
 		case 'Oracle':
-			return $author$project$Types$Oracle;
+			return 12;
 		case 'Wallet':
-			return $author$project$Types$Wallet;
+			return 13;
 		case 'Payments':
-			return $author$project$Types$Payments;
+			return 14;
 		case 'Analytics':
-			return $author$project$Types$Analytics;
+			return 15;
 		case 'Explorer':
-			return $author$project$Types$Explorer;
+			return 16;
 		case 'DEX':
-			return $author$project$Types$DEX;
+			return 17;
 		case 'CEX':
-			return $author$project$Types$CEX;
+			return 18;
 		case 'Infrastructure':
-			return $author$project$Types$Infrastructure;
+			return 19;
 		case 'Staking':
-			return $author$project$Types$Staking;
+			return 20;
 		case 'Community':
-			return $author$project$Types$Community;
+			return 21;
 		case 'Security':
-			return $author$project$Types$Security;
+			return 22;
 		default:
-			return $author$project$Types$None;
+			return 23;
 	}
 };
 var $elm$core$Maybe$withDefault = F2(
 	function (_default, maybe) {
-		if (maybe.$ === 'Just') {
+		if (!maybe.$) {
 			var value = maybe.a;
 			return value;
 		} else {
@@ -6494,15 +6488,15 @@ var $author$project$Main$projectDecoder = $elm$json$Json$Decode$list(
 															$elm$json$Json$Decode$succeed($author$project$Types$ProjectInfo))))))))))))))));
 var $author$project$Main$getProjects = $elm$http$Http$get(
 	{
-		expect: A2($elm$http$Http$expectJson, $author$project$Types$GotProjects, $author$project$Main$projectDecoder),
-		url: $author$project$Main$apiUrl + '/projects'
+		G: A2($elm$http$Http$expectJson, $author$project$Types$GotProjects, $author$project$Main$projectDecoder),
+		Q: $author$project$Main$apiUrl + '/projects'
 	});
 var $author$project$Types$GotRates = function (a) {
-	return {$: 'GotRates', a: a};
+	return {$: 2, a: a};
 };
 var $author$project$Types$Rates = F2(
 	function (denom, rate) {
-		return {denom: denom, rate: rate};
+		return {a$: denom, bc: rate};
 	});
 var $elm$json$Json$Decode$fail = _Json_fail;
 var $elm$core$String$toFloat = _String_toFloat;
@@ -6518,7 +6512,7 @@ var $author$project$Main$ratesDecoder = A2(
 				$elm$json$Json$Decode$andThen,
 				function (stringValue) {
 					var _v0 = $elm$core$String$toFloat(stringValue);
-					if (_v0.$ === 'Just') {
+					if (!_v0.$) {
 						var floatValue = _v0.a;
 						return $elm$json$Json$Decode$succeed(floatValue);
 					} else {
@@ -6528,13 +6522,13 @@ var $author$project$Main$ratesDecoder = A2(
 				A2($elm$json$Json$Decode$field, 'amount', $elm$json$Json$Decode$string)))));
 var $author$project$Main$getRates = $elm$http$Http$get(
 	{
-		expect: A2($elm$http$Http$expectJson, $author$project$Types$GotRates, $author$project$Main$ratesDecoder),
-		url: 'https://lcd.kaiyo.kujira.setten.io/oracle/denoms/exchange_rates'
+		G: A2($elm$http$Http$expectJson, $author$project$Types$GotRates, $author$project$Main$ratesDecoder),
+		Q: 'https://lcd.kaiyo.kujira.setten.io/oracle/denoms/exchange_rates'
 	});
-var $author$project$Types$NotFound = {$: 'NotFound'};
+var $author$project$Types$NotFound = {$: 6};
 var $elm$url$Url$Parser$State = F5(
 	function (visited, unvisited, params, frag, value) {
-		return {frag: frag, params: params, unvisited: unvisited, value: value, visited: visited};
+		return {r: frag, s: params, q: unvisited, m: value, u: visited};
 	});
 var $elm$url$Url$Parser$getFirstMatch = function (states) {
 	getFirstMatch:
@@ -6544,12 +6538,12 @@ var $elm$url$Url$Parser$getFirstMatch = function (states) {
 		} else {
 			var state = states.a;
 			var rest = states.b;
-			var _v1 = state.unvisited;
+			var _v1 = state.q;
 			if (!_v1.b) {
-				return $elm$core$Maybe$Just(state.value);
+				return $elm$core$Maybe$Just(state.m);
 			} else {
 				if ((_v1.a === '') && (!_v1.b.b)) {
-					return $elm$core$Maybe$Just(state.value);
+					return $elm$core$Maybe$Just(state.m);
 				} else {
 					var $temp$states = rest;
 					states = $temp$states;
@@ -6587,7 +6581,7 @@ var $elm$url$Url$Parser$preparePath = function (path) {
 };
 var $elm$url$Url$Parser$addToParametersHelp = F2(
 	function (value, maybeList) {
-		if (maybeList.$ === 'Nothing') {
+		if (maybeList.$ === 1) {
 			return $elm$core$Maybe$Just(
 				_List_fromArray(
 					[value]));
@@ -6606,12 +6600,12 @@ var $elm$url$Url$Parser$addParam = F2(
 			var _v1 = _v0.b;
 			var rawValue = _v1.a;
 			var _v2 = $elm$url$Url$percentDecode(rawKey);
-			if (_v2.$ === 'Nothing') {
+			if (_v2.$ === 1) {
 				return dict;
 			} else {
 				var key = _v2.a;
 				var _v3 = $elm$url$Url$percentDecode(rawValue);
-				if (_v3.$ === 'Nothing') {
+				if (_v3.$ === 1) {
 					return dict;
 				} else {
 					var value = _v3.a;
@@ -6627,7 +6621,7 @@ var $elm$url$Url$Parser$addParam = F2(
 		}
 	});
 var $elm$url$Url$Parser$prepareQuery = function (maybeQuery) {
-	if (maybeQuery.$ === 'Nothing') {
+	if (maybeQuery.$ === 1) {
 		return $elm$core$Dict$empty;
 	} else {
 		var qry = maybeQuery.a;
@@ -6640,29 +6634,34 @@ var $elm$url$Url$Parser$prepareQuery = function (maybeQuery) {
 };
 var $elm$url$Url$Parser$parse = F2(
 	function (_v0, url) {
-		var parser = _v0.a;
+		var parser = _v0;
 		return $elm$url$Url$Parser$getFirstMatch(
 			parser(
 				A5(
 					$elm$url$Url$Parser$State,
 					_List_Nil,
-					$elm$url$Url$Parser$preparePath(url.path),
-					$elm$url$Url$Parser$prepareQuery(url.query),
-					url.fragment,
+					$elm$url$Url$Parser$preparePath(url.ap),
+					$elm$url$Url$Parser$prepareQuery(url.av),
+					url.ac,
 					$elm$core$Basics$identity)));
 	});
-var $author$project$Types$AboutUs = {$: 'AboutUs'};
-var $author$project$Types$SmartContracts = {$: 'SmartContracts'};
-var $elm$url$Url$Parser$Parser = function (a) {
-	return {$: 'Parser', a: a};
+var $author$project$Types$AboutUs = {$: 2};
+var $author$project$Types$Ecosystem = {$: 3};
+var $author$project$Types$SmartContracts = {$: 1};
+var $author$project$Types$SubContracts = function (a) {
+	return {$: 5, a: a};
 };
+var $author$project$Types$SubEcosystem = function (a) {
+	return {$: 4, a: a};
+};
+var $elm$url$Url$Parser$Parser = $elm$core$Basics$identity;
 var $elm$url$Url$Parser$mapState = F2(
 	function (func, _v0) {
-		var visited = _v0.visited;
-		var unvisited = _v0.unvisited;
-		var params = _v0.params;
-		var frag = _v0.frag;
-		var value = _v0.value;
+		var visited = _v0.u;
+		var unvisited = _v0.q;
+		var params = _v0.s;
+		var frag = _v0.r;
+		var value = _v0.m;
 		return A5(
 			$elm$url$Url$Parser$State,
 			visited,
@@ -6673,20 +6672,19 @@ var $elm$url$Url$Parser$mapState = F2(
 	});
 var $elm$url$Url$Parser$map = F2(
 	function (subValue, _v0) {
-		var parseArg = _v0.a;
-		return $elm$url$Url$Parser$Parser(
-			function (_v1) {
-				var visited = _v1.visited;
-				var unvisited = _v1.unvisited;
-				var params = _v1.params;
-				var frag = _v1.frag;
-				var value = _v1.value;
-				return A2(
-					$elm$core$List$map,
-					$elm$url$Url$Parser$mapState(value),
-					parseArg(
-						A5($elm$url$Url$Parser$State, visited, unvisited, params, frag, subValue)));
-			});
+		var parseArg = _v0;
+		return function (_v1) {
+			var visited = _v1.u;
+			var unvisited = _v1.q;
+			var params = _v1.s;
+			var frag = _v1.r;
+			var value = _v1.m;
+			return A2(
+				$elm$core$List$map,
+				$elm$url$Url$Parser$mapState(value),
+				parseArg(
+					A5($elm$url$Url$Parser$State, visited, unvisited, params, frag, subValue)));
+		};
 	});
 var $elm$core$List$append = F2(
 	function (xs, ys) {
@@ -6705,52 +6703,97 @@ var $elm$core$List$concatMap = F2(
 			A2($elm$core$List$map, f, list));
 	});
 var $elm$url$Url$Parser$oneOf = function (parsers) {
-	return $elm$url$Url$Parser$Parser(
-		function (state) {
-			return A2(
-				$elm$core$List$concatMap,
-				function (_v0) {
-					var parser = _v0.a;
-					return parser(state);
-				},
-				parsers);
-		});
+	return function (state) {
+		return A2(
+			$elm$core$List$concatMap,
+			function (_v0) {
+				var parser = _v0;
+				return parser(state);
+			},
+			parsers);
+	};
 };
 var $elm$url$Url$Parser$s = function (str) {
-	return $elm$url$Url$Parser$Parser(
-		function (_v0) {
-			var visited = _v0.visited;
-			var unvisited = _v0.unvisited;
-			var params = _v0.params;
-			var frag = _v0.frag;
-			var value = _v0.value;
+	return function (_v0) {
+		var visited = _v0.u;
+		var unvisited = _v0.q;
+		var params = _v0.s;
+		var frag = _v0.r;
+		var value = _v0.m;
+		if (!unvisited.b) {
+			return _List_Nil;
+		} else {
+			var next = unvisited.a;
+			var rest = unvisited.b;
+			return _Utils_eq(next, str) ? _List_fromArray(
+				[
+					A5(
+					$elm$url$Url$Parser$State,
+					A2($elm$core$List$cons, next, visited),
+					rest,
+					params,
+					frag,
+					value)
+				]) : _List_Nil;
+		}
+	};
+};
+var $elm$url$Url$Parser$slash = F2(
+	function (_v0, _v1) {
+		var parseBefore = _v0;
+		var parseAfter = _v1;
+		return function (state) {
+			return A2(
+				$elm$core$List$concatMap,
+				parseAfter,
+				parseBefore(state));
+		};
+	});
+var $elm$url$Url$Parser$custom = F2(
+	function (tipe, stringToSomething) {
+		return function (_v0) {
+			var visited = _v0.u;
+			var unvisited = _v0.q;
+			var params = _v0.s;
+			var frag = _v0.r;
+			var value = _v0.m;
 			if (!unvisited.b) {
 				return _List_Nil;
 			} else {
 				var next = unvisited.a;
 				var rest = unvisited.b;
-				return _Utils_eq(next, str) ? _List_fromArray(
-					[
-						A5(
-						$elm$url$Url$Parser$State,
-						A2($elm$core$List$cons, next, visited),
-						rest,
-						params,
-						frag,
-						value)
-					]) : _List_Nil;
+				var _v2 = stringToSomething(next);
+				if (!_v2.$) {
+					var nextValue = _v2.a;
+					return _List_fromArray(
+						[
+							A5(
+							$elm$url$Url$Parser$State,
+							A2($elm$core$List$cons, next, visited),
+							rest,
+							params,
+							frag,
+							value(nextValue))
+						]);
+				} else {
+					return _List_Nil;
+				}
 			}
-		});
-};
-var $elm$url$Url$Parser$top = $elm$url$Url$Parser$Parser(
-	function (state) {
-		return _List_fromArray(
-			[state]);
+		};
 	});
+var $elm$url$Url$Parser$string = A2($elm$url$Url$Parser$custom, 'STRING', $elm$core$Maybe$Just);
+var $elm$url$Url$Parser$top = function (state) {
+	return _List_fromArray(
+		[state]);
+};
 var $author$project$Routing$routeParser = $elm$url$Url$Parser$oneOf(
 	_List_fromArray(
 		[
 			A2($elm$url$Url$Parser$map, $author$project$Types$Home, $elm$url$Url$Parser$top),
+			A2(
+			$elm$url$Url$Parser$map,
+			$author$project$Types$Ecosystem,
+			$elm$url$Url$Parser$s('ecosystem')),
 			A2(
 			$elm$url$Url$Parser$map,
 			$author$project$Types$SmartContracts,
@@ -6759,6 +6802,20 @@ var $author$project$Routing$routeParser = $elm$url$Url$Parser$oneOf(
 			$elm$url$Url$Parser$map,
 			$author$project$Types$AboutUs,
 			$elm$url$Url$Parser$s('about')),
+			A2(
+			$elm$url$Url$Parser$map,
+			$author$project$Types$SubContracts,
+			A2(
+				$elm$url$Url$Parser$slash,
+				$elm$url$Url$Parser$s('contracts'),
+				$elm$url$Url$Parser$string)),
+			A2(
+			$elm$url$Url$Parser$map,
+			$author$project$Types$SubEcosystem,
+			A2(
+				$elm$url$Url$Parser$slash,
+				$elm$url$Url$Parser$s('ecosystem'),
+				$elm$url$Url$Parser$string)),
 			A2(
 			$elm$url$Url$Parser$map,
 			$author$project$Types$NotFound,
@@ -6775,31 +6832,18 @@ var $author$project$Routing$pushUrl = F2(
 	function (key, route) {
 		var url = function () {
 			switch (route.$) {
-				case 'Home':
+				case 0:
 					return '/';
-				case 'Ecosystem':
+				case 3:
 					return '/ecosystem';
-				case 'SmartContracts':
+				case 1:
 					return '/contracts';
-				case 'AboutUs':
+				case 2:
 					return '/about';
-				case 'SubEcosystem':
+				case 4:
 					var subProject = route.a;
-					var _v1 = subProject;
-					var info = _v1.info;
-					var contracts = _v1.contracts;
-					var _v2 = info;
-					var name = _v2.name;
-					var team = _v2.team;
-					var website = _v2.website;
-					var twitter = _v2.twitter;
-					var discord = _v2.discord;
-					var telegram = _v2.telegram;
-					var category = _v2.category;
-					var tags = _v2.tags;
-					var description = _v2.description;
-					return '/ecosystem/' + info.name;
-				case 'SubContracts':
+					return '/ecosystem/' + subProject;
+				case 5:
 					var subContract = route.a;
 					return '/contracts/' + subContract;
 				default:
@@ -6812,19 +6856,19 @@ var $author$project$Main$init = F3(
 	function (flags, url, key) {
 		var parsedUrl = $author$project$Routing$parseUrlToRoute(url);
 		var newModel = {
-			catSearch: '',
-			copyString: '',
-			currentRoute: parsedUrl,
-			dropDown: $author$project$Types$Close,
-			exchangeRates: _List_Nil,
-			navigationKey: key,
-			notification: $author$project$Types$Success(''),
-			popUp: false,
-			projects: _List_Nil,
-			searchTerm: '',
-			selectedCategory: $author$project$Types$All,
-			selectedTeam: 'All',
-			teamSearch: ''
+			S: '',
+			aZ: '',
+			F: parsedUrl,
+			D: 1,
+			ab: _List_Nil,
+			I: key,
+			an: $author$project$Types$Success(''),
+			K: false,
+			E: _List_Nil,
+			M: '',
+			aB: $author$project$Types$All,
+			aC: 'All',
+			aI: ''
 		};
 		return _Utils_Tuple2(
 			newModel,
@@ -6837,27 +6881,27 @@ var $author$project$Main$init = F3(
 					])));
 	});
 var $author$project$Types$UserChangedRoute = function (a) {
-	return {$: 'UserChangedRoute', a: a};
+	return {$: 11, a: a};
 };
 var $author$project$Main$onUrlChange = function (url) {
 	return $author$project$Types$UserChangedRoute(
 		$author$project$Routing$parseUrlToRoute(url));
 };
-var $author$project$Types$NoOp = {$: 'NoOp'};
 var $author$project$Types$SendUserToExternalUrl = function (a) {
-	return {$: 'SendUserToExternalUrl', a: a};
+	return {$: 10, a: a};
 };
 var $author$project$Main$onUrlRequest = function (urlRequest) {
-	if (urlRequest.$ === 'External') {
+	if (urlRequest.$ === 1) {
 		var externalUrl = urlRequest.a;
 		return $author$project$Types$SendUserToExternalUrl(externalUrl);
 	} else {
 		var url = urlRequest.a;
-		return $author$project$Types$NoOp;
+		return $author$project$Types$UserChangedRoute(
+			$author$project$Routing$parseUrlToRoute(url));
 	}
 };
 var $author$project$Types$PopUp = function (a) {
-	return {$: 'PopUp', a: a};
+	return {$: 15, a: a};
 };
 var $elm$core$Platform$Sub$batch = _Platform_batch;
 var $author$project$Main$copyResult = _Platform_incomingPort('copyResult', $elm$json$Json$Decode$string);
@@ -6873,10 +6917,10 @@ var $author$project$Main$subscriptions = function (model) {
 			]));
 };
 var $author$project$Types$Error = function (a) {
-	return {$: 'Error', a: a};
+	return {$: 1, a: a};
 };
-var $author$project$Types$HidePopUp = {$: 'HidePopUp'};
-var $author$project$Types$Open = {$: 'Open'};
+var $author$project$Types$HidePopUp = {$: 16};
+var $author$project$Types$Open = 0;
 var $elm$core$Basics$always = F2(
 	function (a, _v0) {
 		return a;
@@ -6889,14 +6933,21 @@ var $andrewMacmurray$elm_delay$Delay$after = F2(
 			$elm$core$Basics$always(msg),
 			$elm$core$Process$sleep(time));
 	});
+var $elm$core$Basics$negate = function (n) {
+	return -n;
+};
+var $elm$browser$Browser$Navigation$back = F2(
+	function (key, n) {
+		return A2(_Browser_go, key, -n);
+	});
 var $elm$json$Json$Encode$string = _Json_wrap;
 var $author$project$Main$copyToClipboard = _Platform_outgoingPort('copyToClipboard', $elm$json$Json$Encode$string);
 var $author$project$Types$GotContracts = function (a) {
-	return {$: 'GotContracts', a: a};
+	return {$: 1, a: a};
 };
 var $author$project$Types$Contract = F5(
 	function (address, code_id, creator, admin, label) {
-		return {address: address, admin: admin, code_id: code_id, creator: creator, label: label};
+		return {aS: address, aT: admin, aY: code_id, a_: creator, a7: label};
 	});
 var $elm$json$Json$Decode$map5 = _Json_map5;
 var $author$project$Main$contractDecoder = $elm$json$Json$Decode$list(
@@ -6910,8 +6961,8 @@ var $author$project$Main$contractDecoder = $elm$json$Json$Decode$list(
 		A2($elm$json$Json$Decode$field, 'Label', $elm$json$Json$Decode$string)));
 var $author$project$Main$fetchData = $elm$http$Http$get(
 	{
-		expect: A2($elm$http$Http$expectJson, $author$project$Types$GotContracts, $author$project$Main$contractDecoder),
-		url: $author$project$Main$apiUrl + '/contracts'
+		G: A2($elm$http$Http$expectJson, $author$project$Types$GotContracts, $author$project$Main$contractDecoder),
+		Q: $author$project$Main$apiUrl + '/contracts'
 	});
 var $elm$core$List$filter = F2(
 	function (isGood, list) {
@@ -6956,6 +7007,7 @@ var $elm$core$List$member = F2(
 			xs);
 	});
 var $elm$core$Platform$Cmd$none = $elm$core$Platform$Cmd$batch(_List_Nil);
+var $author$project$Types$NoOp = {$: 14};
 var $elm$browser$Browser$Dom$setViewport = _Browser_setViewport;
 var $author$project$Main$resetViewport = A2(
 	$elm$core$Task$perform,
@@ -6976,32 +7028,32 @@ var $author$project$Main$showPopUp = function (notification) {
 var $author$project$Main$update = F2(
 	function (msg, model) {
 		switch (msg.$) {
-			case 'GotProjects':
-				if (msg.a.$ === 'Ok') {
+			case 0:
+				if (!msg.a.$) {
 					var infos = msg.a.a;
 					var newProjects = A2(
 						$elm$core$List$map,
 						function (projectInfo) {
-							return {contracts: _List_Nil, info: projectInfo};
+							return {V: _List_Nil, ai: projectInfo};
 						},
 						infos);
 					return _Utils_Tuple2(
 						_Utils_update(
 							model,
-							{projects: newProjects}),
+							{E: newProjects}),
 						$author$project$Main$fetchData);
 				} else {
 					var error = msg.a.a;
 					var errorMessage = function () {
 						switch (error.$) {
-							case 'Timeout':
+							case 1:
 								return 'Request timed out';
-							case 'NetworkError':
+							case 2:
 								return 'Network error';
-							case 'BadStatus':
+							case 3:
 								var response = error.a;
 								return 'Bad status: ' + $elm$core$String$fromInt(response);
-							case 'BadBody':
+							case 4:
 								var string = error.a;
 								return 'Bad response body: ' + string;
 							default:
@@ -7014,38 +7066,38 @@ var $author$project$Main$update = F2(
 						model,
 						$author$project$Main$showPopUp(notification));
 				}
-			case 'GotContracts':
-				if (msg.a.$ === 'Ok') {
+			case 1:
+				if (!msg.a.$) {
 					var newContracts = msg.a.a;
 					var updateProjectContracts = function (project) {
 						var matchingContracts = A2(
 							$elm$core$List$filter,
 							function (contract) {
-								return A2($elm$core$List$member, contract.code_id, project.info.ids);
+								return A2($elm$core$List$member, contract.aY, project.ai.a4);
 							},
 							newContracts);
 						return _Utils_update(
 							project,
-							{contracts: matchingContracts});
+							{V: matchingContracts});
 					};
-					var updatedProjects = A2($elm$core$List$map, updateProjectContracts, model.projects);
+					var updatedProjects = A2($elm$core$List$map, updateProjectContracts, model.E);
 					return _Utils_Tuple2(
 						_Utils_update(
 							model,
-							{projects: updatedProjects}),
+							{E: updatedProjects}),
 						$elm$core$Platform$Cmd$none);
 				} else {
 					var error = msg.a.a;
 					var errorMessage = function () {
 						switch (error.$) {
-							case 'Timeout':
+							case 1:
 								return 'Request timed out';
-							case 'NetworkError':
+							case 2:
 								return 'Network error';
-							case 'BadStatus':
+							case 3:
 								var response = error.a;
 								return 'Bad status: ' + $elm$core$String$fromInt(response);
-							case 'BadBody':
+							case 4:
 								var string = error.a;
 								return 'Bad response body: ' + string;
 							default:
@@ -7058,26 +7110,26 @@ var $author$project$Main$update = F2(
 						model,
 						$author$project$Main$showPopUp(notification));
 				}
-			case 'GotRates':
-				if (msg.a.$ === 'Ok') {
+			case 2:
+				if (!msg.a.$) {
 					var rates = msg.a.a;
 					return _Utils_Tuple2(
 						_Utils_update(
 							model,
-							{exchangeRates: rates}),
+							{ab: rates}),
 						$elm$core$Platform$Cmd$none);
 				} else {
 					var error = msg.a.a;
 					var errorMessage = function () {
 						switch (error.$) {
-							case 'Timeout':
+							case 1:
 								return 'Request timed out';
-							case 'NetworkError':
+							case 2:
 								return 'Network error';
-							case 'BadStatus':
+							case 3:
 								var response = error.a;
 								return 'Bad status: ' + $elm$core$String$fromInt(response);
-							case 'BadBody':
+							case 4:
 								var string = error.a;
 								return 'Bad response body: ' + string;
 							default:
@@ -7090,102 +7142,106 @@ var $author$project$Main$update = F2(
 						model,
 						$author$project$Main$showPopUp(notification));
 				}
-			case 'Search':
+			case 3:
 				var term = msg.a;
 				return _Utils_Tuple2(
 					_Utils_update(
 						model,
-						{searchTerm: term}),
+						{M: term}),
 					$elm$core$Platform$Cmd$none);
-			case 'TeamSelected':
+			case 4:
 				var newSelected = msg.a;
 				return _Utils_Tuple2(
 					_Utils_update(
 						model,
-						{selectedTeam: newSelected}),
+						{aC: newSelected}),
 					$elm$core$Platform$Cmd$none);
-			case 'CategorySelect':
+			case 12:
 				var newSelected = msg.a;
 				return _Utils_Tuple2(
 					_Utils_update(
 						model,
-						{selectedCategory: newSelected}),
+						{aB: newSelected}),
 					$elm$core$Platform$Cmd$none);
-			case 'Current':
+			case 5:
 				var newRoute = msg.a;
 				return _Utils_Tuple2(
 					_Utils_update(
 						model,
-						{currentRoute: newRoute, dropDown: $author$project$Types$Close, searchTerm: ''}),
-					$elm$core$Platform$Cmd$none);
-			case 'SearchTeam':
+						{F: newRoute, D: 1, M: ''}),
+					A2($author$project$Routing$pushUrl, model.I, newRoute));
+			case 6:
 				var team = msg.a;
 				return _Utils_Tuple2(
 					_Utils_update(
 						model,
-						{teamSearch: team}),
+						{aI: team}),
 					$elm$core$Platform$Cmd$none);
-			case 'SearchCategory':
+			case 7:
 				var category = msg.a;
 				return _Utils_Tuple2(
 					_Utils_update(
 						model,
-						{catSearch: category}),
+						{S: category}),
 					$elm$core$Platform$Cmd$none);
-			case 'SelectionOpen':
+			case 8:
 				return _Utils_Tuple2(
 					_Utils_update(
 						model,
-						{dropDown: $author$project$Types$Open}),
+						{D: 0}),
 					$elm$core$Platform$Cmd$none);
-			case 'SelectionClose':
+			case 9:
 				return _Utils_Tuple2(
 					_Utils_update(
 						model,
-						{dropDown: $author$project$Types$Close}),
+						{D: 1}),
 					$elm$core$Platform$Cmd$none);
-			case 'NoOp':
+			case 14:
 				return _Utils_Tuple2(model, $elm$core$Platform$Cmd$none);
-			case 'SendUserToExternalUrl':
+			case 10:
 				var url = msg.a;
 				return _Utils_Tuple2(
 					model,
 					$elm$browser$Browser$Navigation$load(url));
-			case 'UserChangedRoute':
+			case 11:
 				var newRoute = msg.a;
 				return _Utils_Tuple2(
 					_Utils_update(
 						model,
-						{currentRoute: newRoute}),
+						{F: newRoute}),
 					$elm$core$Platform$Cmd$none);
-			case 'Copy':
+			case 13:
 				var str = msg.a;
 				return _Utils_Tuple2(
 					model,
 					$author$project$Main$copyToClipboard(str));
-			case 'PopUp':
+			case 15:
 				var notification = msg.a;
 				return _Utils_Tuple2(
 					_Utils_update(
 						model,
-						{notification: notification, popUp: true}),
+						{an: notification, K: true}),
 					$elm$core$Platform$Cmd$batch(
 						_List_fromArray(
 							[
 								A2($andrewMacmurray$elm_delay$Delay$after, 4000, $author$project$Types$HidePopUp)
 							])));
-			case 'HidePopUp':
+			case 16:
 				return _Utils_Tuple2(
 					_Utils_update(
 						model,
-						{popUp: false}),
+						{K: false}),
 					$elm$core$Platform$Cmd$none);
-			default:
+			case 17:
 				return _Utils_Tuple2(model, $author$project$Main$resetViewport);
+			default:
+				return _Utils_Tuple2(
+					model,
+					A2($elm$browser$Browser$Navigation$back, model.I, 1));
 		}
 	});
 var $author$project$Types$Copy = function (a) {
-	return {$: 'Copy', a: a};
+	return {$: 13, a: a};
 };
 var $elm$html$Html$a = _VirtualDom_node('a');
 var $elm$html$Html$Attributes$stringProperty = F2(
@@ -7453,15 +7509,12 @@ var $author$project$Views$floatToDisplay = function (_float) {
 	return $elm$core$String$fromFloat(
 		$elm$core$Basics$round(_float * 10000) / 10000);
 };
-var $elm$core$Set$Set_elm_builtin = function (a) {
-	return {$: 'Set_elm_builtin', a: a};
-};
-var $elm$core$Set$empty = $elm$core$Set$Set_elm_builtin($elm$core$Dict$empty);
+var $elm$core$Set$Set_elm_builtin = $elm$core$Basics$identity;
+var $elm$core$Set$empty = $elm$core$Dict$empty;
 var $elm$core$Set$insert = F2(
 	function (key, _v0) {
-		var dict = _v0.a;
-		return $elm$core$Set$Set_elm_builtin(
-			A3($elm$core$Dict$insert, key, _Utils_Tuple0, dict));
+		var dict = _v0;
+		return A3($elm$core$Dict$insert, key, 0, dict);
 	});
 var $elm$core$Set$fromList = function (list) {
 	return A3($elm$core$List$foldl, $elm$core$Set$insert, $elm$core$Set$empty, list);
@@ -7475,30 +7528,27 @@ var $elm$html$Html$Attributes$href = function (url) {
 		_VirtualDom_noJavaScriptUri(url));
 };
 var $author$project$Types$Current = function (a) {
-	return {$: 'Current', a: a};
-};
-var $author$project$Types$SubEcosystem = function (a) {
-	return {$: 'SubEcosystem', a: a};
+	return {$: 5, a: a};
 };
 var $elm$html$Html$article = _VirtualDom_node('article');
 var $author$project$Data$categoryToString = function (category) {
-	switch (category.$) {
-		case 'Culture':
+	switch (category) {
+		case 0:
 			return 'Culture';
-		case 'Defi':
+		case 1:
 			return 'Defi';
-		case 'Infra':
+		case 2:
 			return 'Infrastructure';
-		case 'Tools':
+		case 3:
 			return 'Tools';
-		case 'Exchange':
+		case 4:
 			return 'Exchange';
 		default:
-			return 'Integration';
+			return 'Integrations';
 	}
 };
 var $elm$virtual_dom$VirtualDom$Normal = function (a) {
-	return {$: 'Normal', a: a};
+	return {$: 0, a: a};
 };
 var $elm$virtual_dom$VirtualDom$on = _VirtualDom_on;
 var $elm$html$Html$Events$on = F2(
@@ -7514,56 +7564,63 @@ var $elm$html$Html$Events$onClick = function (msg) {
 		'click',
 		$elm$json$Json$Decode$succeed(msg));
 };
+var $elm$core$String$replace = F3(
+	function (before, after, string) {
+		return A2(
+			$elm$core$String$join,
+			after,
+			A2($elm$core$String$split, before, string));
+	});
 var $elm$html$Html$span = _VirtualDom_node('span');
 var $elm$virtual_dom$VirtualDom$style = _VirtualDom_style;
 var $elm$html$Html$Attributes$style = $elm$virtual_dom$VirtualDom$style;
 var $author$project$Data$tagToString = function (tag) {
-	switch (tag.$) {
-		case 'Marketplace':
+	switch (tag) {
+		case 0:
 			return 'Marketplace';
-		case 'NFT':
+		case 1:
 			return 'NFT';
-		case 'Gaming':
+		case 2:
 			return 'Gaming';
-		case 'DAO':
+		case 3:
 			return 'DAO';
-		case 'Yield':
+		case 4:
 			return 'Yield Farm';
-		case 'MM':
+		case 5:
 			return 'Market Maker';
-		case 'Liquid':
+		case 6:
 			return 'Liquid';
-		case 'Derivatives':
+		case 7:
 			return 'Derivatives';
-		case 'Launchpad':
+		case 8:
 			return 'Launchpad';
-		case 'RiskMgmt':
+		case 9:
 			return 'Risk Mgmt';
-		case 'Bridge':
+		case 10:
 			return 'Bridge';
-		case 'Node':
+		case 11:
 			return 'Node';
-		case 'Oracle':
+		case 12:
 			return 'Oracle';
-		case 'Wallet':
+		case 13:
 			return 'Wallet';
-		case 'Payments':
+		case 14:
 			return 'Payments';
-		case 'Analytics':
+		case 15:
 			return 'Analytics';
-		case 'Explorer':
+		case 16:
 			return 'Explorer';
-		case 'DEX':
+		case 17:
 			return 'DEX';
-		case 'CEX':
+		case 18:
 			return 'CEX';
-		case 'Infrastructure':
+		case 19:
 			return 'Infrastructure';
-		case 'Staking':
+		case 20:
 			return 'Staking';
-		case 'Community':
+		case 21:
 			return 'Community';
-		case 'Security':
+		case 22:
 			return 'Security';
 		default:
 			return '';
@@ -7572,7 +7629,7 @@ var $author$project$Data$tagToString = function (tag) {
 var $elm$html$Html$Attributes$target = $elm$html$Html$Attributes$stringProperty('target');
 var $elm$url$Url$addPort = F2(
 	function (maybePort, starter) {
-		if (maybePort.$ === 'Nothing') {
+		if (maybePort.$ === 1) {
 			return starter;
 		} else {
 			var port_ = maybePort.a;
@@ -7581,7 +7638,7 @@ var $elm$url$Url$addPort = F2(
 	});
 var $elm$url$Url$addPrefixed = F3(
 	function (prefix, maybeSegment, starter) {
-		if (maybeSegment.$ === 'Nothing') {
+		if (maybeSegment.$ === 1) {
 			return starter;
 		} else {
 			var segment = maybeSegment.a;
@@ -7592,8 +7649,8 @@ var $elm$url$Url$addPrefixed = F3(
 	});
 var $elm$url$Url$toString = function (url) {
 	var http = function () {
-		var _v0 = url.protocol;
-		if (_v0.$ === 'Http') {
+		var _v0 = url.au;
+		if (!_v0) {
 			return 'http://';
 		} else {
 			return 'https://';
@@ -7602,17 +7659,17 @@ var $elm$url$Url$toString = function (url) {
 	return A3(
 		$elm$url$Url$addPrefixed,
 		'#',
-		url.fragment,
+		url.ac,
 		A3(
 			$elm$url$Url$addPrefixed,
 			'?',
-			url.query,
+			url.av,
 			_Utils_ap(
 				A2(
 					$elm$url$Url$addPort,
-					url.port_,
-					_Utils_ap(http, url.host)),
-				url.path)));
+					url.ar,
+					_Utils_ap(http, url.ag)),
+				url.ap)));
 };
 var $author$project$Views$projectView = function (project) {
 	return A2(
@@ -7620,10 +7677,11 @@ var $author$project$Views$projectView = function (project) {
 		_List_fromArray(
 			[
 				$elm$html$Html$Attributes$class('col-12 col-lg-4 col-fhd-4 flex'),
-				$elm$html$Html$Attributes$href('/projects/' + project.info.name),
+				$elm$html$Html$Attributes$href('#'),
 				$elm$html$Html$Events$onClick(
 				$author$project$Types$Current(
-					$author$project$Types$SubEcosystem(project))),
+					$author$project$Types$SubEcosystem(
+						A3($elm$core$String$replace, ' ', '-', project.ai.am)))),
 				A2($elm$html$Html$Attributes$style, 'text-decoration', 'none'),
 				A2($elm$html$Html$Attributes$style, 'color', '#fff')
 			]),
@@ -7673,7 +7731,7 @@ var $author$project$Views$projectView = function (project) {
 														_List_Nil,
 														_List_fromArray(
 															[
-																$elm$html$Html$text(project.info.name)
+																$elm$html$Html$text(project.ai.am)
 															])),
 														A2(
 														$elm$html$Html$a,
@@ -7681,8 +7739,8 @@ var $author$project$Views$projectView = function (project) {
 															[
 																$elm$html$Html$Attributes$href(
 																function () {
-																	var _v0 = project.info.website;
-																	if (_v0.$ === 'Just') {
+																	var _v0 = project.ai.aN;
+																	if (!_v0.$) {
 																		var url = _v0.a;
 																		return $elm$url$Url$toString(url);
 																	} else {
@@ -7705,8 +7763,8 @@ var $author$project$Views$projectView = function (project) {
 																	[
 																		$elm$html$Html$text(
 																		function () {
-																			var _v1 = project.info.website;
-																			if (_v1.$ === 'Just') {
+																			var _v1 = project.ai.aN;
+																			if (!_v1.$) {
 																				var url = _v1.a;
 																				return $elm$url$Url$toString(url);
 																			} else {
@@ -7728,7 +7786,7 @@ var $author$project$Views$projectView = function (project) {
 														$elm$html$Html$img,
 														_List_fromArray(
 															[
-																$elm$html$Html$Attributes$src('assets/protocols/' + project.info.logo),
+																$elm$html$Html$Attributes$src('../assets/protocols/' + project.ai.ak),
 																$elm$html$Html$Attributes$alt('Icon'),
 																$elm$html$Html$Attributes$class('avatar')
 															]),
@@ -7744,8 +7802,8 @@ var $author$project$Views$projectView = function (project) {
 										_List_fromArray(
 											[
 												function () {
-												var _v2 = project.info.twitter;
-												if (_v2.$ === 'Just') {
+												var _v2 = project.ai.aL;
+												if (!_v2.$) {
 													var url = _v2.a;
 													return A2(
 														$elm$html$Html$a,
@@ -7764,7 +7822,7 @@ var $author$project$Views$projectView = function (project) {
 																$elm$html$Html$img,
 																_List_fromArray(
 																	[
-																		$elm$html$Html$Attributes$src('assets/socials/twitter.svg')
+																		$elm$html$Html$Attributes$src('../assets/socials/twitter.svg')
 																	]),
 																_List_Nil)
 															]));
@@ -7773,8 +7831,8 @@ var $author$project$Views$projectView = function (project) {
 												}
 											}(),
 												function () {
-												var _v3 = project.info.discord;
-												if (_v3.$ === 'Just') {
+												var _v3 = project.ai.Z;
+												if (!_v3.$) {
 													var url = _v3.a;
 													return A2(
 														$elm$html$Html$a,
@@ -7793,7 +7851,7 @@ var $author$project$Views$projectView = function (project) {
 																$elm$html$Html$img,
 																_List_fromArray(
 																	[
-																		$elm$html$Html$Attributes$src('assets/socials/discord.svg')
+																		$elm$html$Html$Attributes$src('../assets/socials/discord.svg')
 																	]),
 																_List_Nil)
 															]));
@@ -7802,8 +7860,8 @@ var $author$project$Views$projectView = function (project) {
 												}
 											}(),
 												function () {
-												var _v4 = project.info.telegram;
-												if (_v4.$ === 'Just') {
+												var _v4 = project.ai.aJ;
+												if (!_v4.$) {
 													var url = _v4.a;
 													return A2(
 														$elm$html$Html$a,
@@ -7822,7 +7880,7 @@ var $author$project$Views$projectView = function (project) {
 																$elm$html$Html$img,
 																_List_fromArray(
 																	[
-																		$elm$html$Html$Attributes$src('assets/socials/telegram.svg')
+																		$elm$html$Html$Attributes$src('../assets/socials/telegram.svg')
 																	]),
 																_List_Nil)
 															]));
@@ -7831,8 +7889,8 @@ var $author$project$Views$projectView = function (project) {
 												}
 											}(),
 												function () {
-												var _v5 = project.info.github;
-												if (_v5.$ === 'Just') {
+												var _v5 = project.ai.ad;
+												if (!_v5.$) {
 													var url = _v5.a;
 													return A2(
 														$elm$html$Html$a,
@@ -7851,7 +7909,7 @@ var $author$project$Views$projectView = function (project) {
 																$elm$html$Html$img,
 																_List_fromArray(
 																	[
-																		$elm$html$Html$Attributes$src('assets/socials/github.svg')
+																		$elm$html$Html$Attributes$src('../assets/socials/github.svg')
 																	]),
 																_List_Nil)
 															]));
@@ -7886,7 +7944,7 @@ var $author$project$Views$projectView = function (project) {
 													]),
 												_List_fromArray(
 													[
-														$elm$html$Html$text(project.info.team)
+														$elm$html$Html$text(project.ai.aH)
 													]))
 											])),
 										A2(
@@ -7912,7 +7970,7 @@ var $author$project$Views$projectView = function (project) {
 												_List_Nil,
 												_List_fromArray(
 													[
-														$elm$html$Html$text(project.info.description)
+														$elm$html$Html$text(project.ai.Y)
 													]))
 											])),
 										A2(
@@ -7945,7 +8003,7 @@ var $author$project$Views$projectView = function (project) {
 																_List_fromArray(
 																	[
 																		$elm$html$Html$text(
-																		$author$project$Data$categoryToString(project.info.category))
+																		$author$project$Data$categoryToString(project.ai.T))
 																	]))
 															])),
 														A2(
@@ -7973,7 +8031,7 @@ var $author$project$Views$projectView = function (project) {
 																function (tags) {
 																	return $author$project$Data$tagToString(tags);
 																},
-																project.info.tags)))
+																project.ai.aG)))
 													]))
 											]))
 									]))
@@ -8116,9 +8174,9 @@ var $author$project$Views$latestProjects = function (model) {
 			A2(
 				$elm$core$List$sortBy,
 				function (project) {
-					return project.info.createDate;
+					return project.ai.W;
 				},
-				model.projects)));
+				model.E)));
 	return _List_fromArray(
 		[
 			A2(
@@ -8144,7 +8202,7 @@ var $elm$core$Dict$sizeHelp = F2(
 	function (n, dict) {
 		sizeHelp:
 		while (true) {
-			if (dict.$ === 'RBEmpty_elm_builtin') {
+			if (dict.$ === -2) {
 				return n;
 			} else {
 				var left = dict.d;
@@ -8161,7 +8219,7 @@ var $elm$core$Dict$size = function (dict) {
 	return A2($elm$core$Dict$sizeHelp, 0, dict);
 };
 var $elm$core$Set$size = function (_v0) {
-	var dict = _v0.a;
+	var dict = _v0;
 	return $elm$core$Dict$size(dict);
 };
 var $elm$html$Html$small = _VirtualDom_node('small');
@@ -8177,9 +8235,9 @@ var $author$project$Views$dashboardView = function (model) {
 			A2(
 				$elm$core$List$map,
 				function (project) {
-					return project.info.team;
+					return project.ai.aH;
 				},
-				model.projects)));
+				model.E)));
 	return A2(
 		$elm$html$Html$div,
 		_List_fromArray(
@@ -8279,7 +8337,7 @@ var $author$project$Views$dashboardView = function (model) {
 																			[
 																				$elm$html$Html$text(
 																				$elm$core$String$fromInt(
-																					$elm$core$List$length(model.projects)))
+																					$elm$core$List$length(model.E)))
 																			])),
 																		A2(
 																		$elm$html$Html$small,
@@ -8333,9 +8391,9 @@ var $author$project$Views$dashboardView = function (model) {
 																						A2(
 																							$elm$core$List$concatMap,
 																							function (project) {
-																								return project.contracts;
+																								return project.V;
 																							},
-																							model.projects))))
+																							model.E))))
 																			])),
 																		A2(
 																		$elm$html$Html$small,
@@ -8434,7 +8492,7 @@ var $author$project$Views$dashboardView = function (model) {
 																			[
 																				$elm$html$Html$text(
 																				$elm$core$String$fromInt(
-																					$elm$core$List$length(model.projects)))
+																					$elm$core$List$length(model.E)))
 																			])),
 																		A2(
 																		$elm$html$Html$small,
@@ -8565,7 +8623,7 @@ var $author$project$Views$dashboardView = function (model) {
 																								]),
 																							_List_fromArray(
 																								[
-																									$elm$html$Html$text(rate.denom)
+																									$elm$html$Html$text(rate.a$)
 																								])),
 																							A2(
 																							$elm$html$Html$td,
@@ -8576,11 +8634,11 @@ var $author$project$Views$dashboardView = function (model) {
 																							_List_fromArray(
 																								[
 																									$elm$html$Html$text(
-																									$author$project$Views$floatToDisplay(rate.rate))
+																									$author$project$Views$floatToDisplay(rate.bc))
 																								]))
 																						]));
 																			},
-																			model.exchangeRates))
+																			model.ab))
 																	]))
 															]))
 													]))
@@ -8618,28 +8676,28 @@ var $author$project$Views$dashboardView = function (model) {
 					]))
 			]));
 };
-var $author$project$Types$ScrollToTop = {$: 'ScrollToTop'};
+var $author$project$Types$ScrollToTop = {$: 17};
 var $author$project$Types$Search = function (a) {
-	return {$: 'Search', a: a};
+	return {$: 3, a: a};
 };
 var $author$project$Types$CategorySelect = function (a) {
-	return {$: 'CategorySelect', a: a};
+	return {$: 12, a: a};
 };
 var $author$project$Types$SearchCategory = function (a) {
-	return {$: 'SearchCategory', a: a};
+	return {$: 7, a: a};
 };
 var $author$project$Types$Selected = function (a) {
-	return {$: 'Selected', a: a};
+	return {$: 1, a: a};
 };
-var $author$project$Types$SelectionClose = {$: 'SelectionClose'};
+var $author$project$Types$SelectionClose = {$: 9};
 var $author$project$Data$categoryOptions = _List_fromArray(
-	[$author$project$Types$Culture, $author$project$Types$Defi, $author$project$Types$Infra, $author$project$Types$Tools, $author$project$Types$Exchange, $author$project$Types$Integration]);
+	[0, 1, 2, 3, 4, 5]);
 var $elm$html$Html$input = _VirtualDom_node('input');
 var $elm$html$Html$Events$alwaysStop = function (x) {
 	return _Utils_Tuple2(x, true);
 };
 var $elm$virtual_dom$VirtualDom$MayStopPropagation = function (a) {
-	return {$: 'MayStopPropagation', a: a};
+	return {$: 1, a: a};
 };
 var $elm$html$Html$Events$stopPropagationOn = F2(
 	function (event, decoder) {
@@ -8670,7 +8728,7 @@ var $author$project$Views$dropdownListCat = function (model) {
 		function (category) {
 			return A2(
 				$elm$core$String$contains,
-				model.catSearch,
+				model.S,
 				$elm$core$String$toLower(category));
 		},
 		A2($elm$core$List$map, $author$project$Data$categoryToString, $author$project$Data$categoryOptions));
@@ -8688,7 +8746,7 @@ var $author$project$Views$dropdownListCat = function (model) {
 				[
 					$elm$html$Html$text(
 					'All (' + ($elm$core$String$fromInt(
-						$elm$core$List$length(model.projects)) + ')'))
+						$elm$core$List$length(model.E)) + ')'))
 				])),
 		A2(
 			$elm$core$List$map,
@@ -8710,9 +8768,9 @@ var $author$project$Views$dropdownListCat = function (model) {
 									A2(
 										$elm$core$List$filter,
 										function (project) {
-											return _Utils_eq(project.info.category, category);
+											return _Utils_eq(project.ai.T, category);
 										},
-										model.projects))) + ')')))
+										model.E))) + ')')))
 						]));
 			},
 			A2($elm$core$List$map, $author$project$Data$stringToCategory, filteredCategories)));
@@ -8753,7 +8811,7 @@ var $author$project$Views$dropdownListCat = function (model) {
 						_List_fromArray(
 							[
 								$elm$html$Html$Attributes$class('swap-input__search'),
-								$elm$html$Html$Attributes$value(model.catSearch),
+								$elm$html$Html$Attributes$value(model.S),
 								$elm$html$Html$Events$onInput($author$project$Types$SearchCategory)
 							]),
 						_List_Nil),
@@ -8776,7 +8834,7 @@ var $author$project$Views$dropdownListCat = function (model) {
 				catOptions)
 			]));
 };
-var $author$project$Types$SelectionOpen = {$: 'SelectionOpen'};
+var $author$project$Types$SelectionOpen = {$: 8};
 var $author$project$Views$dropdownSelectedCat = function (model) {
 	return A2(
 		$elm$html$Html$div,
@@ -8802,8 +8860,8 @@ var $author$project$Views$dropdownSelectedCat = function (model) {
 							[
 								$elm$html$Html$text(
 								function () {
-									var _v0 = model.selectedCategory;
-									if (_v0.$ === 'All') {
+									var _v0 = model.aB;
+									if (!_v0.$) {
 										return 'All';
 									} else {
 										var cat = _v0.a;
@@ -8822,8 +8880,8 @@ var $author$project$Views$dropdownSelectedCat = function (model) {
 			]));
 };
 var $author$project$Views$dropdownCatSelector = function (model) {
-	var _v0 = model.dropDown;
-	if (_v0.$ === 'Open') {
+	var _v0 = model.D;
+	if (!_v0) {
 		return $author$project$Views$dropdownListCat(model);
 	} else {
 		return $author$project$Views$dropdownSelectedCat(model);
@@ -8853,10 +8911,10 @@ var $author$project$Views$filterCategory = F3(
 						},
 						_List_fromArray(
 							[
-								project.info.name,
-								$author$project$Data$categoryToString(project.info.category),
-								project.info.team,
-								$author$project$Data$tagsToString(project.info.tags)
+								project.ai.am,
+								$author$project$Data$categoryToString(project.ai.T),
+								project.ai.aH,
+								$author$project$Data$tagsToString(project.ai.aG)
 							]));
 				};
 			}
@@ -8871,7 +8929,7 @@ var $author$project$Views$filterCategory = F3(
 					$elm$core$List$filter,
 					function (project) {
 						return _Utils_eq(
-							$author$project$Data$categoryToString(project.info.category),
+							$author$project$Data$categoryToString(project.ai.T),
 							selectedCategory);
 					},
 					projects));
@@ -8882,15 +8940,15 @@ var $author$project$Views$ecosystemView = function (model) {
 	var sortedProjects = A2(
 		$elm$core$List$sortBy,
 		function (project) {
-			return project.info.name;
+			return project.ai.am;
 		},
-		model.projects);
+		model.E);
 	var filteredProjects = A3(
 		$author$project$Views$filterCategory,
-		model.searchTerm,
+		model.M,
 		function () {
-			var _v0 = model.selectedCategory;
-			if (_v0.$ === 'All') {
+			var _v0 = model.aB;
+			if (!_v0.$) {
 				return 'All';
 			} else {
 				var category = _v0.a;
@@ -8964,7 +9022,7 @@ var $author$project$Views$ecosystemView = function (model) {
 													[
 														$elm$html$Html$Attributes$class('search'),
 														$elm$html$Html$Attributes$placeholder('Search'),
-														$elm$html$Html$Attributes$value(model.searchTerm),
+														$elm$html$Html$Attributes$value(model.M),
 														$elm$html$Html$Events$onInput($author$project$Types$Search)
 													]),
 												_List_Nil),
@@ -9026,7 +9084,6 @@ var $author$project$Views$ecosystemView = function (model) {
 			]));
 };
 var $elm$html$Html$Attributes$id = $elm$html$Html$Attributes$stringProperty('id');
-var $author$project$Types$Ecosystem = {$: 'Ecosystem'};
 var $author$project$Views$menutabs = function (model) {
 	return _List_fromArray(
 		[
@@ -9035,10 +9092,10 @@ var $author$project$Views$menutabs = function (model) {
 			_List_fromArray(
 				[
 					$elm$html$Html$Attributes$class(
-					_Utils_eq(model.currentRoute, $author$project$Types$Home) ? 'current' : ''),
+					_Utils_eq(model.F, $author$project$Types$Home) ? 'current' : ''),
 					$elm$html$Html$Events$onClick(
 					$author$project$Types$Current($author$project$Types$Home)),
-					$elm$html$Html$Attributes$href('/')
+					$elm$html$Html$Attributes$href('#')
 				]),
 			_List_fromArray(
 				[
@@ -9062,10 +9119,10 @@ var $author$project$Views$menutabs = function (model) {
 			_List_fromArray(
 				[
 					$elm$html$Html$Attributes$class(
-					_Utils_eq(model.currentRoute, $author$project$Types$Ecosystem) ? 'current' : ''),
+					_Utils_eq(model.F, $author$project$Types$Ecosystem) ? 'current' : ''),
 					$elm$html$Html$Events$onClick(
 					$author$project$Types$Current($author$project$Types$Ecosystem)),
-					$elm$html$Html$Attributes$href('/ecosystem')
+					$elm$html$Html$Attributes$href('#')
 				]),
 			_List_fromArray(
 				[
@@ -9090,11 +9147,11 @@ var $author$project$Views$menutabs = function (model) {
 				[
 					$elm$html$Html$Attributes$class(
 					function () {
-						var _v0 = model.currentRoute;
+						var _v0 = model.F;
 						switch (_v0.$) {
-							case 'SmartContracts':
+							case 1:
 								return 'current';
-							case 'SubContracts':
+							case 5:
 								return 'current';
 							default:
 								return '';
@@ -9102,7 +9159,7 @@ var $author$project$Views$menutabs = function (model) {
 					}()),
 					$elm$html$Html$Events$onClick(
 					$author$project$Types$Current($author$project$Types$SmartContracts)),
-					$elm$html$Html$Attributes$href('/contracts')
+					$elm$html$Html$Attributes$href('#')
 				]),
 			_List_fromArray(
 				[
@@ -9126,10 +9183,10 @@ var $author$project$Views$menutabs = function (model) {
 			_List_fromArray(
 				[
 					$elm$html$Html$Attributes$class(
-					_Utils_eq(model.currentRoute, $author$project$Types$AboutUs) ? 'current' : ''),
+					_Utils_eq(model.F, $author$project$Types$AboutUs) ? 'current' : ''),
 					$elm$html$Html$Events$onClick(
 					$author$project$Types$Current($author$project$Types$AboutUs)),
-					$elm$html$Html$Attributes$href('/about')
+					$elm$html$Html$Attributes$href('#')
 				]),
 			_List_fromArray(
 				[
@@ -9151,9 +9208,6 @@ var $author$project$Views$menutabs = function (model) {
 		]);
 };
 var $elm$html$Html$pre = _VirtualDom_node('pre');
-var $author$project$Types$SubContracts = function (a) {
-	return {$: 'SubContracts', a: a};
-};
 var $author$project$Views$getContractParentName = F2(
 	function (model, contract) {
 		var projectWithContract = A2(
@@ -9162,18 +9216,18 @@ var $author$project$Views$getContractParentName = F2(
 				return A2(
 					$elm$core$List$any,
 					function (c) {
-						return _Utils_eq(c.address, contract.address);
+						return _Utils_eq(c.aS, contract.aS);
 					},
-					p.contracts);
+					p.V);
 			},
-			model.projects);
+			model.E);
 		var parentName = function () {
 			if (!projectWithContract.b) {
 				return $elm$core$Maybe$Nothing;
 			} else {
 				if (!projectWithContract.b.b) {
 					var project = projectWithContract.a;
-					return $elm$core$Maybe$Just(project.info.name);
+					return $elm$core$Maybe$Just(project.ai.am);
 				} else {
 					return $elm$core$Maybe$Nothing;
 				}
@@ -9184,19 +9238,9 @@ var $author$project$Views$getContractParentName = F2(
 var $author$project$Views$addLocal = function (s) {
 	return (A2($elm$core$String$startsWith, 'hub', s) || (A2($elm$core$String$startsWith, 'offer', s) || (A2($elm$core$String$startsWith, 'price', s) || (A2($elm$core$String$startsWith, 'profile', s) || A2($elm$core$String$startsWith, 'trade', s))))) ? ('local_' + s) : s;
 };
-var $elm$core$Basics$negate = function (n) {
-	return -n;
-};
 var $elm$core$String$dropRight = F2(
 	function (n, string) {
 		return (n < 1) ? string : A3($elm$core$String$slice, 0, -n, string);
-	});
-var $elm$core$String$replace = F3(
-	function (before, after, string) {
-		return A2(
-			$elm$core$String$join,
-			after,
-			A2($elm$core$String$split, before, string));
 	});
 var $author$project$Views$transformString = function (str) {
 	return $author$project$Views$addLocal(
@@ -9240,12 +9284,12 @@ var $author$project$Views$contractView = F2(
 			_List_fromArray(
 				[
 					$elm$html$Html$Attributes$class('col-12 col-lg-6 col-fhd-4 flex'),
-					$elm$html$Html$Attributes$href('/contracts/' + contract.address),
+					$elm$html$Html$Attributes$href('/contracts/' + contract.aS),
 					A2($elm$html$Html$Attributes$style, 'text-decoration', 'none'),
 					A2($elm$html$Html$Attributes$style, 'color', '#fff'),
 					$elm$html$Html$Events$onClick(
 					$author$project$Types$Current(
-						$author$project$Types$SubContracts(contract.address)))
+						$author$project$Types$SubContracts(contract.aS)))
 				]),
 			_List_fromArray(
 				[
@@ -9312,7 +9356,7 @@ var $author$project$Views$contractView = F2(
 																			$elm$html$Html$text(
 																			function () {
 																				var _v0 = A2($author$project$Views$getContractParentName, model, contract);
-																				if (_v0.$ === 'Just') {
+																				if (!_v0.$) {
 																					var name = _v0.a;
 																					return name;
 																				} else {
@@ -9348,7 +9392,7 @@ var $author$project$Views$contractView = F2(
 																	_List_fromArray(
 																		[
 																			$elm$html$Html$text(
-																			$author$project$Views$transformString(contract.label))
+																			$author$project$Views$transformString(contract.a7))
 																		]))
 																]))
 														])),
@@ -9370,7 +9414,7 @@ var $author$project$Views$contractView = F2(
 																			$elm$core$Dict$get,
 																			function () {
 																				var _v2 = A2($author$project$Views$getContractParentName, model, contract);
-																				if (_v2.$ === 'Just') {
+																				if (!_v2.$) {
 																					var name = _v2.a;
 																					return name;
 																				} else {
@@ -9378,7 +9422,7 @@ var $author$project$Views$contractView = F2(
 																				}
 																			}(),
 																			$author$project$Data$logoDict);
-																		if (_v1.$ === 'Just') {
+																		if (!_v1.$) {
 																			var logo = _v1.a;
 																			return logo;
 																		} else {
@@ -9418,7 +9462,7 @@ var $author$project$Views$contractView = F2(
 													_List_fromArray(
 														[
 															$elm$html$Html$text(
-															$elm$core$String$fromInt(contract.code_id))
+															$elm$core$String$fromInt(contract.aY))
 														]))
 												])),
 											A2(
@@ -9451,14 +9495,14 @@ var $author$project$Views$contractView = F2(
 															$elm$html$Html$a,
 															_List_fromArray(
 																[
-																	$elm$html$Html$Attributes$href('https://finder.kujira.app/kaiyo-1/contract/' + contract.address),
+																	$elm$html$Html$Attributes$href('https://finder.kujira.app/kaiyo-1/contract/' + contract.aS),
 																	$elm$html$Html$Attributes$target('_blank'),
 																	A2($elm$html$Html$Attributes$style, 'text-decoration', 'none'),
 																	A2($elm$html$Html$Attributes$style, 'color', '#fff')
 																]),
 															_List_fromArray(
 																[
-																	$elm$html$Html$text(contract.address)
+																	$elm$html$Html$text(contract.aS)
 																]))
 														]))
 												])),
@@ -9488,7 +9532,7 @@ var $author$project$Views$contractView = F2(
 														]),
 													_List_fromArray(
 														[
-															$elm$html$Html$text(contract.creator)
+															$elm$html$Html$text(contract.a_)
 														]))
 												])),
 											A2(
@@ -9517,7 +9561,7 @@ var $author$project$Views$contractView = F2(
 														]),
 													_List_fromArray(
 														[
-															$elm$html$Html$text(contract.admin)
+															$elm$html$Html$text(contract.aT)
 														]))
 												]))
 										]))
@@ -9526,10 +9570,10 @@ var $author$project$Views$contractView = F2(
 				]));
 	});
 var $author$project$Types$SearchTeam = function (a) {
-	return {$: 'SearchTeam', a: a};
+	return {$: 6, a: a};
 };
 var $author$project$Types$TeamSelected = function (a) {
-	return {$: 'TeamSelected', a: a};
+	return {$: 4, a: a};
 };
 var $author$project$Views$getContractParentTeam = F2(
 	function (model, contract) {
@@ -9539,18 +9583,18 @@ var $author$project$Views$getContractParentTeam = F2(
 				return A2(
 					$elm$core$List$any,
 					function (c) {
-						return _Utils_eq(c.address, contract.address);
+						return _Utils_eq(c.aS, contract.aS);
 					},
-					p.contracts);
+					p.V);
 			},
-			model.projects);
+			model.E);
 		var parentTeam = function () {
 			if (!projectWithContract.b) {
 				return $elm$core$Maybe$Nothing;
 			} else {
 				if (!projectWithContract.b.b) {
 					var project = projectWithContract.a;
-					return $elm$core$Maybe$Just(project.info.team);
+					return $elm$core$Maybe$Just(project.ai.aH);
 				} else {
 					return $elm$core$Maybe$Nothing;
 				}
@@ -9605,7 +9649,7 @@ var $author$project$Views$dropdownListTeam = F2(
 				var team = _v2.a;
 				return A2(
 					$elm$core$String$contains,
-					model.teamSearch,
+					model.aI,
 					$elm$core$String$toLower(team));
 			},
 			orderedTeamIcons);
@@ -9694,7 +9738,7 @@ var $author$project$Views$dropdownListTeam = F2(
 							_List_fromArray(
 								[
 									$elm$html$Html$Attributes$class('swap-input__search'),
-									$elm$html$Html$Attributes$value(model.teamSearch),
+									$elm$html$Html$Attributes$value(model.aI),
 									$elm$html$Html$Events$onInput($author$project$Types$SearchTeam)
 								]),
 							_List_Nil),
@@ -9744,7 +9788,7 @@ var $author$project$Views$dropdownSelectedTeam = function (model) {
 								'assets/teams/' + A2(
 									$elm$core$Maybe$withDefault,
 									'unknown.svg',
-									A2($elm$core$Dict$get, model.selectedTeam, $author$project$Data$teamIconsDict)))
+									A2($elm$core$Dict$get, model.aC, $author$project$Data$teamIconsDict)))
 							]),
 						_List_Nil),
 						A2(
@@ -9752,7 +9796,7 @@ var $author$project$Views$dropdownSelectedTeam = function (model) {
 						_List_Nil,
 						_List_fromArray(
 							[
-								$elm$html$Html$text(model.selectedTeam)
+								$elm$html$Html$text(model.aC)
 							])),
 						A2(
 						$elm$html$Html$img,
@@ -9766,8 +9810,8 @@ var $author$project$Views$dropdownSelectedTeam = function (model) {
 };
 var $author$project$Views$dropdownTeamSelector = F2(
 	function (model, contracts) {
-		var _v0 = model.dropDown;
-		if (_v0.$ === 'Open') {
+		var _v0 = model.D;
+		if (!_v0) {
 			return A2($author$project$Views$dropdownListTeam, model, contracts);
 		} else {
 			return $author$project$Views$dropdownSelectedTeam(model);
@@ -9791,11 +9835,11 @@ var $author$project$Views$filterTeam = F4(
 						},
 						_List_fromArray(
 							[
-								contract.label,
-								$elm$core$String$fromInt(contract.code_id),
-								contract.address,
-								contract.creator,
-								contract.admin
+								contract.a7,
+								$elm$core$String$fromInt(contract.aY),
+								contract.aS,
+								contract.a_,
+								contract.aT
 							]));
 				};
 			}
@@ -9820,15 +9864,15 @@ var $author$project$Views$smartContractsView = function (model) {
 	var sortedContracts = A2(
 		$elm$core$List$sortBy,
 		function (contract) {
-			return contract.code_id;
+			return contract.aY;
 		},
 		A2(
 			$elm$core$List$concatMap,
 			function (project) {
-				return project.contracts;
+				return project.V;
 			},
-			model.projects));
-	var filteredContracts = A4($author$project$Views$filterTeam, model, model.searchTerm, model.selectedTeam, sortedContracts);
+			model.E));
+	var filteredContracts = A4($author$project$Views$filterTeam, model, model.M, model.aC, sortedContracts);
 	return A2(
 		$elm$html$Html$div,
 		_List_fromArray(
@@ -9895,7 +9939,7 @@ var $author$project$Views$smartContractsView = function (model) {
 													[
 														$elm$html$Html$Attributes$class('search'),
 														$elm$html$Html$Attributes$placeholder('Search'),
-														$elm$html$Html$Attributes$value(model.searchTerm),
+														$elm$html$Html$Attributes$value(model.M),
 														$elm$html$Html$Events$onInput($author$project$Types$Search)
 													]),
 												_List_Nil),
@@ -9959,6 +10003,7 @@ var $author$project$Views$smartContractsView = function (model) {
 					]))
 			]));
 };
+var $author$project$Types$Back = {$: 18};
 var $elm$core$List$head = function (list) {
 	if (list.b) {
 		var x = list.a;
@@ -9975,53 +10020,53 @@ var $author$project$Views$subContractsView = F2(
 		var selectedProject = A2(
 			$elm$core$List$filter,
 			function (p) {
-				return !_Utils_eq(p.contracts, _List_Nil);
+				return !_Utils_eq(p.V, _List_Nil);
 			},
-			model.projects);
+			model.E);
 		var selectedContract = A2(
 			$elm$core$List$concatMap,
 			function (p) {
 				return A2(
 					$elm$core$List$filter,
 					function (c) {
-						return _Utils_eq(c.address, contract);
+						return _Utils_eq(c.aS, contract);
 					},
-					p.contracts);
+					p.V);
 			},
 			selectedProject);
 		var currentContract = A2(
 			$elm$core$Maybe$withDefault,
-			{address: '', admin: '', code_id: 0, creator: '', label: ''},
+			{aS: '', aT: '', aY: 0, a_: '', a7: ''},
 			$elm$core$List$head(selectedContract));
 		var currentProject = A2(
 			$elm$core$Maybe$withDefault,
 			{
-				contracts: _List_Nil,
-				info: {
-					category: $author$project$Types$Defi,
-					createDate: '',
-					description: '',
-					discord: $elm$core$Maybe$Nothing,
-					github: $elm$core$Maybe$Nothing,
-					id: 0,
-					ids: _List_Nil,
-					logo: '',
-					name: '',
-					tags: _List_fromArray(
-						[$author$project$Types$None]),
-					team: '',
-					telegram: $elm$core$Maybe$Nothing,
-					twitter: $elm$core$Maybe$Nothing,
-					website: $elm$core$Maybe$Nothing
+				V: _List_Nil,
+				ai: {
+					T: 1,
+					W: '',
+					Y: '',
+					Z: $elm$core$Maybe$Nothing,
+					ad: $elm$core$Maybe$Nothing,
+					ah: 0,
+					a4: _List_Nil,
+					ak: '',
+					am: '',
+					aG: _List_fromArray(
+						[23]),
+					aH: '',
+					aJ: $elm$core$Maybe$Nothing,
+					aL: $elm$core$Maybe$Nothing,
+					aN: $elm$core$Maybe$Nothing
 				}
 			},
 			$elm$core$List$head(
 				A2(
 					$elm$core$List$filter,
 					function (p) {
-						return A2($elm$core$List$member, currentContract.code_id, p.info.ids);
+						return A2($elm$core$List$member, currentContract.aY, p.ai.a4);
 					},
-					model.projects)));
+					model.E)));
 		return A2(
 			$elm$html$Html$div,
 			_List_fromArray(
@@ -10036,8 +10081,7 @@ var $author$project$Views$subContractsView = F2(
 						[
 							$elm$html$Html$Attributes$class('proposal__back mb-2 ml-2'),
 							$elm$html$Html$Attributes$href('/contracts'),
-							$elm$html$Html$Events$onClick(
-							$author$project$Types$Current($author$project$Types$SmartContracts))
+							$elm$html$Html$Events$onClick($author$project$Types$Back)
 						]),
 					_List_fromArray(
 						[
@@ -10045,7 +10089,7 @@ var $author$project$Views$subContractsView = F2(
 							$elm$html$Html$img,
 							_List_fromArray(
 								[
-									$elm$html$Html$Attributes$src('assets/icons/arrow-left.svg')
+									$elm$html$Html$Attributes$src('../assets/icons/arrow-left.svg')
 								]),
 							_List_Nil),
 							$elm$html$Html$text('Back to Contracts')
@@ -10105,7 +10149,7 @@ var $author$project$Views$subContractsView = F2(
 																			_List_Nil,
 																			_List_fromArray(
 																				[
-																					$elm$html$Html$text(currentContract.label)
+																					$elm$html$Html$text(currentContract.a7)
 																				])),
 																			A2(
 																			$elm$html$Html$h2,
@@ -10127,14 +10171,14 @@ var $author$project$Views$subContractsView = F2(
 																							$elm$html$Html$a,
 																							_List_fromArray(
 																								[
-																									$elm$html$Html$Attributes$href('https://finder.kujira.app/kaiyo-1/contract/' + currentContract.address),
+																									$elm$html$Html$Attributes$href('https://finder.kujira.app/kaiyo-1/contract/' + currentContract.aS),
 																									$elm$html$Html$Attributes$target('_blank'),
 																									A2($elm$html$Html$Attributes$style, 'text-decoration', 'none'),
 																									A2($elm$html$Html$Attributes$style, 'color', '#fff')
 																								]),
 																							_List_fromArray(
 																								[
-																									$elm$html$Html$text(currentContract.address)
+																									$elm$html$Html$text(currentContract.aS)
 																								]))
 																						]))
 																				]))
@@ -10152,12 +10196,12 @@ var $author$project$Views$subContractsView = F2(
 																			_List_fromArray(
 																				[
 																					$elm$html$Html$Attributes$src(
-																					'assets/protocols/' + function () {
+																					'../assets/protocols/' + function () {
 																						var _v0 = A2(
 																							$elm$core$Dict$get,
 																							function () {
 																								var _v1 = A2($author$project$Views$getContractParentName, model, currentContract);
-																								if (_v1.$ === 'Just') {
+																								if (!_v1.$) {
 																									var name = _v1.a;
 																									return name;
 																								} else {
@@ -10165,7 +10209,7 @@ var $author$project$Views$subContractsView = F2(
 																								}
 																							}(),
 																							$author$project$Data$logoDict);
-																						if (_v0.$ === 'Just') {
+																						if (!_v0.$) {
 																							var logo = _v0.a;
 																							return logo;
 																						} else {
@@ -10202,7 +10246,7 @@ var $author$project$Views$subContractsView = F2(
 																	_List_fromArray(
 																		[
 																			$elm$html$Html$text(
-																			$author$project$Views$transformString(currentContract.label))
+																			$author$project$Views$transformString(currentContract.a7))
 																		]))
 																])),
 															A2(
@@ -10229,7 +10273,7 @@ var $author$project$Views$subContractsView = F2(
 																	_List_fromArray(
 																		[
 																			$elm$html$Html$text(
-																			$elm$core$String$fromInt(currentContract.code_id))
+																			$elm$core$String$fromInt(currentContract.aY))
 																		]))
 																])),
 															A2(
@@ -10255,7 +10299,7 @@ var $author$project$Views$subContractsView = F2(
 																		]),
 																	_List_fromArray(
 																		[
-																			$elm$html$Html$text(currentContract.creator)
+																			$elm$html$Html$text(currentContract.a_)
 																		]))
 																])),
 															A2(
@@ -10281,7 +10325,7 @@ var $author$project$Views$subContractsView = F2(
 																		]),
 																	_List_fromArray(
 																		[
-																			$elm$html$Html$text(currentContract.admin)
+																			$elm$html$Html$text(currentContract.aT)
 																		]))
 																]))
 														]))
@@ -10360,7 +10404,7 @@ var $author$project$Views$subContractsView = F2(
 																			$elm$html$Html$img,
 																			_List_fromArray(
 																				[
-																					$elm$html$Html$Attributes$src('assets/icons/copy.svg')
+																					$elm$html$Html$Attributes$src('../assets/icons/copy.svg')
 																				]),
 																			_List_Nil)
 																		]))
@@ -10374,8 +10418,38 @@ var $author$project$Views$subContractsView = F2(
 	});
 var $elm$html$Html$col = _VirtualDom_node('col');
 var $elm$html$Html$colgroup = _VirtualDom_node('colgroup');
+var $author$project$Types$zeroInfo = {
+	T: 1,
+	W: '',
+	Y: '',
+	Z: $elm$core$Maybe$Nothing,
+	ad: $elm$core$Maybe$Nothing,
+	ah: 0,
+	a4: _List_Nil,
+	ak: '',
+	am: '',
+	aG: _List_fromArray(
+		[23]),
+	aH: '',
+	aJ: $elm$core$Maybe$Nothing,
+	aL: $elm$core$Maybe$Nothing,
+	aN: $elm$core$Maybe$Nothing
+};
 var $author$project$Views$subEcosystemsView = F2(
-	function (model, project) {
+	function (model, projectName) {
+		var project = A2(
+			$elm$core$Maybe$withDefault,
+			{V: _List_Nil, ai: $author$project$Types$zeroInfo},
+			$elm$core$List$head(
+				A2(
+					$elm$core$List$filterMap,
+					function (p) {
+						return _Utils_eq(
+							$elm$core$String$toLower(p.ai.am),
+							$elm$core$String$toLower(
+								A3($elm$core$String$replace, '-', ' ', projectName))) ? $elm$core$Maybe$Just(p) : $elm$core$Maybe$Nothing;
+					},
+					model.E)));
 		return A2(
 			$elm$html$Html$div,
 			_List_fromArray(
@@ -10389,9 +10463,8 @@ var $author$project$Views$subEcosystemsView = F2(
 					_List_fromArray(
 						[
 							$elm$html$Html$Attributes$class('proposal__back mb-2 ml-2'),
-							$elm$html$Html$Attributes$href('/ecosystem'),
-							$elm$html$Html$Events$onClick(
-							$author$project$Types$Current($author$project$Types$Ecosystem))
+							$elm$html$Html$Attributes$href('#'),
+							$elm$html$Html$Events$onClick($author$project$Types$Back)
 						]),
 					_List_fromArray(
 						[
@@ -10399,7 +10472,7 @@ var $author$project$Views$subEcosystemsView = F2(
 							$elm$html$Html$img,
 							_List_fromArray(
 								[
-									$elm$html$Html$Attributes$src('assets/icons/arrow-left.svg')
+									$elm$html$Html$Attributes$src('../assets/icons/arrow-left.svg')
 								]),
 							_List_Nil),
 							$elm$html$Html$text('Back to all Projects')
@@ -10459,7 +10532,7 @@ var $author$project$Views$subEcosystemsView = F2(
 																			_List_Nil,
 																			_List_fromArray(
 																				[
-																					$elm$html$Html$text(project.info.name)
+																					$elm$html$Html$text(project.ai.am)
 																				])),
 																			A2(
 																			$elm$html$Html$a,
@@ -10467,8 +10540,8 @@ var $author$project$Views$subEcosystemsView = F2(
 																				[
 																					$elm$html$Html$Attributes$href(
 																					function () {
-																						var _v0 = project.info.website;
-																						if (_v0.$ === 'Just') {
+																						var _v0 = project.ai.aN;
+																						if (!_v0.$) {
 																							var url = _v0.a;
 																							return $elm$url$Url$toString(url);
 																						} else {
@@ -10491,8 +10564,8 @@ var $author$project$Views$subEcosystemsView = F2(
 																						[
 																							$elm$html$Html$text(
 																							function () {
-																								var _v1 = project.info.website;
-																								if (_v1.$ === 'Just') {
+																								var _v1 = project.ai.aN;
+																								if (!_v1.$) {
 																									var url = _v1.a;
 																									return $elm$url$Url$toString(url);
 																								} else {
@@ -10514,7 +10587,7 @@ var $author$project$Views$subEcosystemsView = F2(
 																			$elm$html$Html$img,
 																			_List_fromArray(
 																				[
-																					$elm$html$Html$Attributes$src('assets/protocols/' + project.info.logo),
+																					$elm$html$Html$Attributes$src('../assets/protocols/' + project.ai.ak),
 																					$elm$html$Html$Attributes$alt('Icon'),
 																					$elm$html$Html$Attributes$class('avatar')
 																				]),
@@ -10530,8 +10603,8 @@ var $author$project$Views$subEcosystemsView = F2(
 															_List_fromArray(
 																[
 																	function () {
-																	var _v2 = project.info.twitter;
-																	if (_v2.$ === 'Just') {
+																	var _v2 = project.ai.aL;
+																	if (!_v2.$) {
 																		var url = _v2.a;
 																		return A2(
 																			$elm$html$Html$a,
@@ -10550,7 +10623,7 @@ var $author$project$Views$subEcosystemsView = F2(
 																					$elm$html$Html$img,
 																					_List_fromArray(
 																						[
-																							$elm$html$Html$Attributes$src('assets/socials/twitter.svg')
+																							$elm$html$Html$Attributes$src('../assets/socials/twitter.svg')
 																						]),
 																					_List_Nil)
 																				]));
@@ -10559,8 +10632,8 @@ var $author$project$Views$subEcosystemsView = F2(
 																	}
 																}(),
 																	function () {
-																	var _v3 = project.info.discord;
-																	if (_v3.$ === 'Just') {
+																	var _v3 = project.ai.Z;
+																	if (!_v3.$) {
 																		var url = _v3.a;
 																		return A2(
 																			$elm$html$Html$a,
@@ -10579,7 +10652,7 @@ var $author$project$Views$subEcosystemsView = F2(
 																					$elm$html$Html$img,
 																					_List_fromArray(
 																						[
-																							$elm$html$Html$Attributes$src('assets/socials/discord.svg')
+																							$elm$html$Html$Attributes$src('../assets/socials/discord.svg')
 																						]),
 																					_List_Nil)
 																				]));
@@ -10588,8 +10661,8 @@ var $author$project$Views$subEcosystemsView = F2(
 																	}
 																}(),
 																	function () {
-																	var _v4 = project.info.telegram;
-																	if (_v4.$ === 'Just') {
+																	var _v4 = project.ai.aJ;
+																	if (!_v4.$) {
 																		var url = _v4.a;
 																		return A2(
 																			$elm$html$Html$a,
@@ -10608,7 +10681,7 @@ var $author$project$Views$subEcosystemsView = F2(
 																					$elm$html$Html$img,
 																					_List_fromArray(
 																						[
-																							$elm$html$Html$Attributes$src('assets/socials/telegram.svg')
+																							$elm$html$Html$Attributes$src('../assets/socials/telegram.svg')
 																						]),
 																					_List_Nil)
 																				]));
@@ -10617,8 +10690,8 @@ var $author$project$Views$subEcosystemsView = F2(
 																	}
 																}(),
 																	function () {
-																	var _v5 = project.info.github;
-																	if (_v5.$ === 'Just') {
+																	var _v5 = project.ai.ad;
+																	if (!_v5.$) {
 																		var url = _v5.a;
 																		return A2(
 																			$elm$html$Html$a,
@@ -10637,7 +10710,7 @@ var $author$project$Views$subEcosystemsView = F2(
 																					$elm$html$Html$img,
 																					_List_fromArray(
 																						[
-																							$elm$html$Html$Attributes$src('assets/socials/github.svg')
+																							$elm$html$Html$Attributes$src('../assets/socials/github.svg')
 																						]),
 																					_List_Nil)
 																				]));
@@ -10669,7 +10742,7 @@ var $author$project$Views$subEcosystemsView = F2(
 																		]),
 																	_List_fromArray(
 																		[
-																			$elm$html$Html$text(project.info.team)
+																			$elm$html$Html$text(project.ai.aH)
 																		]))
 																])),
 															A2(
@@ -10692,7 +10765,7 @@ var $author$project$Views$subEcosystemsView = F2(
 																	_List_Nil,
 																	_List_fromArray(
 																		[
-																			$elm$html$Html$text(project.info.description)
+																			$elm$html$Html$text(project.ai.Y)
 																		]))
 																])),
 															A2(
@@ -10720,7 +10793,7 @@ var $author$project$Views$subEcosystemsView = F2(
 																		[
 																			$elm$html$Html$text(
 																			$elm$core$String$fromInt(
-																				$elm$core$List$length(project.contracts)))
+																				$elm$core$List$length(project.V)))
 																		]))
 																])),
 															A2(
@@ -10745,7 +10818,7 @@ var $author$project$Views$subEcosystemsView = F2(
 																			_List_fromArray(
 																				[
 																					$elm$html$Html$text(
-																					$author$project$Data$categoryToString(project.info.category))
+																					$author$project$Data$categoryToString(project.ai.T))
 																				]))
 																		])),
 																	A2(
@@ -10773,14 +10846,14 @@ var $author$project$Views$subEcosystemsView = F2(
 																			function (tags) {
 																				return $author$project$Data$tagToString(tags);
 																			},
-																			project.info.tags)))
+																			project.ai.aG)))
 																]))
 														]))
 												]))
 										]))
 								])),
 							function () {
-							var _v6 = project.contracts;
+							var _v6 = project.V;
 							if (!_v6.b) {
 								return A2($elm$html$Html$div, _List_Nil, _List_Nil);
 							} else {
@@ -10902,7 +10975,7 @@ var $author$project$Views$subEcosystemsView = F2(
 																								_List_fromArray(
 																									[
 																										$elm$html$Html$text(
-																										$elm$core$String$fromInt(contract.code_id))
+																										$elm$core$String$fromInt(contract.aY))
 																									])),
 																								A2(
 																								$elm$html$Html$td,
@@ -10913,16 +10986,16 @@ var $author$project$Views$subEcosystemsView = F2(
 																										$elm$html$Html$a,
 																										_List_fromArray(
 																											[
-																												$elm$html$Html$Attributes$href('/contracts/' + contract.address),
+																												$elm$html$Html$Attributes$href('#'),
 																												A2($elm$html$Html$Attributes$style, 'text-decoration', 'none'),
 																												A2($elm$html$Html$Attributes$style, 'color', '#fff'),
 																												$elm$html$Html$Events$onClick(
 																												$author$project$Types$Current(
-																													$author$project$Types$SubContracts(contract.address)))
+																													$author$project$Types$SubContracts(contract.aS)))
 																											]),
 																										_List_fromArray(
 																											[
-																												$elm$html$Html$text(contract.label)
+																												$elm$html$Html$text(contract.a7)
 																											]))
 																									])),
 																								A2(
@@ -10934,19 +11007,19 @@ var $author$project$Views$subEcosystemsView = F2(
 																										$elm$html$Html$a,
 																										_List_fromArray(
 																											[
-																												$elm$html$Html$Attributes$href('https://finder.kujira.app/kaiyo-1/contract/' + contract.address),
+																												$elm$html$Html$Attributes$href('https://finder.kujira.app/kaiyo-1/contract/' + contract.aS),
 																												$elm$html$Html$Attributes$target('_blank'),
 																												A2($elm$html$Html$Attributes$style, 'text-decoration', 'none'),
 																												A2($elm$html$Html$Attributes$style, 'color', '#fff')
 																											]),
 																										_List_fromArray(
 																											[
-																												$elm$html$Html$text(contract.address)
+																												$elm$html$Html$text(contract.aS)
 																											]))
 																									]))
 																							]));
 																				},
-																				project.contracts))
+																				project.V))
 																		]))
 																]))
 														]))
@@ -11085,20 +11158,20 @@ var $author$project$Views$bodyView = function (model) {
 													$author$project$Views$menutabs(model))
 												])),
 											function () {
-											var _v0 = model.currentRoute;
+											var _v0 = model.F;
 											switch (_v0.$) {
-												case 'Home':
+												case 0:
 													return $author$project$Views$dashboardView(model);
-												case 'Ecosystem':
+												case 3:
 													return $author$project$Views$ecosystemView(model);
-												case 'SmartContracts':
+												case 1:
 													return $author$project$Views$smartContractsView(model);
-												case 'AboutUs':
+												case 2:
 													return $author$project$Views$aboutView(model);
-												case 'SubEcosystem':
+												case 4:
 													var subProject = _v0.a;
 													return A2($author$project$Views$subEcosystemsView, model, subProject);
-												case 'SubContracts':
+												case 5:
 													var subContract = _v0.a;
 													return A2($author$project$Views$subContractsView, model, subContract);
 												default:
@@ -11113,7 +11186,7 @@ var $author$project$Views$bodyView = function (model) {
 										}()
 										]))
 								])),
-							model.popUp ? A2(
+							model.K ? A2(
 							$elm$html$Html$div,
 							_List_fromArray(
 								[
@@ -11129,9 +11202,9 @@ var $author$project$Views$bodyView = function (model) {
 											A2($elm$html$Html$Attributes$style, 'visibility', 'visible')
 										]),
 									function () {
-										var _v1 = model.notification;
+										var _v1 = model.an;
 										switch (_v1.$) {
-											case 'Success':
+											case 0:
 												var message = _v1.a;
 												return _List_fromArray(
 													[
@@ -11147,13 +11220,13 @@ var $author$project$Views$bodyView = function (model) {
 																$elm$html$Html$img,
 																_List_fromArray(
 																	[
-																		$elm$html$Html$Attributes$src('assets/icons/checkmark.svg')
+																		$elm$html$Html$Attributes$src('../assets/icons/checkmark.svg')
 																	]),
 																_List_Nil)
 															])),
 														$elm$html$Html$text(message)
 													]);
-											case 'Error':
+											case 1:
 												var error = _v1.a;
 												return _List_fromArray(
 													[
@@ -11169,7 +11242,7 @@ var $author$project$Views$bodyView = function (model) {
 																$elm$html$Html$img,
 																_List_fromArray(
 																	[
-																		$elm$html$Html$Attributes$src('assets/icons/xmark.svg')
+																		$elm$html$Html$Attributes$src('../assets/icons/xmark.svg')
 																	]),
 																_List_Nil)
 															])),
@@ -11191,7 +11264,7 @@ var $author$project$Views$bodyView = function (model) {
 																$elm$html$Html$img,
 																_List_fromArray(
 																	[
-																		$elm$html$Html$Attributes$src('assets/icons/alert.svg')
+																		$elm$html$Html$Attributes$src('../assets/icons/alert.svg')
 																	]),
 																_List_Nil)
 															])),
@@ -11333,12 +11406,12 @@ var $author$project$Views$bodyView = function (model) {
 };
 var $author$project$Main$view = function (model) {
 	return {
-		body: $author$project$Views$bodyView(model),
-		title: 'Rorcual Nodes'
+		aW: $author$project$Views$bodyView(model),
+		bk: 'Rorcual Nodes'
 	};
 };
 var $author$project$Main$main = $elm$browser$Browser$application(
-	{init: $author$project$Main$init, onUrlChange: $author$project$Main$onUrlChange, onUrlRequest: $author$project$Main$onUrlRequest, subscriptions: $author$project$Main$subscriptions, update: $author$project$Main$update, view: $author$project$Main$view});
+	{a6: $author$project$Main$init, a9: $author$project$Main$onUrlChange, ba: $author$project$Main$onUrlRequest, bi: $author$project$Main$subscriptions, bl: $author$project$Main$update, bm: $author$project$Main$view});
 _Platform_export({'Main':{'init':$author$project$Main$main(
 	$elm$json$Json$Decode$succeed(
 		{}))(0)}});}(this));

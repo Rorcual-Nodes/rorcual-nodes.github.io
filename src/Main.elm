@@ -316,7 +316,7 @@ update msg model =
             ( { model | selectedCategory = newSelected }, Cmd.none )
 
         Current newRoute ->
-            ( { model | currentRoute = newRoute, searchTerm = "", dropDown = Close }, Cmd.none )
+            ( { model | currentRoute = newRoute, searchTerm = "", dropDown = Close }, Routing.pushUrl model.navigationKey newRoute )
 
         SearchTeam team ->
             ( { model | teamSearch = team }, Cmd.none )
@@ -351,6 +351,9 @@ update msg model =
         ScrollToTop ->
             ( model, resetViewport )
 
+        Back ->
+            ( model, Navigation.back model.navigationKey 1 )
+
 
 
 -- View Function
@@ -374,7 +377,8 @@ onUrlRequest urlRequest =
             SendUserToExternalUrl externalUrl
 
         Internal url ->
-            NoOp
+            Routing.parseUrlToRoute url
+                |> UserChangedRoute
 
 
 onUrlChange : Url -> Msg
