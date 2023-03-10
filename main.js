@@ -7627,6 +7627,7 @@ var $author$project$Data$tagToString = function (tag) {
 	}
 };
 var $elm$html$Html$Attributes$target = $elm$html$Html$Attributes$stringProperty('target');
+var $elm$core$String$toLower = _String_toLower;
 var $elm$url$Url$addPort = F2(
 	function (maybePort, starter) {
 		if (maybePort.$ === 1) {
@@ -7681,7 +7682,8 @@ var $author$project$Views$projectView = function (project) {
 				$elm$html$Html$Events$onClick(
 				$author$project$Types$Current(
 					$author$project$Types$SubEcosystem(
-						A3($elm$core$String$replace, ' ', '-', project.ai.am)))),
+						$elm$core$String$toLower(
+							A3($elm$core$String$replace, ' ', '-', project.ai.am))))),
 				A2($elm$html$Html$Attributes$style, 'text-decoration', 'none'),
 				A2($elm$html$Html$Attributes$style, 'color', '#fff')
 			]),
@@ -7786,7 +7788,7 @@ var $author$project$Views$projectView = function (project) {
 														$elm$html$Html$img,
 														_List_fromArray(
 															[
-																$elm$html$Html$Attributes$src('../assets/protocols/' + project.ai.ak),
+																$elm$html$Html$Attributes$src('./assets/protocols/' + project.ai.ak),
 																$elm$html$Html$Attributes$alt('Icon'),
 																$elm$html$Html$Attributes$class('avatar')
 															]),
@@ -7822,7 +7824,7 @@ var $author$project$Views$projectView = function (project) {
 																$elm$html$Html$img,
 																_List_fromArray(
 																	[
-																		$elm$html$Html$Attributes$src('../assets/socials/twitter.svg')
+																		$elm$html$Html$Attributes$src('./assets/socials/twitter.svg')
 																	]),
 																_List_Nil)
 															]));
@@ -7851,7 +7853,7 @@ var $author$project$Views$projectView = function (project) {
 																$elm$html$Html$img,
 																_List_fromArray(
 																	[
-																		$elm$html$Html$Attributes$src('../assets/socials/discord.svg')
+																		$elm$html$Html$Attributes$src('./assets/socials/discord.svg')
 																	]),
 																_List_Nil)
 															]));
@@ -7880,7 +7882,7 @@ var $author$project$Views$projectView = function (project) {
 																$elm$html$Html$img,
 																_List_fromArray(
 																	[
-																		$elm$html$Html$Attributes$src('../assets/socials/telegram.svg')
+																		$elm$html$Html$Attributes$src('./assets/socials/telegram.svg')
 																	]),
 																_List_Nil)
 															]));
@@ -7909,7 +7911,7 @@ var $author$project$Views$projectView = function (project) {
 																$elm$html$Html$img,
 																_List_fromArray(
 																	[
-																		$elm$html$Html$Attributes$src('../assets/socials/github.svg')
+																		$elm$html$Html$Attributes$src('./assets/socials/github.svg')
 																	]),
 																_List_Nil)
 															]));
@@ -8720,7 +8722,6 @@ var $elm$html$Html$Events$onInput = function (tagger) {
 			$elm$html$Html$Events$alwaysStop,
 			A2($elm$json$Json$Decode$map, tagger, $elm$html$Html$Events$targetValue)));
 };
-var $elm$core$String$toLower = _String_toLower;
 var $elm$html$Html$Attributes$value = $elm$html$Html$Attributes$stringProperty('value');
 var $author$project$Views$dropdownListCat = function (model) {
 	var filteredCategories = A2(
@@ -10089,7 +10090,7 @@ var $author$project$Views$subContractsView = F2(
 							$elm$html$Html$img,
 							_List_fromArray(
 								[
-									$elm$html$Html$Attributes$src('../assets/icons/arrow-left.svg')
+									$elm$html$Html$Attributes$src('./assets/icons/arrow-left.svg')
 								]),
 							_List_Nil),
 							$elm$html$Html$text('Back to Contracts')
@@ -10196,7 +10197,7 @@ var $author$project$Views$subContractsView = F2(
 																			_List_fromArray(
 																				[
 																					$elm$html$Html$Attributes$src(
-																					'../assets/protocols/' + function () {
+																					'/assets/protocols/' + function () {
 																						var _v0 = A2(
 																							$elm$core$Dict$get,
 																							function () {
@@ -10404,7 +10405,7 @@ var $author$project$Views$subContractsView = F2(
 																			$elm$html$Html$img,
 																			_List_fromArray(
 																				[
-																					$elm$html$Html$Attributes$src('../assets/icons/copy.svg')
+																					$elm$html$Html$Attributes$src('./assets/icons/copy.svg')
 																				]),
 																			_List_Nil)
 																		]))
@@ -10472,7 +10473,7 @@ var $author$project$Views$subEcosystemsView = F2(
 							$elm$html$Html$img,
 							_List_fromArray(
 								[
-									$elm$html$Html$Attributes$src('../assets/icons/arrow-left.svg')
+									$elm$html$Html$Attributes$src('./assets/icons/arrow-left.svg')
 								]),
 							_List_Nil),
 							$elm$html$Html$text('Back to all Projects')
@@ -10587,7 +10588,7 @@ var $author$project$Views$subEcosystemsView = F2(
 																			$elm$html$Html$img,
 																			_List_fromArray(
 																				[
-																					$elm$html$Html$Attributes$src('../assets/protocols/' + project.ai.ak),
+																					$elm$html$Html$Attributes$src('./assets/protocols/' + project.ai.ak),
 																					$elm$html$Html$Attributes$alt('Icon'),
 																					$elm$html$Html$Attributes$class('avatar')
 																				]),
@@ -10623,7 +10624,7 @@ var $author$project$Views$subEcosystemsView = F2(
 																					$elm$html$Html$img,
 																					_List_fromArray(
 																						[
-																							$elm$html$Html$Attributes$src('../assets/socials/twitter.svg')
+																							$elm$html$Html$Attributes$src('./assets/socials/twitter.svg')
 																						]),
 																					_List_Nil)
 																				]));
@@ -10652,7 +10653,7 @@ var $author$project$Views$subEcosystemsView = F2(
 																					$elm$html$Html$img,
 																					_List_fromArray(
 																						[
-																							$elm$html$Html$Attributes$src('../assets/socials/discord.svg')
+																							$elm$html$Html$Attributes$src('./assets/socials/discord.svg')
 																						]),
 																					_List_Nil)
 																				]));
@@ -10681,7 +10682,7 @@ var $author$project$Views$subEcosystemsView = F2(
 																					$elm$html$Html$img,
 																					_List_fromArray(
 																						[
-																							$elm$html$Html$Attributes$src('../assets/socials/telegram.svg')
+																							$elm$html$Html$Attributes$src('./assets/socials/telegram.svg')
 																						]),
 																					_List_Nil)
 																				]));
@@ -10710,7 +10711,7 @@ var $author$project$Views$subEcosystemsView = F2(
 																					$elm$html$Html$img,
 																					_List_fromArray(
 																						[
-																							$elm$html$Html$Attributes$src('../assets/socials/github.svg')
+																							$elm$html$Html$Attributes$src('./assets/socials/github.svg')
 																						]),
 																					_List_Nil)
 																				]));
@@ -11220,7 +11221,7 @@ var $author$project$Views$bodyView = function (model) {
 																$elm$html$Html$img,
 																_List_fromArray(
 																	[
-																		$elm$html$Html$Attributes$src('../assets/icons/checkmark.svg')
+																		$elm$html$Html$Attributes$src('./assets/icons/checkmark.svg')
 																	]),
 																_List_Nil)
 															])),
@@ -11242,7 +11243,7 @@ var $author$project$Views$bodyView = function (model) {
 																$elm$html$Html$img,
 																_List_fromArray(
 																	[
-																		$elm$html$Html$Attributes$src('../assets/icons/xmark.svg')
+																		$elm$html$Html$Attributes$src('./assets/icons/xmark.svg')
 																	]),
 																_List_Nil)
 															])),
@@ -11264,7 +11265,7 @@ var $author$project$Views$bodyView = function (model) {
 																$elm$html$Html$img,
 																_List_fromArray(
 																	[
-																		$elm$html$Html$Attributes$src('../assets/icons/alert.svg')
+																		$elm$html$Html$Attributes$src('./assets/icons/alert.svg')
 																	]),
 																_List_Nil)
 															])),
