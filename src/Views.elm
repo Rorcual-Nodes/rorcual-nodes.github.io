@@ -16,13 +16,13 @@ bodyView model =
     [ div [ id "root" ]
         [ div [ class "kujira blue screen-footer" ]
             [ div [ class "header" ]
-                [ img [ src "assets/logo/rorcual.png", alt "Rorcual", class "logo" ] []
-                , img [ src "assets/logo/rorcual.png", alt "Rorcual", class "logo--mobile" ] []
+                [ img [ src "./assets/logo/rorcual.png", alt "Rorcual", class "logo" ] []
+                , img [ src "./assets/logo/rorcual.png", alt "Rorcual", class "logo--mobile" ] []
                 , div [ class "header__buttons" ]
                     [ div [ class "wallet text-right" ]
                         [ a [ href "https://blue.kujira.app/stake/kujiravaloper1453e4qfcmhwyqrs2sgqmlgckzvmsgdvzzq4zdd", target "_blank", Html.Attributes.style "text-decoration" "inherit" ]
                             [ button [ class "md-button md-button--grey md-button--nowrap" ]
-                                [ img [ src "assets/icons/stake.svg" ] []
+                                [ img [ src "./assets/icons/stake.svg" ] []
                                 , span [] [ text "Stake with Us" ]
                                 ]
                             ]
@@ -86,7 +86,7 @@ bodyView model =
                             [ text "Tips: "
                             , text "kujira1n86sr2nt4wxp5malpfrjmvw76u5vt43r5w5ac2"
                             , span [ class "copy-button", onClick (Copy "kujira1n86sr2nt4wxp5malpfrjmvw76u5vt43r5w5ac2") ]
-                                [ img [ src "assets/icons/copy.svg" ] [] ]
+                                [ img [ src "./assets/icons/copy.svg" ] [] ]
                             ]
                         ]
                     ]
@@ -101,7 +101,7 @@ bodyView model =
                     , Html.Attributes.style "color" "#fff"
                     ]
                     [ img
-                        [ src "assets/socials/twitter.svg"
+                        [ src "./assets/socials/twitter.svg"
                         ]
                         []
                     ]
@@ -114,7 +114,7 @@ bodyView model =
                     , Html.Attributes.style "color" "#fff"
                     ]
                     [ img
-                        [ src "assets/socials/github.svg"
+                        [ src "./assets/socials/github.svg"
                         ]
                         []
                     ]
@@ -194,7 +194,7 @@ dashboardView model =
                             , Html.Attributes.style "margin-left" "0.5rem"
                             ]
                             [ img
-                                [ src "assets/protocols/orca.svg"
+                                [ src "./assets/protocols/orca.svg"
                                 , Html.Attributes.style "width" "18px"
                                 ]
                                 []
@@ -278,7 +278,7 @@ ecosystemView model =
                     [ div [ class "md-input md-input--nolabel condensed grow mr-1 md-input--light validator-search" ]
                         [ input [ class "search", Html.Attributes.placeholder "Search", value model.searchTerm, onInput Search ] []
                         , button []
-                            [ img [ src "assets/icons/search.svg" ] []
+                            [ img [ src "./assets/icons/search.svg" ] []
                             ]
                         ]
                     , dropdownCatSelector model
@@ -291,7 +291,7 @@ ecosystemView model =
                 projectView
                 filteredProjects
             )
-        , a [ class "scroll-to-top-button", onClick ScrollToTop, href "#" ] [ img [ src "assets/icons/chevron-up.svg" ] [] ]
+        , a [ class "scroll-to-top-button", onClick ScrollToTop, href "#" ] [ img [ src "./assets/icons/chevron-up.svg" ] [] ]
         ]
 
 
@@ -528,7 +528,7 @@ smartContractsView model =
                     [ div [ class "md-input md-input--nolabel condensed grow mr-1 md-input--light validator-search" ]
                         [ input [ class "search", Html.Attributes.placeholder "Search", value model.searchTerm, onInput Search ] []
                         , button []
-                            [ img [ src "assets/icons/search.svg" ] []
+                            [ img [ src "./assets/icons/search.svg" ] []
                             ]
                         ]
                     , dropdownTeamSelector model sortedContracts
@@ -543,7 +543,7 @@ smartContractsView model =
                 )
                 filteredContracts
             )
-        , a [ class "scroll-to-top-button", onClick ScrollToTop, href "#" ] [ img [ src "assets/icons/chevron-up.svg" ] [] ]
+        , a [ class "scroll-to-top-button", onClick ScrollToTop, href "#" ] [ img [ src "./assets/icons/chevron-up.svg" ] [] ]
         ]
 
 
@@ -603,7 +603,7 @@ subContractsView model contract =
                                 , div [ class "avatar-wrapper" ]
                                     [ img
                                         [ src
-                                            ("/assets/protocols/"
+                                            ("./assets/protocols/"
                                                 ++ (case
                                                         Dict.get
                                                             (case getContractParentName model currentContract of
@@ -858,7 +858,7 @@ contractView model contract =
                         , div [ class "avatar-wrapper" ]
                             [ img
                                 [ src
-                                    ("assets/protocols/"
+                                    ("./assets/protocols/"
                                         ++ (case
                                                 Dict.get
                                                     (case getContractParentName model contract of
@@ -910,7 +910,7 @@ menutabs model =
         , onClick (Current Home)
         , href "#"
         ]
-        [ img [ src "assets/icons/ratesbar.svg" ] [], span [] [ text "Dashboard" ] ]
+        [ img [ src "./assets/icons/ratesbar.svg" ] [], span [] [ text "Dashboard" ] ]
     , a
         [ class
             (if model.currentRoute == Ecosystem then
@@ -922,7 +922,7 @@ menutabs model =
         , onClick (Current Ecosystem)
         , href "#"
         ]
-        [ img [ src "assets/icons/ecosystem.svg" ] [], span [] [ text "Ecosystem" ] ]
+        [ img [ src "./assets/icons/ecosystem.svg" ] [], span [] [ text "Ecosystem" ] ]
     , a
         [ class
             (case model.currentRoute of
@@ -938,7 +938,7 @@ menutabs model =
         , onClick (Current SmartContracts)
         , href "#"
         ]
-        [ img [ src "assets/icons/contracts.svg" ] [], span [] [ text "Smart Contracts" ] ]
+        [ img [ src "./assets/icons/contracts.svg" ] [], span [] [ text "Smart Contracts" ] ]
     , a
         [ class
             (if model.currentRoute == AboutUs then
@@ -950,7 +950,7 @@ menutabs model =
         , onClick (Current AboutUs)
         , href "#"
         ]
-        [ img [ src "assets/icons/info.svg" ] [], span [] [ text "About Us" ] ]
+        [ img [ src "./assets/icons/info.svg" ] [], span [] [ text "About Us" ] ]
     ]
 
 
@@ -972,7 +972,7 @@ aboutView model =
                     ]
                     [ section [ class "flex ValidatorBox box" ]
                         [ div []
-                            [ img [ src "assets/icons/key.svg", alt "Icon", class "icon" ] []
+                            [ img [ src "./assets/icons/key.svg", alt "Icon", class "icon" ] []
                             , h4 [ class "mt-1" ] [ text "Security" ]
                             , p [ class "description mt-2" ] [ text "Security is our main priority. We are always evaluating the best technologies to prevent downtime and double signing. Rorcual is operated by a highly reduced and trusted team, so everything is always under control." ]
                             ]
@@ -983,7 +983,7 @@ aboutView model =
                     ]
                     [ section [ class "flex ValidatorBox box" ]
                         [ div []
-                            [ img [ src "assets/icons/share.svg", alt "Icon", class "icon" ] []
+                            [ img [ src "./assets/icons/share.svg", alt "Icon", class "icon" ] []
                             , h4 [ class "mt-1" ] [ text "Communication" ]
                             , p [ class "description mt-2" ] [ text "It’s our focus create a platform where all delegators are treated as investors in a company. Every  governance decision should be meditated and explained to the community so everyone can understand the evolution of Kujira Blockchain." ]
                             ]
@@ -994,7 +994,7 @@ aboutView model =
                     ]
                     [ section [ class "flex ValidatorBox box" ]
                         [ div []
-                            [ img [ src "assets/icons/link.svg", alt "Icon", class "icon" ] []
+                            [ img [ src "./assets/icons/link.svg", alt "Icon", class "icon" ] []
                             , h4 [ class "mt-1" ] [ text "Decentralization" ]
                             , p [ class "description mt-2" ] [ text "Our main and backup setups are separated geographically and on different providers, so availability of the nodes is guaranteed. By delegating to Rorcual, you are contributing to the decentralization and security of the Kujira network." ]
                             ]
@@ -1136,7 +1136,7 @@ dropdownSelectedCat model =
                             categoryToString cat
                     )
                 ]
-            , img [ src "assets/icons/chevron-small-down.svg" ] []
+            , img [ src "./assets/icons/chevron-small-down.svg" ] []
             ]
         ]
 
@@ -1172,9 +1172,9 @@ dropdownListCat model =
     in
     div [ class "swap-input condensed swap-input--team swap-input--open" ]
         [ div [ class "swap-input__selected" ]
-            [ div [ class "swap-input__search-icon" ] [ img [ src "assets/icons/search.svg" ] [] ]
+            [ div [ class "swap-input__search-icon" ] [ img [ src "./assets/icons/search.svg" ] [] ]
             , input [ class "swap-input__search", value model.catSearch, onInput SearchCategory ] []
-            , img [ src "assets/icons/chevron-small-up.svg", onClick SelectionClose ] []
+            , img [ src "./assets/icons/chevron-small-up.svg", onClick SelectionClose ] []
             ]
         , div [ class "swap-input__dropdown", onClick SelectionClose ] catOptions
         ]
@@ -1198,9 +1198,9 @@ dropdownSelectedTeam : Model -> Html Msg
 dropdownSelectedTeam model =
     div [ class "swap-input condensed md-input--light swap-input--team", onClick SelectionOpen ]
         [ div [ class "swap-input__selected" ]
-            [ img [ src ("assets/teams/" ++ Maybe.withDefault "unknown.svg" (Dict.get model.selectedTeam teamIconsDict)) ] []
+            [ img [ src ("./assets/teams/" ++ Maybe.withDefault "unknown.svg" (Dict.get model.selectedTeam teamIconsDict)) ] []
             , span [] [ text model.selectedTeam ]
-            , img [ src "assets/icons/chevron-small-down.svg" ] []
+            , img [ src "./assets/icons/chevron-small-down.svg" ] []
             ]
         ]
 
@@ -1230,7 +1230,7 @@ dropdownListTeam model contracts =
                             (a
                                 [ onClick (TeamSelected team), href "#" ]
                                 [ img
-                                    [ src ("assets/teams/" ++ Maybe.withDefault "unknown.svg" (Just icon))
+                                    [ src ("./assets/teams/" ++ Maybe.withDefault "unknown.svg" (Just icon))
                                     , alt "Icon"
                                     ]
                                     []
@@ -1254,9 +1254,9 @@ dropdownListTeam model contracts =
     in
     div [ class "swap-input condensed swap-input--team swap-input--open" ]
         [ div [ class "swap-input__selected" ]
-            [ div [ class "swap-input__search-icon" ] [ img [ src "assets/icons/search.svg" ] [] ]
+            [ div [ class "swap-input__search-icon" ] [ img [ src "./assets/icons/search.svg" ] [] ]
             , input [ class "swap-input__search", value model.teamSearch, onInput SearchTeam ] []
-            , img [ src "assets/icons/chevron-small-up.svg", onClick SelectionClose ] []
+            , img [ src "./assets/icons/chevron-small-up.svg", onClick SelectionClose ] []
             ]
         , div [ class "swap-input__dropdown", onClick SelectionClose ] teamOptions
         ]

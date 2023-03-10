@@ -7364,7 +7364,7 @@ var $author$project$Views$aboutView = function (model) {
 														$elm$html$Html$img,
 														_List_fromArray(
 															[
-																$elm$html$Html$Attributes$src('assets/icons/key.svg'),
+																$elm$html$Html$Attributes$src('./assets/icons/key.svg'),
 																$elm$html$Html$Attributes$alt('Icon'),
 																$elm$html$Html$Attributes$class('icon')
 															]),
@@ -7417,7 +7417,7 @@ var $author$project$Views$aboutView = function (model) {
 														$elm$html$Html$img,
 														_List_fromArray(
 															[
-																$elm$html$Html$Attributes$src('assets/icons/share.svg'),
+																$elm$html$Html$Attributes$src('./assets/icons/share.svg'),
 																$elm$html$Html$Attributes$alt('Icon'),
 																$elm$html$Html$Attributes$class('icon')
 															]),
@@ -7470,7 +7470,7 @@ var $author$project$Views$aboutView = function (model) {
 														$elm$html$Html$img,
 														_List_fromArray(
 															[
-																$elm$html$Html$Attributes$src('assets/icons/link.svg'),
+																$elm$html$Html$Attributes$src('./assets/icons/link.svg'),
 																$elm$html$Html$Attributes$alt('Icon'),
 																$elm$html$Html$Attributes$class('icon')
 															]),
@@ -8548,7 +8548,7 @@ var $author$project$Views$dashboardView = function (model) {
 														$elm$html$Html$img,
 														_List_fromArray(
 															[
-																$elm$html$Html$Attributes$src('assets/protocols/orca.svg'),
+																$elm$html$Html$Attributes$src('./assets/protocols/orca.svg'),
 																A2($elm$html$Html$Attributes$style, 'width', '18px')
 															]),
 														_List_Nil)
@@ -8803,7 +8803,7 @@ var $author$project$Views$dropdownListCat = function (model) {
 								$elm$html$Html$img,
 								_List_fromArray(
 									[
-										$elm$html$Html$Attributes$src('assets/icons/search.svg')
+										$elm$html$Html$Attributes$src('./assets/icons/search.svg')
 									]),
 								_List_Nil)
 							])),
@@ -8820,7 +8820,7 @@ var $author$project$Views$dropdownListCat = function (model) {
 						$elm$html$Html$img,
 						_List_fromArray(
 							[
-								$elm$html$Html$Attributes$src('assets/icons/chevron-small-up.svg'),
+								$elm$html$Html$Attributes$src('./assets/icons/chevron-small-up.svg'),
 								$elm$html$Html$Events$onClick($author$project$Types$SelectionClose)
 							]),
 						_List_Nil)
@@ -8874,7 +8874,7 @@ var $author$project$Views$dropdownSelectedCat = function (model) {
 						$elm$html$Html$img,
 						_List_fromArray(
 							[
-								$elm$html$Html$Attributes$src('assets/icons/chevron-small-down.svg')
+								$elm$html$Html$Attributes$src('./assets/icons/chevron-small-down.svg')
 							]),
 						_List_Nil)
 					]))
@@ -9036,7 +9036,7 @@ var $author$project$Views$ecosystemView = function (model) {
 														$elm$html$Html$img,
 														_List_fromArray(
 															[
-																$elm$html$Html$Attributes$src('assets/icons/search.svg')
+																$elm$html$Html$Attributes$src('./assets/icons/search.svg')
 															]),
 														_List_Nil)
 													]))
@@ -9078,7 +9078,7 @@ var $author$project$Views$ecosystemView = function (model) {
 						$elm$html$Html$img,
 						_List_fromArray(
 							[
-								$elm$html$Html$Attributes$src('assets/icons/chevron-up.svg')
+								$elm$html$Html$Attributes$src('./assets/icons/chevron-up.svg')
 							]),
 						_List_Nil)
 					]))
@@ -9104,7 +9104,7 @@ var $author$project$Views$menutabs = function (model) {
 					$elm$html$Html$img,
 					_List_fromArray(
 						[
-							$elm$html$Html$Attributes$src('assets/icons/ratesbar.svg')
+							$elm$html$Html$Attributes$src('./assets/icons/ratesbar.svg')
 						]),
 					_List_Nil),
 					A2(
@@ -9131,7 +9131,7 @@ var $author$project$Views$menutabs = function (model) {
 					$elm$html$Html$img,
 					_List_fromArray(
 						[
-							$elm$html$Html$Attributes$src('assets/icons/ecosystem.svg')
+							$elm$html$Html$Attributes$src('./assets/icons/ecosystem.svg')
 						]),
 					_List_Nil),
 					A2(
@@ -9168,7 +9168,7 @@ var $author$project$Views$menutabs = function (model) {
 					$elm$html$Html$img,
 					_List_fromArray(
 						[
-							$elm$html$Html$Attributes$src('assets/icons/contracts.svg')
+							$elm$html$Html$Attributes$src('./assets/icons/contracts.svg')
 						]),
 					_List_Nil),
 					A2(
@@ -9195,7 +9195,7 @@ var $author$project$Views$menutabs = function (model) {
 					$elm$html$Html$img,
 					_List_fromArray(
 						[
-							$elm$html$Html$Attributes$src('assets/icons/info.svg')
+							$elm$html$Html$Attributes$src('./assets/icons/info.svg')
 						]),
 					_List_Nil),
 					A2(
@@ -9410,7 +9410,7 @@ var $author$project$Views$contractView = F2(
 															_List_fromArray(
 																[
 																	$elm$html$Html$Attributes$src(
-																	'assets/protocols/' + function () {
+																	'./assets/protocols/' + function () {
 																		var _v1 = A2(
 																			$elm$core$Dict$get,
 																			function () {
@@ -9683,7 +9683,7 @@ var $author$project$Views$dropdownListTeam = F2(
 								_List_fromArray(
 									[
 										$elm$html$Html$Attributes$src(
-										'assets/teams/' + A2(
+										'./assets/teams/' + A2(
 											$elm$core$Maybe$withDefault,
 											'unknown.svg',
 											$elm$core$Maybe$Just(icon))),
@@ -9730,7 +9730,7 @@ var $author$project$Views$dropdownListTeam = F2(
 									$elm$html$Html$img,
 									_List_fromArray(
 										[
-											$elm$html$Html$Attributes$src('assets/icons/search.svg')
+											$elm$html$Html$Attributes$src('./assets/icons/search.svg')
 										]),
 									_List_Nil)
 								])),
@@ -9747,7 +9747,7 @@ var $author$project$Views$dropdownListTeam = F2(
 							$elm$html$Html$img,
 							_List_fromArray(
 								[
-									$elm$html$Html$Attributes$src('assets/icons/chevron-small-up.svg'),
+									$elm$html$Html$Attributes$src('./assets/icons/chevron-small-up.svg'),
 									$elm$html$Html$Events$onClick($author$project$Types$SelectionClose)
 								]),
 							_List_Nil)
@@ -9786,7 +9786,7 @@ var $author$project$Views$dropdownSelectedTeam = function (model) {
 						_List_fromArray(
 							[
 								$elm$html$Html$Attributes$src(
-								'assets/teams/' + A2(
+								'./assets/teams/' + A2(
 									$elm$core$Maybe$withDefault,
 									'unknown.svg',
 									A2($elm$core$Dict$get, model.aC, $author$project$Data$teamIconsDict)))
@@ -9803,7 +9803,7 @@ var $author$project$Views$dropdownSelectedTeam = function (model) {
 						$elm$html$Html$img,
 						_List_fromArray(
 							[
-								$elm$html$Html$Attributes$src('assets/icons/chevron-small-down.svg')
+								$elm$html$Html$Attributes$src('./assets/icons/chevron-small-down.svg')
 							]),
 						_List_Nil)
 					]))
@@ -9953,7 +9953,7 @@ var $author$project$Views$smartContractsView = function (model) {
 														$elm$html$Html$img,
 														_List_fromArray(
 															[
-																$elm$html$Html$Attributes$src('assets/icons/search.svg')
+																$elm$html$Html$Attributes$src('./assets/icons/search.svg')
 															]),
 														_List_Nil)
 													]))
@@ -9998,7 +9998,7 @@ var $author$project$Views$smartContractsView = function (model) {
 						$elm$html$Html$img,
 						_List_fromArray(
 							[
-								$elm$html$Html$Attributes$src('assets/icons/chevron-up.svg')
+								$elm$html$Html$Attributes$src('./assets/icons/chevron-up.svg')
 							]),
 						_List_Nil)
 					]))
@@ -10197,7 +10197,7 @@ var $author$project$Views$subContractsView = F2(
 																			_List_fromArray(
 																				[
 																					$elm$html$Html$Attributes$src(
-																					'/assets/protocols/' + function () {
+																					'./assets/protocols/' + function () {
 																						var _v0 = A2(
 																							$elm$core$Dict$get,
 																							function () {
@@ -11062,7 +11062,7 @@ var $author$project$Views$bodyView = function (model) {
 									$elm$html$Html$img,
 									_List_fromArray(
 										[
-											$elm$html$Html$Attributes$src('assets/logo/rorcual.png'),
+											$elm$html$Html$Attributes$src('./assets/logo/rorcual.png'),
 											$elm$html$Html$Attributes$alt('Rorcual'),
 											$elm$html$Html$Attributes$class('logo')
 										]),
@@ -11071,7 +11071,7 @@ var $author$project$Views$bodyView = function (model) {
 									$elm$html$Html$img,
 									_List_fromArray(
 										[
-											$elm$html$Html$Attributes$src('assets/logo/rorcual.png'),
+											$elm$html$Html$Attributes$src('./assets/logo/rorcual.png'),
 											$elm$html$Html$Attributes$alt('Rorcual'),
 											$elm$html$Html$Attributes$class('logo--mobile')
 										]),
@@ -11114,7 +11114,7 @@ var $author$project$Views$bodyView = function (model) {
 																	$elm$html$Html$img,
 																	_List_fromArray(
 																		[
-																			$elm$html$Html$Attributes$src('assets/icons/stake.svg')
+																			$elm$html$Html$Attributes$src('./assets/icons/stake.svg')
 																		]),
 																	_List_Nil),
 																	A2(
@@ -11344,7 +11344,7 @@ var $author$project$Views$bodyView = function (model) {
 																	$elm$html$Html$img,
 																	_List_fromArray(
 																		[
-																			$elm$html$Html$Attributes$src('assets/icons/copy.svg')
+																			$elm$html$Html$Attributes$src('./assets/icons/copy.svg')
 																		]),
 																	_List_Nil)
 																]))
@@ -11376,7 +11376,7 @@ var $author$project$Views$bodyView = function (model) {
 											$elm$html$Html$img,
 											_List_fromArray(
 												[
-													$elm$html$Html$Attributes$src('assets/socials/twitter.svg')
+													$elm$html$Html$Attributes$src('./assets/socials/twitter.svg')
 												]),
 											_List_Nil)
 										])),
@@ -11396,7 +11396,7 @@ var $author$project$Views$bodyView = function (model) {
 											$elm$html$Html$img,
 											_List_fromArray(
 												[
-													$elm$html$Html$Attributes$src('assets/socials/github.svg')
+													$elm$html$Html$Attributes$src('./assets/socials/github.svg')
 												]),
 											_List_Nil)
 										]))
