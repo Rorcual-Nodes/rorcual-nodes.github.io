@@ -8,21 +8,6 @@ import Types exposing (Category(..), Tag(..))
 -- Teams Data
 
 
-teams : Dict.Dict String String
-teams =
-    Dict.fromList
-        [ ( "kujira1ghmq7k50rwpsnye39aefngd2k7x9kc2hrqq5xd", "Team Kujira" )
-        , ( "kujira1tsekaqv9vmem0zwskmf90gpf0twl6k57e8vdnq", "Team Kujira" )
-        , ( "kujira1pcuvcxf3j6zj3k0f8t2sg0859dyqlzapt5k2t5", "Black Whale" )
-        , ( "kujira1apcnxrpsthfgmp4j7a50e3uz3ea47f4q532dtu", "CALC Finance" )
-        , ( "kujira1swkuyt08z74n5jl7zr6hx0ru5sa2yev5v896p6", "LOCAL Money" )
-        , ( "kujira15nu6cdlfvwyshj5fnwt09ppx4e6z9gddtkpxfrr83femj67dunhs84rh3j", "LOCAL Money" )
-        , ( "kujira1l7ll7gmyk6ze269tt8exfm909xc3pptr5ghj86", "Fuzion" )
-        , ( "kujira19u5m35pnzm3uh34zc002tttpgp44s4cwnf2s0v", "Entropic Labs" )
-        , ( "kujira15nu6cdlfvwyshj5fnwt09ppx4e6z9gddtkpxfrr83femj67dunhs84rh3j", "LOCAL Money" )
-        ]
-
-
 teamIconsDict : Dict.Dict String String
 teamIconsDict =
     Dict.fromList teamIcons
@@ -58,6 +43,7 @@ teamIcons =
     , ( "Coinhall", "coinhall.jpg" )
     , ( "Pulsar", "pulsar.jpg" )
     , ( "Nansen", "nansen.png" )
+    , ( "DLOYAL Refer", "dloyal.svg" )
     , ( "Unknown Team", "unknown.svg" )
     ]
 
@@ -326,5 +312,7 @@ projectLogo =
     , ( "Coinhall", "coinhall.jpg" )
     , ( "Pulsar", "pulsar.jpg" )
     , ( "Nansen Portfolio", "nansenp.png" )
+    , ( "DLOYAL Refer", "dloyal.svg" )
+    , ( "PILOT", "pilot.png" )
     , ( "Unkown", "unknown.svg" )
     ]

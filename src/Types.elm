@@ -23,11 +23,12 @@ type alias Model =
     , notification : Notification
     , popUp : Bool
     , exchangeRates : List Rates
+    , rawData : String
     }
 
 
 type Route
-    = Home
+    = Index
     | SmartContracts
     | AboutUs
     | Ecosystem
@@ -62,6 +63,7 @@ type alias ProjectInfo =
 
 type alias Contract =
     { address : String
+    , createDate : String
     , code_id : Int
     , creator : String
     , admin : String
@@ -125,6 +127,7 @@ type Msg
     = GotProjects (Result Http.Error (List ProjectInfo))
     | GotContracts (Result Http.Error (List Contract))
     | GotRates (Result Http.Error (List Rates))
+    | GotContract (Result Http.Error String)
     | Search String
     | TeamSelected String
     | Current Route
