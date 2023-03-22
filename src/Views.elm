@@ -5,6 +5,7 @@ import Dict
 import Html exposing (Html, a, article, button, div, h1, h2, h3, h4, img, input, p, pre, section, small, span, table, tbody, td, text, th, thead, tr)
 import Html.Attributes exposing (alt, class, href, id, src, target, value)
 import Html.Events exposing (onClick, onInput)
+import Html.Lazy exposing (lazy)
 import List exposing (any)
 import Set
 import Types exposing (..)
@@ -16,13 +17,13 @@ bodyView model =
     [ div [ id "root" ]
         [ div [ class "kujira blue screen-footer" ]
             [ div [ class "header" ]
-                [ img [ src "assets/logo/rorcual.png", alt "Rorcual", class "logo" ] []
-                , img [ src "assets/logo/rorcual.png", alt "Rorcual", class "logo--mobile" ] []
+                [ img [ src "./assets/logo/rorcual.png", alt "Rorcual", class "logo" ] []
+                , img [ src "./assets/logo/rorcual.png", alt "Rorcual", class "logo--mobile" ] []
                 , div [ class "header__buttons" ]
                     [ div [ class "wallet text-right" ]
                         [ a [ href "https://blue.kujira.app/stake/kujiravaloper1453e4qfcmhwyqrs2sgqmlgckzvmsgdvzzq4zdd", target "_blank", Html.Attributes.style "text-decoration" "inherit" ]
                             [ button [ class "md-button md-button--grey md-button--nowrap" ]
-                                [ img [ src "assets/icons/stake.svg" ] []
+                                [ img [ src "./assets/icons/stake.svg" ] []
                                 , span [] [ text "Stake with Us" ]
                                 ]
                             ]
@@ -30,29 +31,29 @@ bodyView model =
                     ]
                 ]
             , div []
-                [ div [ class "row px-1 mx-0 py-6" ]
+                [ div [ class "row px-1 mx-0 py-2" ]
                     [ div [ class "col-12 col-md-4 col-lg-3 col-xl-2" ]
                         [ div [ class "menutabs" ]
                             (menutabs model)
                         ]
                     , case model.currentRoute of
-                        Home ->
-                            dashboardView model
+                        Index ->
+                            lazy dashboardView model
 
                         Ecosystem ->
-                            ecosystemView model
+                            lazy ecosystemView model
 
                         SmartContracts ->
-                            smartContractsView model
+                            lazy smartContractsView model
 
                         AboutUs ->
-                            aboutView model
+                            lazy aboutView model
 
                         SubEcosystem subProject ->
-                            subEcosystemsView model subProject
+                            Html.Lazy.lazy2 subEcosystemsView model subProject
 
                         SubContracts subContract ->
-                            subContractsView model subContract
+                            Html.Lazy.lazy2 subContractsView model subContract
 
                         NotFound ->
                             div [] [ text "Error 404 Not Found" ]
@@ -63,13 +64,13 @@ bodyView model =
                     [ div [ class "notification-visible", Html.Attributes.style "visibility" "visible" ]
                         (case model.notification of
                             Success message ->
-                                [ div [ class "notification-wrapper" ] [ img [ src "assets/icons/checkmark.svg" ] [] ], text message ]
+                                [ div [ class "notification-wrapper" ] [ img [ src "../assets/icons/checkmark.svg" ] [] ], text message ]
 
                             Error error ->
-                                [ div [ class "notification-wrapper" ] [ img [ src "assets/icons/xmark.svg" ] [] ], text error ]
+                                [ div [ class "notification-wrapper" ] [ img [ src "../assets/icons/xmark.svg" ] [] ], text error ]
 
                             Warning warning ->
-                                [ div [ class "notification-wrapper" ] [ img [ src "assets/icons/alert.svg" ] [] ], text warning ]
+                                [ div [ class "notification-wrapper" ] [ img [ src "../assets/icons/alert.svg" ] [] ], text warning ]
                         )
                     ]
 
@@ -86,7 +87,7 @@ bodyView model =
                             [ text "Tips: "
                             , text "kujira1n86sr2nt4wxp5malpfrjmvw76u5vt43r5w5ac2"
                             , span [ class "copy-button", onClick (Copy "kujira1n86sr2nt4wxp5malpfrjmvw76u5vt43r5w5ac2") ]
-                                [ img [ src "assets/icons/copy.svg" ] [] ]
+                                [ img [ src "./assets/icons/copy.svg" ] [] ]
                             ]
                         ]
                     ]
@@ -101,7 +102,7 @@ bodyView model =
                     , Html.Attributes.style "color" "#fff"
                     ]
                     [ img
-                        [ src "assets/socials/twitter.svg"
+                        [ src "./assets/socials/twitter.svg"
                         ]
                         []
                     ]
@@ -114,7 +115,7 @@ bodyView model =
                     , Html.Attributes.style "color" "#fff"
                     ]
                     [ img
-                        [ src "assets/socials/github.svg"
+                        [ src "./assets/socials/github.svg"
                         ]
                         []
                     ]
@@ -194,7 +195,7 @@ dashboardView model =
                             , Html.Attributes.style "margin-left" "0.5rem"
                             ]
                             [ img
-                                [ src "assets/protocols/orca.svg"
+                                [ src "./assets/protocols/orca.svg"
                                 , Html.Attributes.style "width" "18px"
                                 ]
                                 []
@@ -202,7 +203,7 @@ dashboardView model =
                         ]
                     , div [ class "w-full" ]
                         [ div [ class "row" ]
-                            [ div [ class "col-12" ]
+                            [ div [ class "col-12" ,  Html.Attributes.style "max-height" "150px", Html.Attributes.style "overflow-y" "auto" ]
                                 [ table [ class "md-table revenue-table condensed" ]
                                     [ thead []
                                         [ th [] [ text "Denom" ]
@@ -233,6 +234,7 @@ dashboardView model =
                 [ button [ class "md-button md-button--small md-button--reverse md-button--icon-right ml-2" ]
                     [ text "Submit a Project" ]
                 ]
+            , div [ class "col-12 col-lg-12 col-fhd-4 mt-3" ] (latestContracts model)
             ]
         ]
 
@@ -242,7 +244,6 @@ latestProjects model =
     let
         latest =
             List.take 3 <| List.reverse (List.sortBy (\project -> project.info.createDate) model.projects)
-
     in
     [ h1 [ class "text-center text-md-left mb-2" ] [ text "Latest Projects" ]
     , div [ class "row" ]
@@ -251,6 +252,80 @@ latestProjects model =
             latest
         )
     ]
+
+
+latestContracts : Model -> List (Html Msg)
+latestContracts model =
+    let
+        contracts =
+            List.take 4 <| List.reverse (List.sortBy (\contract -> contract.createDate) (List.concatMap (\project -> project.contracts) model.projects))
+    in
+    [ h1 [ class "text-center text-md-left mb-2" ] [ text "Latest Contracts" ]
+    , div [ class "row" ]
+        (List.map
+            (latestContractView model)
+            contracts
+        )
+    ]
+
+
+latestContractView : Model -> Contract -> Html Msg
+latestContractView model contract =
+    a
+        [ class "col-12 col-lg-6 col-fhd-4 flex"
+        , href ("/contracts/" ++ contract.address)
+        , Html.Attributes.style "text-decoration" "none"
+        , Html.Attributes.style "color" "#fff"
+        , onClick (Current (SubContracts contract.address))
+        ]
+        [ section [ class "ValidatorBox box mb-4" ]
+            [ article [ class "ValidatorLabelValueItem" ]
+                [ div []
+                    [ div [ class "flex ai-c condensed" ]
+                        [ div []
+                            [ h1 [] [ text contract.label ]
+                            , h2 [ class "condensed" ] [ span [ class "value" ] [ a [ href ("https://finder.kujira.app/kaiyo-1/contract/" ++ contract.address), target "_blank", Html.Attributes.style "text-decoration" "none", Html.Attributes.style "color" "#fff" ] [ text contract.address ] ] ]
+                            ]
+                        , div [ class "avatar-wrapper" ]
+                            [ img
+                                [ src
+                                    ("../assets/protocols/"
+                                        ++ (case
+                                                Dict.get
+                                                    (case getContractParentName model contract of
+                                                        Just name ->
+                                                            name
+
+                                                        Nothing ->
+                                                            "Unkown"
+                                                    )
+                                                    logoDict
+                                            of
+                                                Just logo ->
+                                                    logo
+
+                                                Nothing ->
+                                                    "unknown.svg"
+                                           )
+                                    )
+                                , alt "Icon"
+                                , class "avatar"
+                                ]
+                                []
+                            ]
+                        ]
+                    , h4 [ class "condensed" ] [ text "Label" ]
+                    , p [] [ span [ class "value" ] [ text (transformString contract.label) ] ]
+                    , h4 [ class "condensed" ] [ text "Code ID" ]
+                    , p [] [ span [ class "value" ] [ text (String.fromInt contract.code_id) ] ]
+                    , h4 [ class "condensed" ] [ text "Creator" ]
+                    , p [] [ span [ class "value" ] [ text contract.creator ] ]
+                    , h4 [ class "condensed" ] [ text "Admin" ]
+                    , p [] [ span [ class "value" ] [ text contract.admin ] ]
+                    ]
+                ]
+            ]
+        ]
 
 
 ecosystemView : Model -> Html Msg
@@ -271,7 +346,7 @@ ecosystemView model =
                 sortedProjects
     in
     div [ class "col-12 col-md-8 col-lg-9 col-xl-8 mt-4 mt-md-3" ]
-        [ h1 [ class "mb-0" ] [ text "Projects" ]
+        [ h1 [ class "" ] [ text "Projects" ]
         , h2 [ class "mb-2" ] [ text "Explore the ecosystem of Kujira." ]
         , div [ class "md-row mb-3 pad" ]
             [ div [ class "col-12" ]
@@ -279,7 +354,7 @@ ecosystemView model =
                     [ div [ class "md-input md-input--nolabel condensed grow mr-1 md-input--light validator-search" ]
                         [ input [ class "search", Html.Attributes.placeholder "Search", value model.searchTerm, onInput Search ] []
                         , button []
-                            [ img [ src "assets/icons/search.svg" ] []
+                            [ img [ src "./assets/icons/search.svg" ] []
                             ]
                         ]
                     , dropdownCatSelector model
@@ -292,14 +367,31 @@ ecosystemView model =
                 projectView
                 filteredProjects
             )
-        , a [ class "scroll-to-top-button", onClick ScrollToTop, href "#" ] [ img [ src "assets/icons/chevron-up.svg" ] [] ]
+        , a [ class "scroll-to-top-button", onClick ScrollToTop, href "#" ] [ img [ src "./assets/icons/chevron-up.svg" ] [] ]
         ]
 
 
-subEcosystemsView : Model -> Project -> Html Msg
-subEcosystemsView model project =
+subEcosystemsView : Model -> String -> Html Msg
+subEcosystemsView model projectName =
+    let
+        project =
+            model.projects
+                |> List.filterMap
+                    (\p ->
+                        if String.toLower p.info.name == String.toLower (String.replace "-" " " projectName) then
+                            Just p
+
+                        else
+                            Nothing
+                    )
+                |> List.head
+                |> Maybe.withDefault { info = zeroInfo, contracts = [] }
+
+        filteredContracts =
+            List.sortBy .code_id (List.filter (\contract -> String.contains model.searchTerm (String.toLower contract.label)) project.contracts)
+    in
     div [ class "col-12 col-md-8 col-lg-9 col-xga-8 mt-4 mt-md-3 govern" ]
-        [ a [ class "proposal__back mb-2 ml-2", href "/ecosystem", onClick (Current Ecosystem) ] [ img [ src "assets/icons/arrow-left.svg" ] [], text "Back to all Projects" ]
+        [ a [ class "proposal__back mb-2 ml-2", href "#", onClick Back ] [ img [ src "../assets/icons/arrow-left.svg" ] [], text "Back" ]
         , div [ class "row" ]
             -- FirstDiv
             [ div [ class "col-12 col-xl-9" ]
@@ -337,85 +429,81 @@ subEcosystemsView model project =
                                         ]
                                     ]
                                 , div [ class "avatar-wrapper" ]
-                                    [ img [ src ("assets/protocols/" ++ project.info.logo), alt "Icon", class "avatar" ] [] ]
+                                    [ img [ src ("../assets/protocols/" ++ project.info.logo), alt "Icon", class "avatar" ] [] ]
                                 ]
                             , div [ class "ValidatorBox__social flex mb-2" ]
-                                [ a
-                                    [ class "social"
-                                    , href
-                                        (case project.info.twitter of
-                                            Just url ->
-                                                Url.toString url
+                                [ case project.info.twitter of
+                                    Just url ->
+                                        a
+                                            [ class "social"
+                                            , href
+                                                (Url.toString url)
+                                            , target "_blank"
+                                            , Html.Attributes.style "text-decoration" "none"
+                                            , Html.Attributes.style "color" "#fff"
+                                            ]
+                                            [ img
+                                                [ src "../assets/socials/twitter.svg"
+                                                ]
+                                                []
+                                            ]
 
-                                            Nothing ->
-                                                "#"
-                                        )
-                                    , target "_blank"
-                                    , Html.Attributes.style "text-decoration" "none"
-                                    , Html.Attributes.style "color" "#fff"
-                                    ]
-                                    [ img
-                                        [ src "assets/socials/twitter.svg"
-                                        ]
-                                        []
-                                    ]
-                                , a
-                                    [ class "social"
-                                    , href
-                                        (case project.info.discord of
-                                            Just url ->
-                                                Url.toString url
+                                    Nothing ->
+                                        div [] []
+                                , case project.info.discord of
+                                    Just url ->
+                                        a
+                                            [ class "social"
+                                            , href
+                                                (Url.toString url)
+                                            , target "_blank"
+                                            , Html.Attributes.style "text-decoration" "none"
+                                            , Html.Attributes.style "color" "#fff"
+                                            ]
+                                            [ img
+                                                [ src "../assets/socials/discord.svg"
+                                                ]
+                                                []
+                                            ]
 
-                                            Nothing ->
-                                                "#"
-                                        )
-                                    , target "_blank"
-                                    , Html.Attributes.style "text-decoration" "none"
-                                    , Html.Attributes.style "color" "#fff"
-                                    ]
-                                    [ img
-                                        [ src "assets/socials/discord.svg"
-                                        ]
-                                        []
-                                    ]
-                                , a
-                                    [ class "social"
-                                    , href
-                                        (case project.info.telegram of
-                                            Just url ->
-                                                Url.toString url
+                                    Nothing ->
+                                        div [] []
+                                , case project.info.telegram of
+                                    Just url ->
+                                        a
+                                            [ class "social"
+                                            , href
+                                                (Url.toString url)
+                                            , target "_blank"
+                                            , Html.Attributes.style "text-decoration" "none"
+                                            , Html.Attributes.style "color" "#fff"
+                                            ]
+                                            [ img
+                                                [ src "../assets/socials/telegram.svg"
+                                                ]
+                                                []
+                                            ]
 
-                                            Nothing ->
-                                                "#"
-                                        )
-                                    , target "_blank"
-                                    , Html.Attributes.style "text-decoration" "none"
-                                    , Html.Attributes.style "color" "#fff"
-                                    ]
-                                    [ img
-                                        [ src "assets/socials/telegram.svg"
-                                        ]
-                                        []
-                                    ]
-                                , a
-                                    [ class "social"
-                                    , href
-                                        (case project.info.github of
-                                            Just url ->
-                                                Url.toString url
+                                    Nothing ->
+                                        div [] []
+                                , case project.info.github of
+                                    Just url ->
+                                        a
+                                            [ class "social"
+                                            , href
+                                                (Url.toString url)
+                                            , target "_blank"
+                                            , Html.Attributes.style "text-decoration" "none"
+                                            , Html.Attributes.style "color" "#fff"
+                                            ]
+                                            [ img
+                                                [ src "../assets/socials/github.svg"
+                                                ]
+                                                []
+                                            ]
 
-                                            Nothing ->
-                                                "#"
-                                        )
-                                    , target "_blank"
-                                    , Html.Attributes.style "text-decoration" "none"
-                                    , Html.Attributes.style "color" "#fff"
-                                    ]
-                                    [ img
-                                        [ src "assets/socials/github.svg"
-                                        ]
-                                        []
-                                    ]
+                                    Nothing ->
+                                        div [] []
                                 ]
                             , h4 [ class "condensed mt-1" ] [ text "Team" ]
                             , p [] [ span [ class "value" ] [ text project.info.team ] ]
@@ -441,6 +529,7 @@ subEcosystemsView model project =
                         ]
                     ]
                 ]
+
             --Second Div
             , case project.contracts of
                 [] ->
@@ -448,7 +537,13 @@ subEcosystemsView model project =
 
                 _ ->
                     div [ class "col-12 col-xl-9" ]
-                        [ section [ class "ValidatorBox box mb-4" ]
+                        [ div [ class "md-input md-input--nolabel condensed grow mb-1 md-input--light validator-search", Html.Attributes.style "width" "50%" ]
+                            [ input [ class "search", Html.Attributes.placeholder "Search contract by name.", value model.searchTerm, onInput Search ] []
+                            , button []
+                                [ img [ src "../assets/icons/search.svg" ] []
+                                ]
+                            ]
+                        , section [ class "ValidatorBox box mb-4" ]
                             [ article [ class "ValidatorLabelValueItem" ]
                                 [ div [ Html.Attributes.style "max-height" "300px", Html.Attributes.style "overflow-y" "auto" ]
                                     [ table [ class "md-table condensed" ]
@@ -471,7 +566,7 @@ subEcosystemsView model project =
                                                         [ td [] [ text (String.fromInt contract.code_id) ]
                                                         , td []
                                                             [ a
-                                                                [ href ("/contracts/" ++ contract.address)
+                                                                [ href "#"
                                                                 , Html.Attributes.style "text-decoration" "none"
                                                                 , Html.Attributes.style "color" "#fff"
                                                                 , onClick (Current (SubContracts contract.address))
@@ -489,7 +584,7 @@ subEcosystemsView model project =
                                                             ]
                                                         ]
                                                 )
-                                                project.contracts
+                                                filteredContracts
                                             )
                                         ]
                                     ]
@@ -510,7 +605,7 @@ smartContractsView model =
             filterTeam model model.searchTerm model.selectedTeam sortedContracts
     in
     div [ class "col-12 col-md-8 col-lg-9 col-xl-8 mt-4 mt-md-3" ]
-        [ h1 [ class "mb-0" ] [ text "Contracts" ]
+        [ h1 [ class "" ] [ text "Contracts" ]
         , h2 [ class "mb-2" ] [ text "Select one of the teams in the scroll down menu." ]
         , div [ class "md-row mb-3 pad" ]
             [ div [ class "col-12" ]
@@ -518,7 +613,7 @@ smartContractsView model =
                     [ div [ class "md-input md-input--nolabel condensed grow mr-1 md-input--light validator-search" ]
                         [ input [ class "search", Html.Attributes.placeholder "Search", value model.searchTerm, onInput Search ] []
                         , button []
-                            [ img [ src "assets/icons/search.svg" ] []
+                            [ img [ src "./assets/icons/search.svg" ] []
                             ]
                         ]
                     , dropdownTeamSelector model sortedContracts
@@ -533,7 +628,7 @@ smartContractsView model =
                 )
                 filteredContracts
             )
-        , a [ class "scroll-to-top-button", onClick ScrollToTop, href "#" ] [ img [ src "assets/icons/chevron-up.svg" ] [] ]
+        , a [ class "scroll-to-top-button", onClick ScrollToTop, href "#" ] [ img [ src "./assets/icons/chevron-up.svg" ] [] ]
         ]
 
 
@@ -549,6 +644,7 @@ subContractsView model contract =
         currentContract =
             Maybe.withDefault
                 { address = ""
+                , createDate = ""
                 , code_id = 0
                 , creator = ""
                 , admin = ""
@@ -577,10 +673,9 @@ subContractsView model contract =
                 , contracts = []
                 }
                 (List.head <| List.filter (\p -> List.member currentContract.code_id p.info.ids) model.projects)
-
     in
     div [ class "col-12 col-md-8 col-lg-9 col-xga-8 mt-4 mt-md-3 govern" ]
-        [ a [ class "proposal__back mb-2 ml-2", href "/contracts", onClick (Current SmartContracts) ] [ img [ src "assets/icons/arrow-left.svg" ] [], text "Back to Contracts" ]
+        [ a [ class "proposal__back mb-2 ml-2", href "/contracts", onClick Back ] [ img [ src "../assets/icons/arrow-left.svg" ] [], text "Back" ]
         , div [ class "row" ]
             [ div [ class "col-12 col-lg-6 col-fhd-4 flex" ]
                 [ section [ class "ValidatorBox box mb-4" ]
@@ -594,7 +689,7 @@ subContractsView model contract =
                                 , div [ class "avatar-wrapper" ]
                                     [ img
                                         [ src
-                                            ("assets/protocols/"
+                                            ("../assets/protocols/"
                                                 ++ (case
                                                         Dict.get
                                                             (case getContractParentName model currentContract of
@@ -631,7 +726,7 @@ subContractsView model contract =
                         ]
                     ]
                 ]
-            , projectView currentProject
+            , projectSubView currentProject
             , div [ class "col-12 col-md-12 col-lg-10 col-xga-10 govern" ]
                 [ div [ class "proposal" ]
                     [ article [ class "box mb-2" ]
@@ -640,9 +735,9 @@ subContractsView model contract =
                             [ div [ class "raw mt-a" ]
                                 [ pre []
                                     [ text
-                                        rawText
+                                        model.rawData
                                     ]
-                                , span [ class "copy-button", onClick (Copy rawText) ] [ img [ src "assets/icons/copy.svg" ] [] ]
+                                , span [ class "copy-button", onClick (Copy model.rawData) ] [ img [ src "../assets/icons/copy.svg" ] [] ]
                                 ]
                             ]
                         ]
@@ -652,20 +747,6 @@ subContractsView model contract =
         ]
 
 
-rawText =
-    """{
-        "address": "kujira1qk00h5atutpsv900x202pxx42npjr9thg58dnqpa72f2p7m2luase444a7",
-        "contract_info": {
-            "code_id": "11",
-            "creator": "kujira1ghmq7k50rwpsnye39aefngd2k7x9kc2hrqq5xd",
-            "admin": "kujira1ghmq7k50rwpsnye39aefngd2k7x9kc2hrqq5xd",
-            "label": "USK Controller",
-            "created": null,
-            "ibc_port_id": "",
-            "extension": null
-        }
-    }"""
-
 
 -- View Utilities
 
@@ -674,8 +755,8 @@ projectView : Project -> Html Msg
 projectView project =
     a
         [ class "col-12 col-lg-4 col-fhd-4 flex"
-        , href ("/projects/" ++ project.info.name)
-        , onClick (Current (SubEcosystem project))
+        , href ("/ecosystem/" ++ String.toLower (String.replace " " "-" project.info.name))
+        , onClick (Current (SubEcosystem (String.toLower (String.replace " " "-" project.info.name))))
         , Html.Attributes.style "text-decoration" "none"
         , Html.Attributes.style "color" "#fff"
         ]
@@ -713,7 +794,7 @@ projectView project =
                                 ]
                             ]
                         , div [ class "avatar-wrapper" ]
-                            [ img [ src ("assets/protocols/" ++ project.info.logo), alt "Icon", class "avatar" ] [] ]
+                            [ img [ src ("./assets/protocols/" ++ project.info.logo), alt "Icon", class "avatar" ] [] ]
                         ]
                     , div [ class "ValidatorBox__social flex mb-2" ]
                         [ case project.info.twitter of
@@ -727,7 +808,7 @@ projectView project =
                                     , Html.Attributes.style "color" "#fff"
                                     ]
                                     [ img
-                                        [ src "assets/socials/twitter.svg"
+                                        [ src "./assets/socials/twitter.svg"
                                         ]
                                         []
                                     ]
@@ -745,7 +826,7 @@ projectView project =
                                     , Html.Attributes.style "color" "#fff"
                                     ]
                                     [ img
-                                        [ src "assets/socials/discord.svg"
+                                        [ src "./assets/socials/discord.svg"
                                         ]
                                         []
                                     ]
@@ -763,7 +844,7 @@ projectView project =
                                     , Html.Attributes.style "color" "#fff"
                                     ]
                                     [ img
-                                        [ src "assets/socials/telegram.svg"
+                                        [ src "./assets/socials/telegram.svg"
                                         ]
                                         []
                                     ]
@@ -781,7 +862,152 @@ projectView project =
                                     , Html.Attributes.style "color" "#fff"
                                     ]
                                     [ img
-                                        [ src "assets/socials/github.svg"
+                                        [ src "./assets/socials/github.svg"
+                                        ]
+                                        []
+                                    ]
+
+                            Nothing ->
+                                div [] []
+                        ]
+                    , h4 [ class "condensed mt-1" ] [ text "Team" ]
+                    , p [ Html.Attributes.style "margin-top" "0.24rem" ] [ span [ class "value" ] [ text project.info.team ] ]
+                    , h4 [ class "condensed mt-1" ] [ text "Description" ]
+                    , p [ Html.Attributes.style "margin-top" "0.24rem" ] [ span [] [ text project.info.description ] ]
+                    , div [ Html.Attributes.style "margin-top" "auto" ]
+                        [ div [ class "flex ai-c mt-2 condensed" ]
+                            [ p []
+                                [ span [ class "tag tag--teal pointer" ]
+                                    [ text (categoryToString project.info.category)
+                                    ]
+                                ]
+                            , p [ class "tag--right" ]
+                                (List.map
+                                    (\tag ->
+                                        span [ class "tag tag--grey pointer" ] [ text tag ]
+                                    )
+                                    (List.map (\tags -> tagToString tags) project.info.tags)
+                                )
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ]
+
+
+projectSubView : Project -> Html Msg
+projectSubView project =
+    a
+        [ class "col-12 col-lg-4 col-fhd-4 flex"
+        , href ("/ecosystem/" ++ String.toLower (String.replace " " "-" project.info.name))
+        , onClick (Current (SubEcosystem (String.toLower (String.replace " " "-" project.info.name))))
+        , Html.Attributes.style "text-decoration" "none"
+        , Html.Attributes.style "color" "#fff"
+        ]
+        [ section [ class "flex ValidatorBox box mb-4" ]
+            [ article [ class "ValidatorLabelValueItem" ]
+                [ div [ class "flex", Html.Attributes.style "flex-direction" "column", Html.Attributes.style "height" "-webkit-fill-available" ]
+                    [ div [ class "flex ai-c condensed" ]
+                        [ div []
+                            [ h1 [] [ text project.info.name ]
+                            , a
+                                [ href
+                                    (case project.info.website of
+                                        Just url ->
+                                            Url.toString url
+
+                                        Nothing ->
+                                            "#"
+                                    )
+                                , target "_blank"
+                                , Html.Attributes.style "text-decoration" "none"
+                                , Html.Attributes.style "color" "#fff"
+                                ]
+                                [ h2
+                                    [ class "condensed url"
+                                    ]
+                                    [ text
+                                        (case project.info.website of
+                                            Just url ->
+                                                Url.toString url
+
+                                            Nothing ->
+                                                "N/A"
+                                        )
+                                    ]
+                                ]
+                            ]
+                        , div [ class "avatar-wrapper" ]
+                            [ img [ src ("../assets/protocols/" ++ project.info.logo), alt "Icon", class "avatar" ] [] ]
+                        ]
+                    , div [ class "ValidatorBox__social flex mb-2" ]
+                        [ case project.info.twitter of
+                            Just url ->
+                                a
+                                    [ class "social"
+                                    , href
+                                        (Url.toString url)
+                                    , target "_blank"
+                                    , Html.Attributes.style "text-decoration" "none"
+                                    , Html.Attributes.style "color" "#fff"
+                                    ]
+                                    [ img
+                                        [ src "../assets/socials/twitter.svg"
+                                        ]
+                                        []
+                                    ]
+
+                            Nothing ->
+                                div [] []
+                        , case project.info.discord of
+                            Just url ->
+                                a
+                                    [ class "social"
+                                    , href
+                                        (Url.toString url)
+                                    , target "_blank"
+                                    , Html.Attributes.style "text-decoration" "none"
+                                    , Html.Attributes.style "color" "#fff"
+                                    ]
+                                    [ img
+                                        [ src "../assets/socials/discord.svg"
+                                        ]
+                                        []
+                                    ]
+
+                            Nothing ->
+                                div [] []
+                        , case project.info.telegram of
+                            Just url ->
+                                a
+                                    [ class "social"
+                                    , href
+                                        (Url.toString url)
+                                    , target "_blank"
+                                    , Html.Attributes.style "text-decoration" "none"
+                                    , Html.Attributes.style "color" "#fff"
+                                    ]
+                                    [ img
+                                        [ src "../assets/socials/telegram.svg"
+                                        ]
+                                        []
+                                    ]
+
+                            Nothing ->
+                                div [] []
+                        , case project.info.github of
+                            Just url ->
+                                a
+                                    [ class "social"
+                                    , href
+                                        (Url.toString url)
+                                    , target "_blank"
+                                    , Html.Attributes.style "text-decoration" "none"
+                                    , Html.Attributes.style "color" "#fff"
+                                    ]
+                                    [ img
+                                        [ src "../assets/socials/github.svg"
                                         ]
                                         []
                                     ]
@@ -848,7 +1074,7 @@ contractView model contract =
                         , div [ class "avatar-wrapper" ]
                             [ img
                                 [ src
-                                    ("assets/protocols/"
+                                    ("./assets/protocols/"
                                         ++ (case
                                                 Dict.get
                                                     (case getContractParentName model contract of
@@ -891,16 +1117,16 @@ menutabs : Model -> List (Html Msg)
 menutabs model =
     [ a
         [ class
-            (if model.currentRoute == Home then
+            (if model.currentRoute == Index then
                 "current"
 
              else
                 ""
             )
-        , onClick (Current Home)
+        , onClick (Current Index)
         , href "/"
         ]
-        [ img [ src "assets/icons/ratesbar.svg" ] [], span [] [ text "Dashboard" ] ]
+        [ img [ src "./assets/icons/ratesbar.svg" ] [], span [] [ text "Dashboard" ] ]
     , a
         [ class
             (if model.currentRoute == Ecosystem then
@@ -912,7 +1138,7 @@ menutabs model =
         , onClick (Current Ecosystem)
         , href "/ecosystem"
         ]
-        [ img [ src "assets/icons/ecosystem.svg" ] [], span [] [ text "Ecosystem" ] ]
+        [ img [ src "./assets/icons/ecosystem.svg" ] [], span [] [ text "Ecosystem" ] ]
     , a
         [ class
             (case model.currentRoute of
@@ -928,7 +1154,7 @@ menutabs model =
         , onClick (Current SmartContracts)
         , href "/contracts"
         ]
-        [ img [ src "assets/icons/contracts.svg" ] [], span [] [ text "Smart Contracts" ] ]
+        [ img [ src "./assets/icons/contracts.svg" ] [], span [] [ text "Smart Contracts" ] ]
     , a
         [ class
             (if model.currentRoute == AboutUs then
@@ -940,7 +1166,7 @@ menutabs model =
         , onClick (Current AboutUs)
         , href "/about"
         ]
-        [ img [ src "assets/icons/info.svg" ] [], span [] [ text "About Us" ] ]
+        [ img [ src "./assets/icons/info.svg" ] [], span [] [ text "About Us" ] ]
     ]
 
 
@@ -962,7 +1188,7 @@ aboutView model =
                     ]
                     [ section [ class "flex ValidatorBox box" ]
                         [ div []
-                            [ img [ src "assets/icons/key.svg", alt "Icon", class "icon" ] []
+                            [ img [ src "./assets/icons/key.svg", alt "Icon", class "icon" ] []
                             , h4 [ class "mt-1" ] [ text "Security" ]
                             , p [ class "description mt-2" ] [ text "Security is our main priority. We are always evaluating the best technologies to prevent downtime and double signing. Rorcual is operated by a highly reduced and trusted team, so everything is always under control." ]
                             ]
@@ -973,7 +1199,7 @@ aboutView model =
                     ]
                     [ section [ class "flex ValidatorBox box" ]
                         [ div []
-                            [ img [ src "assets/icons/share.svg", alt "Icon", class "icon" ] []
+                            [ img [ src "./assets/icons/share.svg", alt "Icon", class "icon" ] []
                             , h4 [ class "mt-1" ] [ text "Communication" ]
                             , p [ class "description mt-2" ] [ text "It’s our focus create a platform where all delegators are treated as investors in a company. Every  governance decision should be meditated and explained to the community so everyone can understand the evolution of Kujira Blockchain." ]
                             ]
@@ -984,7 +1210,7 @@ aboutView model =
                     ]
                     [ section [ class "flex ValidatorBox box" ]
                         [ div []
-                            [ img [ src "assets/icons/link.svg", alt "Icon", class "icon" ] []
+                            [ img [ src "./assets/icons/link.svg", alt "Icon", class "icon" ] []
                             , h4 [ class "mt-1" ] [ text "Decentralization" ]
                             , p [ class "description mt-2" ] [ text "Our main and backup setups are separated geographically and on different providers, so availability of the nodes is guaranteed. By delegating to Rorcual, you are contributing to the decentralization and security of the Kujira network." ]
                             ]
@@ -1126,7 +1352,7 @@ dropdownSelectedCat model =
                             categoryToString cat
                     )
                 ]
-            , img [ src "assets/icons/chevron-small-down.svg" ] []
+            , img [ src "./assets/icons/chevron-small-down.svg" ] []
             ]
         ]
 
@@ -1162,9 +1388,9 @@ dropdownListCat model =
     in
     div [ class "swap-input condensed swap-input--team swap-input--open" ]
         [ div [ class "swap-input__selected" ]
-            [ div [ class "swap-input__search-icon" ] [ img [ src "assets/icons/search.svg" ] [] ]
+            [ div [ class "swap-input__search-icon" ] [ img [ src "./assets/icons/search.svg" ] [] ]
             , input [ class "swap-input__search", value model.catSearch, onInput SearchCategory ] []
-            , img [ src "assets/icons/chevron-small-up.svg", onClick SelectionClose ] []
+            , img [ src "./assets/icons/chevron-small-up.svg", onClick SelectionClose ] []
             ]
         , div [ class "swap-input__dropdown", onClick SelectionClose ] catOptions
         ]
@@ -1188,9 +1414,9 @@ dropdownSelectedTeam : Model -> Html Msg
 dropdownSelectedTeam model =
     div [ class "swap-input condensed md-input--light swap-input--team", onClick SelectionOpen ]
         [ div [ class "swap-input__selected" ]
-            [ img [ src ("assets/teams/" ++ Maybe.withDefault "unknown.svg" (Dict.get model.selectedTeam teamIconsDict)) ] []
+            [ img [ src ("./assets/teams/" ++ Maybe.withDefault "unknown.svg" (Dict.get model.selectedTeam teamIconsDict)) ] []
             , span [] [ text model.selectedTeam ]
-            , img [ src "assets/icons/chevron-small-down.svg" ] []
+            , img [ src "./assets/icons/chevron-small-down.svg" ] []
             ]
         ]
 
@@ -1206,32 +1432,47 @@ dropdownListTeam model contracts =
 
         teamOptions : List (Html Msg)
         teamOptions =
-            List.map
+            List.filterMap
                 (\( team, icon ) ->
-                    a [ onClick (TeamSelected team), href "#" ]
-                        [ img [ src ("assets/teams/" ++ Maybe.withDefault "unknown.svg" (Just icon)), alt "Icon" ] []
-                        , text
-                            (team
-                                ++ " ("
-                                ++ String.fromInt
-                                    (case team of
-                                        "All" ->
-                                            List.length contracts
+                    let
+                        teamContracts =
+                            List.filter (\contract -> getContractParentTeam model contract == Just team) contracts
+                    in
+                    if List.length teamContracts == 0 then
+                        Nothing
 
-                                        _ ->
-                                            List.length (List.filter (\contract -> getContractParentTeam model contract == Just team) contracts)
+                    else
+                        Just
+                            (a
+                                [ onClick (TeamSelected team), href "#" ]
+                                [ img
+                                    [ src ("./assets/teams/" ++ Maybe.withDefault "unknown.svg" (Just icon))
+                                    , alt "Icon"
+                                    ]
+                                    []
+                                , text
+                                    (team
+                                        ++ " ("
+                                        ++ String.fromInt
+                                            (case team of
+                                                "All" ->
+                                                    List.length contracts
+
+                                                _ ->
+                                                    List.length teamContracts
+                                            )
+                                        ++ ")"
                                     )
-                                ++ ")"
+                                ]
                             )
-                        ]
                 )
                 filteredTeams
     in
     div [ class "swap-input condensed swap-input--team swap-input--open" ]
         [ div [ class "swap-input__selected" ]
-            [ div [ class "swap-input__search-icon" ] [ img [ src "assets/icons/search.svg" ] [] ]
+            [ div [ class "swap-input__search-icon" ] [ img [ src "./assets/icons/search.svg" ] [] ]
             , input [ class "swap-input__search", value model.teamSearch, onInput SearchTeam ] []
-            , img [ src "assets/icons/chevron-small-up.svg", onClick SelectionClose ] []
+            , img [ src "./assets/icons/chevron-small-up.svg", onClick SelectionClose ] []
             ]
         , div [ class "swap-input__dropdown", onClick SelectionClose ] teamOptions
         ]

@@ -23,7 +23,18 @@ type alias Model =
     , notification : Notification
     , popUp : Bool
     , exchangeRates : List Rates
+    , rawData : String
     }
+
+
+type Route
+    = Index
+    | SmartContracts
+    | AboutUs
+    | Ecosystem
+    | SubEcosystem String
+    | SubContracts String
+    | NotFound
 
 
 type alias Project =
@@ -52,6 +63,7 @@ type alias ProjectInfo =
 
 type alias Contract =
     { address : String
+    , createDate : String
     , code_id : Int
     , creator : String
     , admin : String
@@ -65,7 +77,7 @@ type Category
     | Infra
     | Tools
     | Exchange
-    | Integration
+    | Integrations
 
 
 type CategorySelected
@@ -100,16 +112,6 @@ type Tag
     | None
 
 
-type Route
-    = Home
-    | SmartContracts
-    | AboutUs
-    | Ecosystem
-    | SubEcosystem Project
-    | SubContracts String
-    | NotFound
-
-
 type alias Rates =
     { denom : String
     , rate : Float
@@ -125,6 +127,7 @@ type Msg
     = GotProjects (Result Http.Error (List ProjectInfo))
     | GotContracts (Result Http.Error (List Contract))
     | GotRates (Result Http.Error (List Rates))
+    | GotContract (Result Http.Error String)
     | Search String
     | TeamSelected String
     | Current Route
@@ -140,6 +143,7 @@ type Msg
     | PopUp Notification
     | HidePopUp
     | ScrollToTop
+    | Back
 
 
 type Notification
@@ -148,18 +152,27 @@ type Notification
     | Warning String
 
 
+zeroProject : Project
+zeroProject =
+    { info = zeroInfo
+    , contracts = []
+    }
 
--- JSON QUERY
--- {
---   "ID": 9,
---   "Name": "Local Money",
---   "Team": "Local Money",
---   "Website": "https://localmoney.io",
---   "Twitter": "https://twitter.com/TeamLocalMoney",
---   "Discord": "https://discord.com/invite/meXhfQ8TWr",
---   "Telegram": "t.me/localmoneyupdates",
---   "Category": "Defi",
---   "tags": ["Marketplace", "Payments", "DEX"],
---   "Description": "Local is a decentralized P2P marketplace for the crypto multi-chain world.",
---   "Ids": [75,76,77,78,79]
--- }
+
+zeroInfo : ProjectInfo
+zeroInfo =
+    { id = 0
+    , createDate = ""
+    , ids = []
+    , name = ""
+    , team = ""
+    , website = Nothing
+    , twitter = Nothing
+    , discord = Nothing
+    , telegram = Nothing
+    , github = Nothing
+    , category = Defi
+    , tags = [ None ]
+    , logo = ""
+    , description = ""
+    }

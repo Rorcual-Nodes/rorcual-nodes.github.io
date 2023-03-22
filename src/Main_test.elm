@@ -1,15 +1,18 @@
-port module Main exposing (..)
+port module Main_test exposing (..)
 
 import Browser exposing (Document, UrlRequest(..))
-import Browser.Dom as Dom
+import Browser.Dom as Dom exposing (setViewport)
 import Browser.Navigation as Navigation exposing (Key)
 import Data exposing (..)
 import Delay
 import Dict
+import Html.Events exposing (custom)
 import Http
-import Json.Decode as Decode exposing (Decoder, field, string)
-import Json.Decode.Pipeline exposing (optional, required)
+import Json.Decode as Decode exposing (Decoder, field, float, list, string)
+import Json.Decode.Pipeline exposing (hardcoded, optional, required)
+import List exposing (any)
 import Routing exposing (parseUrlToRoute)
+import Set
 import Task
 import Types exposing (..)
 import Url exposing (Protocol(..), Url)
@@ -34,6 +37,13 @@ init flags url key =
         parsedUrl =
             parseUrlToRoute url
 
+        _ =
+            Debug.log "In: " url
+
+        _ =
+            Debug.log "parsedUrl"
+                parsedUrl
+
         newModel =
             { projects = []
             , searchTerm = ""
@@ -48,62 +58,14 @@ init flags url key =
             , notification = Success ""
             , popUp = False
             , exchangeRates = []
-            , rawData = ""
             }
-
-        initCommands =
-            case parsedUrl of
-                Index ->
-                    Cmd.batch
-                        [ getProjects
-                        , Routing.pushUrl key Index
-                        , getRates
-                        ]
-
-                Ecosystem ->
-                    Cmd.batch
-                        [ getProjects
-                        , Routing.pushUrl key Ecosystem
-                        , getRates
-                        ]
-
-                SmartContracts ->
-                    Cmd.batch
-                        [ getProjects
-                        , Routing.pushUrl key SmartContracts
-                        , getRates
-                        ]
-
-                SubEcosystem project ->
-                    Cmd.batch
-                        [ getProjects
-                        , Routing.pushUrl key (SubEcosystem project)
-                        , getRates
-                        ]
-
-                SubContracts contract ->
-                    Cmd.batch
-                        [ getProjects
-                        , Routing.pushUrl key (SubContracts contract)
-                        , getRates
-                        ]
-
-                AboutUs ->
-                    Cmd.batch
-                        [ getProjects
-                        , Routing.pushUrl key AboutUs
-                        , getRates
-                        ]
-
-                NotFound ->
-                    Cmd.batch
-                        [ getProjects
-                        , Routing.pushUrl key Index
-                        , getRates
-                        ]
     in
     ( newModel
-    , initCommands
+    , Cmd.batch
+        [ getProjects
+        , Routing.pushUrl key Home
+        , getRates
+        ]
     )
 
 
@@ -113,12 +75,7 @@ init flags url key =
 
 apiUrl : String
 apiUrl =
-    "https://api.rorcualnodes.com"
-
-
-lcdUrl : String
-lcdUrl =
-    "https://lcd-kujira.mintthemoon.xyz"
+    "http://api.rorcualnodes.com:3000"
 
 
 getProjects : Cmd Msg
@@ -127,7 +84,13 @@ getProjects =
         { url = apiUrl ++ "/projects"
         , expect =
             Http.expectJson
-                GotProjects
+                (\response1 ->
+                    let
+                        _ =
+                            Debug.log "A: "
+                    in
+                    GotProjects response1
+                )
                 projectDecoder
         }
 
@@ -166,7 +129,13 @@ fetchData =
         { url = apiUrl ++ "/contracts"
         , expect =
             Http.expectJson
-                GotContracts
+                (\response2 ->
+                    let
+                        _ =
+                            Debug.log "Error: "
+                    in
+                    GotContracts response2
+                )
                 contractDecoder
         }
 
@@ -174,22 +143,13 @@ fetchData =
 contractDecoder : Decode.Decoder (List Contract)
 contractDecoder =
     Decode.list
-        (Decode.map6 Contract
+        (Decode.map5 Contract
             (Decode.field "Address" Decode.string)
-            (Decode.field "CreatedAt" Decode.string)
             (Decode.field "Code_id" Decode.int)
             (Decode.field "Creator" Decode.string)
             (Decode.field "Admin" Decode.string)
             (Decode.field "Label" Decode.string)
         )
-
-
-fetchContractData : String -> Cmd Msg
-fetchContractData contract =
-    Http.get
-        { url = lcdUrl ++ "/cosmwasm/wasm/v1/contract/" ++ contract
-        , expect = Http.expectString GotContract
-        }
 
 
 
@@ -199,10 +159,16 @@ fetchContractData contract =
 getRates : Cmd Msg
 getRates =
     Http.get
-        { url = lcdUrl ++ "/oracle/denoms/exchange_rates"
+        { url = "https://lcd.kaiyo.kujira.setten.io/oracle/denoms/exchange_rates"
         , expect =
             Http.expectJson
-                GotRates
+                (\response1 ->
+                    let
+                        _ =
+                            Debug.log "Exchange: Rates " response1
+                    in
+                    GotRates response1
+                )
                 ratesDecoder
         }
 
@@ -315,6 +281,9 @@ update msg model =
 
         GotContracts (Err error) ->
             let
+                _ =
+                    Debug.log "GC Error" error
+
                 errorMessage =
                     case error of
                         Http.Timeout ->
@@ -331,6 +300,9 @@ update msg model =
 
                         Http.BadUrl url ->
                             "Bad request URL: " ++ url
+
+                _ =
+                    Debug.log "ErrorMsg" errorMessage
 
                 notification =
                     Error errorMessage
@@ -344,6 +316,9 @@ update msg model =
 
         GotRates (Err error) ->
             let
+                _ =
+                    Debug.log "GR Error" error
+
                 errorMessage =
                     case error of
                         Http.Timeout ->
@@ -361,34 +336,8 @@ update msg model =
                         Http.BadUrl url ->
                             "Bad request URL: " ++ url
 
-                notification =
-                    Error errorMessage
-            in
-            ( model, showPopUp notification )
-
-        GotContract (Ok contract) ->
-            ( { model | rawData = contract }
-            , Cmd.none
-            )
-
-        GotContract (Err error) ->
-            let
-                errorMessage =
-                    case error of
-                        Http.Timeout ->
-                            "Request timed out"
-
-                        Http.NetworkError ->
-                            "Network error"
-
-                        Http.BadStatus response ->
-                            "Bad status: " ++ String.fromInt response
-
-                        Http.BadBody string ->
-                            "Bad response body: " ++ string
-
-                        Http.BadUrl url ->
-                            "Bad request URL: " ++ url
+                _ =
+                    Debug.log "ErrorMsg" errorMessage
 
                 notification =
                     Error errorMessage
@@ -405,12 +354,7 @@ update msg model =
             ( { model | selectedCategory = newSelected }, Cmd.none )
 
         Current newRoute ->
-            case newRoute of
-                SubContracts contract ->
-                    ( { model | currentRoute = newRoute, searchTerm = "", dropDown = Close }, Cmd.batch [ Routing.pushUrl model.navigationKey newRoute, fetchContractData contract ] )
-
-                _ ->
-                    ( { model | currentRoute = newRoute, searchTerm = "", dropDown = Close }, Routing.pushUrl model.navigationKey newRoute )
+            ( { model | currentRoute = newRoute, searchTerm = "", dropDown = Close }, Cmd.none )
 
         SearchTeam team ->
             ( { model | teamSearch = team }, Cmd.none )
@@ -433,10 +377,28 @@ update msg model =
         UserChangedRoute newRoute ->
             ( { model | currentRoute = newRoute }, Cmd.none )
 
+        GotText (Ok str) ->
+            let
+                _ =
+                    Debug.toString str
+            in
+            ( model, Cmd.none )
+
+        GotText (Err err) ->
+            let
+                _ =
+                    Debug.toString err
+            in
+            ( model, Cmd.none )
+
         Copy str ->
             ( model, copyToClipboard str )
 
         PopUp notification ->
+            let
+                _ =
+                    Debug.log "Notif: " notification
+            in
             ( { model | notification = notification, popUp = True }, Cmd.batch [ Delay.after 4000 HidePopUp ] )
 
         HidePopUp ->
@@ -445,9 +407,6 @@ update msg model =
         ScrollToTop ->
             ( model, resetViewport )
 
-        Back ->
-            ( { model | searchTerm = "", dropDown = Close }, Navigation.back model.navigationKey 1 )
-
 
 
 -- View Function
@@ -455,6 +414,18 @@ update msg model =
 
 view : Model -> Document Msg
 view model =
+    let
+        _ =
+            Debug.log model.copyString
+
+        _ =
+            Debug.log "Latest: " (List.reverse (List.map (\project -> project.info.createDate) model.projects))
+
+        -- _ =
+        --     Debug.log "Projects" model.projects
+        -- _ =
+        --     Debug.log "Contracts: " List.length (List.map (\project -> project.contracts) model.projects)
+    in
     { title = "Rorcual Nodes"
     , body = bodyView model
     }
@@ -466,13 +437,16 @@ view model =
 
 onUrlRequest : UrlRequest -> Msg
 onUrlRequest urlRequest =
+    let
+        _ =
+            Debug.log " got url request" urlRequest
+    in
     case urlRequest of
         External externalUrl ->
             SendUserToExternalUrl externalUrl
 
         Internal url ->
-            Routing.parseUrlToRoute url
-                |> UserChangedRoute
+            NoOp
 
 
 onUrlChange : Url -> Msg

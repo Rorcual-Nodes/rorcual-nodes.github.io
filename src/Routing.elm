@@ -1,4 +1,4 @@
-module Routing exposing (parseUrlToRoute, pushUrl, routeParser)
+module Routing exposing (parseUrlToRoute, pushUrl)
 
 import Browser.Navigation as Navigation exposing (Key)
 import Types exposing (Msg, Route(..))
@@ -11,7 +11,7 @@ pushUrl key route =
     let
         url =
             case route of
-                Home ->
+                Index ->
                     "/"
 
                 Ecosystem ->
@@ -24,14 +24,7 @@ pushUrl key route =
                     "/about"
 
                 SubEcosystem subProject ->
-                    let
-                        { info, contracts } =
-                            subProject
-
-                        { name, team, website, twitter, discord, telegram, category, tags, description } =
-                            info
-                    in
-                    "/ecosystem/" ++ info.name
+                    "/ecosystem/" ++ subProject
 
                 SubContracts subContract ->
                     "/contracts/" ++ subContract
@@ -42,12 +35,39 @@ pushUrl key route =
     Navigation.pushUrl key url
 
 
+
+-- loadUrl : Route -> Cmd Msg
+-- loadUrl route =
+--     let
+--         url =
+--             case route of
+--                 Index ->
+--                     "/"
+--                 Ecosystem ->
+--                     "/ecosystem"
+--                 SmartContracts ->
+--                     "/contracts"
+--                 AboutUs ->
+--                     "/about"
+--                 SubEcosystem subProject ->
+--                     "/ecosystem/" ++ subProject
+--                 SubContracts subContract ->
+--                     "/contracts/" ++ subContract
+--                 NotFound ->
+--                     "/four-oh-four"
+--     in
+--     Navigation.load url
+
+
 routeParser : Parser.Parser (Route -> a) a
 routeParser =
     Parser.oneOf
-        [ Parser.map Home Parser.top
+        [ Parser.map Index Parser.top
+        , Parser.map Ecosystem (Parser.s "ecosystem")
         , Parser.map SmartContracts (Parser.s "contracts")
         , Parser.map AboutUs (Parser.s "about")
+        , Parser.map SubContracts (Parser.s "contracts" </> Parser.string)
+        , Parser.map SubEcosystem (Parser.s "ecosystem" </> Parser.string)
         , Parser.map NotFound (Parser.s "not_found")
         ]
 
