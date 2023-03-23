@@ -136,7 +136,7 @@ dashboardView model =
             Set.size (Set.fromList (List.map (\project -> project.info.team) model.projects))
     in
     div [ class "col-12 col-md-8 col-lg-9 col-xl-8 dashboard mt-4 mt-md-3" ]
-        [ h1 [ class "text-center text-md-left" ] [ text "Dashboard" ]
+        [ h1 [ class "text-md-left" ] [ text "Dashboard" ]
         , h2 [ class "mb-2" ] [ text "Welcome to Kujira's contract directory." ]
         , div [ class "row" ]
             [ div [ class "col-12 col-lg-4 col-fhd-4 mt-3" ]
@@ -203,7 +203,7 @@ dashboardView model =
                         ]
                     , div [ class "w-full" ]
                         [ div [ class "row" ]
-                            [ div [ class "col-12" ,  Html.Attributes.style "max-height" "150px", Html.Attributes.style "overflow-y" "auto" ]
+                            [ div [ class "col-12", Html.Attributes.style "max-height" "150px", Html.Attributes.style "overflow-y" "auto" ]
                                 [ table [ class "md-table revenue-table condensed" ]
                                     [ thead []
                                         [ th [] [ text "Denom" ]
@@ -245,7 +245,7 @@ latestProjects model =
         latest =
             List.take 3 <| List.reverse (List.sortBy (\project -> project.info.createDate) model.projects)
     in
-    [ h1 [ class "text-center text-md-left mb-2" ] [ text "Latest Projects" ]
+    [ h1 [ class "text-md-left mb-2" ] [ text "Latest Projects" ]
     , div [ class "row" ]
         (List.map
             projectView
@@ -260,7 +260,7 @@ latestContracts model =
         contracts =
             List.take 4 <| List.reverse (List.sortBy (\contract -> contract.createDate) (List.concatMap (\project -> project.contracts) model.projects))
     in
-    [ h1 [ class "text-center text-md-left mb-2" ] [ text "Latest Contracts" ]
+    [ h1 [ class "text-md-left mb-2" ] [ text "Latest Contracts" ]
     , div [ class "row" ]
         (List.map
             (latestContractView model)
@@ -1173,7 +1173,7 @@ menutabs model =
 aboutView : Model -> Html Msg
 aboutView model =
     div [ class "col-12 col-md-8 col-lg-9 col-xl-8 dashboard mt-4 mt-md-3 mb-2" ]
-        [ h1 [ class "text-center text-md-left" ] [ text "About Us" ]
+        [ h1 [ class "text-md-left" ] [ text "About Us" ]
         , div [ class "row" ]
             [ div [ class "col-12 col-lg-8 col-fhd-4 " ]
                 [ section [ class "ValidatorBox box flex dir-c" ]
