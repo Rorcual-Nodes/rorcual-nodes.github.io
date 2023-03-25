@@ -283,7 +283,7 @@ projectLogo =
     , ( "POD", "pod.png" )
     , ( "Finder", "finder.svg" )
     , ( "Plasma", "plasma.png" )
-    , ( "Calculated Finance", "calc.png" )
+    , ( "Calculated Finance", "calc2.svg" )
     , ( "Local Money", "local.svg" )
     , ( "Black Whale", "blackwhale.svg" )
     , ( "Entropy Beacon", "entropic_white.svg" )
