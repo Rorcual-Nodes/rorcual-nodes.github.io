@@ -69,7 +69,6 @@ init flags url key =
             , Cmd.batch
                 [ getProjects
                 , Routing.pushUrl key Ecosystem
-                , Navigation.load (Url.toString loadurl)
                 , getRates
                 ]
             )
@@ -79,7 +78,6 @@ init flags url key =
             , Cmd.batch
                 [ getProjects
                 , Routing.pushUrl key SmartContracts
-                , Navigation.load (Url.toString loadurl)
                 , getRates
                 ]
             )
@@ -89,7 +87,6 @@ init flags url key =
             , Cmd.batch
                 [ getProjects
                 , Routing.pushUrl key (SubEcosystem project)
-                , Navigation.load (Url.toString loadurl)
                 , getRates
                 ]
             )
@@ -99,7 +96,6 @@ init flags url key =
             , Cmd.batch
                 [ getProjects
                 , Routing.pushUrl key (SubContracts contract)
-                , Navigation.load (Url.toString loadurl)
                 , getRates
                 ]
             )
@@ -109,7 +105,6 @@ init flags url key =
             , Cmd.batch
                 [ getProjects
                 , Routing.pushUrl key AboutUs
-                , Navigation.load (Url.toString loadurl)
                 , getRates
                 ]
             )
@@ -448,10 +443,6 @@ update msg model =
             ( model, Navigation.load url )
 
         UserChangedRoute newRoute ->
-            let
-                routelog =
-                    Debug.log "route : " newRoute
-            in
             ( { model | currentRoute = newRoute }, Cmd.none )
 
         Copy str ->
