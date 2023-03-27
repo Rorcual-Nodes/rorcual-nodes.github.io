@@ -367,6 +367,14 @@ ecosystemView model =
                 projectView
                 filteredProjects
             )
+        , a
+            [ href "https://forms.gle/vy5TRZUeHoK5ejqq5"
+            , target "_blank"
+            , Html.Attributes.style "text-decoration" "none"
+            ]
+            [ button [ class "md-button md-button--small md-button--reverse md-button--icon-right ml-2" ]
+                [ text "Submit a Project" ]
+            ]
         , a [ class "scroll-to-top-button", onClick ScrollToTop, href "#" ] [ img [ src "./assets/icons/chevron-up.svg" ] [] ]
         ]
 
@@ -1173,7 +1181,7 @@ menutabs model =
 aboutView : Model -> Html Msg
 aboutView model =
     div [ class "col-12 col-md-8 col-lg-9 col-xl-8 dashboard mt-4 mt-md-3 mb-2" ]
-        [ h1 [ class "text-md-left" ] [ text "About Us" ]
+        [ h1 [ class "text-md-left mb-3" ] [ text "About Us" ]
         , div [ class "row" ]
             [ div [ class "col-12 col-lg-8 col-fhd-4 " ]
                 [ section [ class "ValidatorBox box flex dir-c" ]
@@ -1181,7 +1189,7 @@ aboutView model =
                     ]
                 ]
             ]
-        , div [ class "col-12 col-lg-12 col-fhd-4 mt-3" ]
+        , div [ class "col-12 col-lg-12 col-fhd-4 mt-3 mb-4" ]
             [ div [ class "row" ]
                 [ div
                     [ class "col-12 col-lg-4 col-fhd-4 mt-3 flex"
@@ -1217,6 +1225,14 @@ aboutView model =
                         ]
                     ]
                 ]
+            ]
+        , a
+            [ href "https://forms.gle/GqqHFANaVbXDGQsJ6"
+            , target "_blank"
+            , Html.Attributes.style "text-decoration" "none"
+            ]
+            [ button [ class "md-button md-button--small md-button--reverse md-button--icon-right ml-2" ]
+                [ text "Send Us Feedback" ]
             ]
         ]
 
