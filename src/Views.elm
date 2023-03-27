@@ -83,7 +83,7 @@ bodyView model =
             [ div [ class "tips" ]
                 [ h2 []
                     [ div [ class "raw" ]
-                        [ pre [ Html.Attributes.style "border-radius" "10rem" ]
+                        [ pre []
                             [ text "Tips: "
                             , text "kujira1n86sr2nt4wxp5malpfrjmvw76u5vt43r5w5ac2"
                             , span [ class "copy-button", onClick (Copy "kujira1n86sr2nt4wxp5malpfrjmvw76u5vt43r5w5ac2") ]
@@ -283,7 +283,7 @@ latestContractView model contract =
                 [ div []
                     [ div [ class "flex ai-c condensed" ]
                         [ div []
-                            [ h1 [] [ text contract.label ]
+                            [ h1 [] [ text (pilotTruncate contract.label) ]
                             , h2 [ class "condensed" ] [ span [ class "value" ] [ a [ href ("https://finder.kujira.app/kaiyo-1/contract/" ++ contract.address), target "_blank", Html.Attributes.style "text-decoration" "none", Html.Attributes.style "color" "#fff" ] [ text contract.address ] ] ]
                             ]
                         , div [ class "avatar-wrapper" ]
@@ -571,7 +571,7 @@ subEcosystemsView model projectName =
                                                                 , Html.Attributes.style "color" "#fff"
                                                                 , onClick (Current (SubContracts contract.address))
                                                                 ]
-                                                                [ text contract.label ]
+                                                                [ text (shortenAddress contract.label) ]
                                                             ]
                                                         , td []
                                                             [ a
@@ -683,7 +683,7 @@ subContractsView model contract =
                         [ div []
                             [ div [ class "flex ai-c condensed" ]
                                 [ div []
-                                    [ h1 [] [ text currentContract.label ]
+                                    [ h1 [] [ text (pilotTruncate currentContract.label) ]
                                     , h2 [ class "condensed" ] [ span [ class "value" ] [ a [ href ("https://finder.kujira.app/kaiyo-1/contract/" ++ currentContract.address), target "_blank", Html.Attributes.style "text-decoration" "none", Html.Attributes.style "color" "#fff" ] [ text currentContract.address ] ] ]
                                     ]
                                 , div [ class "avatar-wrapper" ]
@@ -715,7 +715,7 @@ subContractsView model contract =
                                     ]
                                 ]
                             , h4 [ class "condensed" ] [ text "Label" ]
-                            , p [] [ span [ class "value" ] [ text (transformString currentContract.label) ] ]
+                            , p [] [ span [ class "value" ] [ text (shortenAddress (transformString currentContract.label)) ] ]
                             , h4 [ class "condensed" ] [ text "Code ID" ]
                             , p [] [ span [ class "value" ] [ text (String.fromInt currentContract.code_id) ] ]
                             , h4 [ class "condensed" ] [ text "Creator" ]
@@ -1201,7 +1201,7 @@ aboutView model =
                         [ div []
                             [ img [ src "./assets/icons/share.svg", alt "Icon", class "icon" ] []
                             , h4 [ class "mt-1" ] [ text "Communication" ]
-                            , p [ class "description mt-2" ] [ text "It’s our focus create a platform where all delegators are treated as investors in a company. Every  governance decision should be meditated and explained to the community so everyone can understand the evolution of Kujira Blockchain." ]
+                            , p [ class "description mt-2" ] [ text "It is our focus to create a platform where all delegators are treated as investors in a company. Every important governance decision should be meditated and explained to the community so everyone can understand the evolution of Kujira Blockchain." ]
                             ]
                         ]
                     ]
@@ -1498,9 +1498,22 @@ transformString str =
         |> addLocal
 
 
+pilotTruncate : String -> String
+pilotTruncate str =
+    if String.contains "PILOT k" str then
+        String.left 5 str ++ " Launch"
+
+    else
+        str
+
+
 shortenAddress : String -> String
 shortenAddress address =
-    String.left 6 address ++ "..." ++ String.right 6 address
+    if String.length address > 20 then
+        String.left 6 address ++ "..." ++ String.right 6 address
+
+    else
+        address
 
 
 addLocal : String -> String

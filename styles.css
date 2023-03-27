@@ -4647,6 +4647,7 @@ h2 a:hover {
   color: inherit;
   flex: 1 1 auto;
   white-space: pre-line;
+  z-index: 111;
 }
 
 .notification-visible {
@@ -5065,6 +5066,10 @@ h2 a:hover {
 
 .tips pre {
   align-self: center;
+  border-radius: 10rem;
+  border: 1px solid #60fbd0;
+  background: rgba(96, 251, 208, 0.1);
+  color: #60fbd0;
 
 }
 
