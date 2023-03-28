@@ -44,6 +44,7 @@ teamIcons =
     , ( "Pulsar", "pulsar.jpg" )
     , ( "Nansen", "nansen.png" )
     , ( "DLOYAL Refer", "dloyal.svg" )
+    , ( "MantaDAO", "manta.jpg" )
     , ( "Unknown Team", "unknown.svg" )
     ]
 
@@ -314,5 +315,6 @@ projectLogo =
     , ( "Nansen Portfolio", "nansenp.png" )
     , ( "DLOYAL Refer", "dloyal.svg" )
     , ( "PILOT", "pilot.png" )
+    , ( "Manta", "manta.jpg" )
     , ( "Unkown", "unknown.svg" )
     ]
