@@ -182,7 +182,7 @@ stringToTag string =
         "Security" ->
             Security
 
-        "Reseach" ->
+        "Research" ->
             Research
 
         _ ->
