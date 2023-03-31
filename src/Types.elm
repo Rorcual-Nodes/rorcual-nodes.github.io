@@ -109,6 +109,7 @@ type Tag
     | Staking
     | Community
     | Security
+    | Research
     | None
 
 

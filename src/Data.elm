@@ -44,7 +44,8 @@ teamIcons =
     , ( "Pulsar", "pulsar.jpg" )
     , ( "Nansen", "nansen.png" )
     , ( "DLOYAL Refer", "dloyal.svg" )
-    , ( "MantaDAO", "manta.jpg" )
+    , ( "MantaDAO", "manta.svg" )
+    , ( "TerraSpaces", "terraspaces.png" )
     , ( "Unknown Team", "unknown.svg" )
     ]
 
@@ -181,6 +182,9 @@ stringToTag string =
         "Security" ->
             Security
 
+        "Reseach" ->
+            Research
+
         _ ->
             None
 
@@ -262,6 +266,9 @@ tagToString tag =
         Security ->
             "Security"
 
+        Research ->
+            "Research"
+
         None ->
             ""
 
@@ -315,6 +322,7 @@ projectLogo =
     , ( "Nansen Portfolio", "nansenp.png" )
     , ( "DLOYAL Refer", "dloyal.svg" )
     , ( "PILOT", "pilot.png" )
-    , ( "Manta", "manta.jpg" )
+    , ( "Manta", "manta.svg" )
+    , ( "TerraSpaces", "terraspaces.png" )
     , ( "Unkown", "unknown.svg" )
     ]
