@@ -46,6 +46,7 @@ teamIcons =
     , ( "DLOYAL Refer", "dloyal.svg" )
     , ( "MantaDAO", "manta.svg" )
     , ( "TerraSpaces", "terraspaces.png" )
+    , ( "ERIS Protocol", "eris.svg" )
     , ( "Unknown Team", "unknown.svg" )
     ]
 
@@ -324,5 +325,6 @@ projectLogo =
     , ( "PILOT", "pilot.png" )
     , ( "Manta", "manta.svg" )
     , ( "TerraSpaces", "terraspaces.png" )
+    , ( "ERIS Protocol", "eris.svg" )
     , ( "Unkown", "unknown.svg" )
     ]
