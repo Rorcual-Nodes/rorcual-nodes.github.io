@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 26.3.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" baseProfile="tiny" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	 x="0px" y="0px" width="120px" height="120px" viewBox="0 0 120 120" overflow="visible" xml:space="preserve">
+<g>
+	<path d="M60,5c30.3271,0,55,24.6729,55,55s-24.6729,55-55,55S5,90.3271,5,60S29.6729,5,60,5 M60,0C26.8629,0,0,26.8629,0,60
+		s26.8629,60,60,60s60-26.8629,60-60S93.1371,0,60,0L60,0z"/>
+	<path d="M60,13c25.9159,0,47,21.0841,47,47s-21.0841,47-47,47S13,85.9159,13,60S34.0841,13,60,13 M60,10
+		c-27.6142,0-50,22.3858-50,50s22.3858,50,50,50s50-22.3858,50-50S87.6142,10,60,10L60,10z"/>
+	
+		<line fill="none" stroke="#000000" stroke-width="5" stroke-linecap="round" stroke-miterlimit="10" x1="60" y1="27.5" x2="60" y2="92.5"/>
+	<path fill="none" stroke="#000000" stroke-width="5" stroke-linecap="round" stroke-miterlimit="10" d="M87.5,35
+		c-13.8071,0-25,11.1929-25,25c0,13.8071,11.1929,25,25,25"/>
+	<path fill="none" stroke="#000000" stroke-width="5" stroke-linecap="round" stroke-miterlimit="10" d="M32.5,35
+		c13.8071,0,25,11.1929,25,25c0,13.8071-11.1929,25-25,25"/>
+</g>
+</svg>
