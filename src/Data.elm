@@ -47,6 +47,7 @@ teamIcons =
     , ( "MantaDAO", "manta.svg" )
     , ( "TerraSpaces", "terraspaces.png" )
     , ( "ERIS Protocol", "eris.svg" )
+    , ( "LocalDAO", "local.svg" )
     , ( "Unknown Team", "unknown.svg" )
     ]
 
@@ -326,5 +327,8 @@ projectLogo =
     , ( "Manta", "manta.svg" )
     , ( "TerraSpaces", "terraspaces.png" )
     , ( "ERIS Protocol", "eris.svg" )
+    , ( "LocalDAO", "local.svg" )
+    , ( "GHOST", "ghost.png" )
+    , ( "Sentinel", "kujira.svg" )
     , ( "Unkown", "unknown.svg" )
     ]

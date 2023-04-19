@@ -134,6 +134,9 @@ dashboardView model =
     let
         viewContracts =
             Set.size (Set.fromList (List.map (\project -> project.info.team) model.projects))
+
+        kujiPrice =
+            List.head (List.map (\rate -> rate.rate) (List.filter (\rate -> rate.denom == "KUJI") model.exchangeRates))
     in
     div [ class "col-12 col-md-8 col-lg-9 col-xl-8 dashboard mt-4 mt-md-3" ]
         [ h1 [ class "text-md-left" ] [ text "Dashboard" ]
@@ -171,10 +174,10 @@ dashboardView model =
                             ]
                         , div [ class "col-6" ]
                             [ div [ class "md-flex dir-c ai-c jc-c bt bl py-2" ]
-                                [ h3 [] [ text "Random Facts" ]
+                                [ h3 [] [ text "KUJI Price" ]
                                 , div [ class "token mt-q1 arrow" ]
-                                    [ span [] [ text (String.fromInt (List.length model.projects)) ]
-                                    , small [] [ text "facts." ]
+                                    [ span [] [ text (floatToDisplay (Maybe.withDefault 0 kujiPrice)) ]
+                                    , small [] [ text "$" ]
                                     ]
                                 ]
                             ]
@@ -1543,4 +1546,4 @@ addLocal s =
 
 floatToDisplay : Float -> String
 floatToDisplay float =
-    String.fromFloat (Basics.toFloat (round (float * 10000)) / 10000)
+    String.fromFloat (Basics.toFloat (round (float * 1000)) / 1000)
