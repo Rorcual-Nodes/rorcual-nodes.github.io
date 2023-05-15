@@ -48,6 +48,7 @@ teamIcons =
     , ( "TerraSpaces", "terraspaces.png" )
     , ( "ERIS Protocol", "eris.svg" )
     , ( "LocalDAO", "local.svg" )
+    , ( "WinkHUB", "winkhub.jpg" )
     , ( "Unknown Team", "unknown.svg" )
     ]
 
@@ -257,7 +258,7 @@ tagToString tag =
             "CEX"
 
         Infrastructure ->
-            "Infrastructure"
+            "Infra"
 
         Staking ->
             "Staking"
@@ -330,5 +331,6 @@ projectLogo =
     , ( "LocalDAO", "local.svg" )
     , ( "GHOST", "ghost.png" )
     , ( "Sentinel", "kujira.svg" )
+    , ( "WinkHUB", "winkhub.jpg" )
     , ( "Unkown", "unknown.svg" )
     ]
