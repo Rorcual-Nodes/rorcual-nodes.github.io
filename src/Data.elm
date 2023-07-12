@@ -50,6 +50,7 @@ teamIcons =
     , ( "LocalDAO", "local.svg" )
     , ( "WinkHUB", "winkhub.jpg" )
     , ( "Unknown Team", "unknown.svg" )
+    , ( "The Blend Builders", "blend.png" )
     ]
 
 
@@ -333,4 +334,5 @@ projectLogo =
     , ( "Sentinel", "kujira.svg" )
     , ( "WinkHUB", "winkhub.jpg" )
     , ( "Unkown", "unknown.svg" )
+    , ( "Blend Protocol", "blend.png" )
     ]
