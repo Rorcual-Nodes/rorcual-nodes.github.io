@@ -70,7 +70,7 @@ categoryToString category =
             "Culture"
 
         Defi ->
-            "Defi"
+            "DeFi"
 
         Infra ->
             "Infrastructure"
