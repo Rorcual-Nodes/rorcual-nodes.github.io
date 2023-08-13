@@ -51,6 +51,8 @@ teamIcons =
     , ( "WinkHUB", "winkhub.jpg" )
     , ( "Unknown Team", "unknown.svg" )
     , ( "The Blend Builders", "blend.png" )
+    , ( "Leap Cosmos", "leap.svg" )
+    , ( "XDEFI Technologies", "xdefi.svg" )
     ]
 
 
@@ -335,4 +337,6 @@ projectLogo =
     , ( "WinkHUB", "winkhub.jpg" )
     , ( "Unkown", "unknown.svg" )
     , ( "Blend Protocol", "blend.png" )
+    , ( "Leap Wallet", "leap.svg" )
+    , ( "XDEFI Wallet", "xdefi.svg" )
     ]

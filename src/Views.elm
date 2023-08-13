@@ -137,6 +137,9 @@ dashboardView model =
 
         kujiPrice =
             List.head (List.map (\rate -> rate.rate) (List.filter (\rate -> rate.denom == "KUJI") model.exchangeRates))
+
+        integrationsSize =
+            List.filter (\project -> categoryToString project.info.category == "Integrations") model.projects
     in
     div [ class "col-12 col-md-8 col-lg-9 col-xl-8 dashboard mt-4 mt-md-3" ]
         [ h1 [ class "text-md-left" ] [ text "Dashboard" ]
@@ -149,7 +152,7 @@ dashboardView model =
                             [ div [ class "md-flex dir-c ai-c jc-c py-2" ]
                                 [ h3 [] [ text "Projects" ]
                                 , div [ class "token mt-q1 arrow" ]
-                                    [ span [] [ text (String.fromInt (List.length model.projects)) ]
+                                    [ span [] [ text (String.fromInt (List.length model.projects - List.length integrationsSize)) ]
                                     , small [] [ text "projects." ]
                                     ]
                                 ]
@@ -159,7 +162,7 @@ dashboardView model =
                                 [ h3 [] [ text "Contracts" ]
                                 , div [ class "token mt-q1 arrow" ]
                                     [ span [] [ text (String.fromInt (List.length (List.concatMap (\project -> project.contracts) model.projects))) ]
-                                    , small [] [ text "contracts." ]
+                                    , small [] [ text "integrations." ]
                                     ]
                                 ]
                             ]
@@ -174,9 +177,9 @@ dashboardView model =
                             ]
                         , div [ class "col-6" ]
                             [ div [ class "md-flex dir-c ai-c jc-c bt bl py-2" ]
-                                [ h3 [] [ text "KUJI Price" ]
+                                [ h3 [] [ text "Integrations" ]
                                 , div [ class "token mt-q1 arrow" ]
-                                    [ span [] [ text (floatToDisplay (Maybe.withDefault 0 kujiPrice)) ]
+                                    [ span [] [ text (String.fromInt (List.length integrationsSize)) ]
                                     , small [] [ text "$" ]
                                     ]
                                 ]
