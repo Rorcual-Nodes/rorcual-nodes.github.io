@@ -171,7 +171,7 @@ dashboardView model =
                                 [ h3 [] [ text "Teams" ]
                                 , div [ class "token mt-q1 arrow" ]
                                     [ span [] [ text (String.fromInt viewContracts) ]
-                                    , small [] [ text "teams" ]
+                                    , small [] [ text "teams." ]
                                     ]
                                 ]
                             ]
