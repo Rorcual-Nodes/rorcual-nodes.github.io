@@ -20,8 +20,8 @@ pushUrl key route =
                 SmartContracts ->
                     "/contracts"
 
-                AboutUs ->
-                    "/about"
+                AuthzCheck ->
+                    "/authz"
 
                 SubEcosystem subProject ->
                     "/ecosystem/" ++ subProject
@@ -65,7 +65,7 @@ routeParser =
         [ Parser.map Index Parser.top
         , Parser.map Ecosystem (Parser.s "ecosystem")
         , Parser.map SmartContracts (Parser.s "contracts")
-        , Parser.map AboutUs (Parser.s "about")
+        , Parser.map AuthzCheck (Parser.s "authz")
         , Parser.map SubContracts (Parser.s "contracts" </> Parser.string)
         , Parser.map SubEcosystem (Parser.s "ecosystem" </> Parser.string)
         , Parser.map NotFound (Parser.s "not_found")

@@ -46,8 +46,8 @@ bodyView model =
                         SmartContracts ->
                             lazy smartContractsView model
 
-                        AboutUs ->
-                            lazy aboutView model
+                        AuthzCheck ->
+                            lazy authzView model
 
                         SubEcosystem subProject ->
                             Html.Lazy.lazy2 subEcosystemsView model subProject
@@ -132,7 +132,7 @@ bodyView model =
 dashboardView : Model -> Html Msg
 dashboardView model =
     let
-        viewContracts =
+        viewTeams =
             Set.size (Set.fromList (List.map (\project -> project.info.team) model.projects))
 
         kujiPrice =
@@ -162,7 +162,7 @@ dashboardView model =
                                 [ h3 [] [ text "Contracts" ]
                                 , div [ class "token mt-q1 arrow" ]
                                     [ span [] [ text (String.fromInt (List.length (List.concatMap (\project -> project.contracts) model.projects))) ]
-                                    , small [] [ text "integrations." ]
+                                    , small [] [ text "contracts." ]
                                     ]
                                 ]
                             ]
@@ -170,7 +170,7 @@ dashboardView model =
                             [ div [ class "md-flex dir-c ai-c jc-c bt py-2" ]
                                 [ h3 [] [ text "Teams" ]
                                 , div [ class "token mt-q1 arrow" ]
-                                    [ span [] [ text (String.fromInt viewContracts) ]
+                                    [ span [] [ text (String.fromInt viewTeams) ]
                                     , small [] [ text "teams." ]
                                     ]
                                 ]
@@ -180,7 +180,7 @@ dashboardView model =
                                 [ h3 [] [ text "Integrations" ]
                                 , div [ class "token mt-q1 arrow" ]
                                     [ span [] [ text (String.fromInt (List.length integrationsSize)) ]
-                                    , small [] [ text "$" ]
+                                    , small [] [ text "integrations." ]
                                     ]
                                 ]
                             ]
@@ -1127,6 +1127,135 @@ contractView model contract =
         ]
 
 
+grantView : Model -> Grant -> Html Msg
+grantView model grant =
+    let
+        contractList =
+            List.concat (List.map (\project -> project.contracts) model.projects)
+    in
+    div
+        [ class "col-12 col-lg-6 col-fhd-4 flex"
+        ]
+        [ section [ class "ValidatorBox box mb-4" ]
+            [ article [ class "ValidatorLabelValueItem" ]
+                [ div []
+                    [ h4 [ class "condensed" ] [ text "Grantee" ]
+                    , p [ Html.Attributes.style "margin-top" "0.24rem", Html.Attributes.style "align-items" "center" ]
+                        [ span [ class "value" ]
+                            [ text grant.grantee
+                            ]
+                        , if Dict.member grant.grantee granteeDict == False then
+                            div [ class "notification-wrapper", Html.Attributes.style "margin-left" "0.24rem" ] [ img [ src "../assets/icons/alert.svg" ] [ text "Unknown Grantee" ] ]
+
+                          else
+                            text ""
+                        ]
+                    , h4 [ class "condensed" ] [ text "Type" ]
+                    , p [ Html.Attributes.style "margin-top" "0.24rem" ] [ span [ class "value" ] [ text grant.authorization.authztype ] ]
+                    , h4 [ class "condensed" ] [ text "Expiration" ]
+                    , p [ Html.Attributes.style "margin-top" "0.24rem" ] [ span [ class "value" ] [ text grant.expiration ] ]
+                    , h4 [ class "condensed" ] [ text "Provided Service" ]
+                    , p [ Html.Attributes.style "margin-top" "0.24rem" ] [ span [ class "value" ] [ text (getFunctionFromGrantee (Dict.get grant.grantee granteeDict)) ] ]
+                    , h4 [ class "condensed" ] [ text "Authorization" ]
+                    , p []
+                        [ span [ class "value" ]
+                            [ case grant.authorization.body of
+                                StakeAuthorization allowList ->
+                                    div [ Html.Attributes.style "max-height" "300px", Html.Attributes.style "overflow-y" "auto", class "mt-1" ]
+                                        [ table [ class "md-table condensed" ]
+                                            [ Html.colgroup []
+                                                [ Html.col [ Html.Attributes.style "width" "30%" ] []
+                                                , Html.col [ Html.Attributes.style "width" "70%" ] []
+                                                ]
+                                            , thead []
+                                                [ tr []
+                                                    [ th [] [ text "Validator" ]
+                                                    , th [] [ text "Address" ]
+                                                    ]
+                                                ]
+                                            , tbody []
+                                                (List.map
+                                                    (\validatorAddress ->
+                                                        tr []
+                                                            [ td []
+                                                                [ div
+                                                                    []
+                                                                    [ text (getMonikerFromValidator (List.head (List.filter (\validator -> validator.address == validatorAddress) model.validators))) ]
+                                                                ]
+                                                            , td []
+                                                                [ a
+                                                                    [ href ("https://blue.kujira.network/stake/" ++ validatorAddress)
+                                                                    , target "_blank"
+                                                                    , Html.Attributes.style "text-decoration" "none"
+                                                                    , Html.Attributes.style "color" "#fff"
+                                                                    ]
+                                                                    [ text validatorAddress ]
+                                                                ]
+                                                            ]
+                                                    )
+                                                    allowList.allowList.addresses
+                                                )
+                                            ]
+                                        ]
+
+                                ContractExecutionAuthorization grantedContracts ->
+                                    div [ Html.Attributes.style "max-height" "300px", Html.Attributes.style "overflow-y" "auto", class "mt-1" ]
+                                        [ table [ class "md-table condensed" ]
+                                            [ Html.colgroup []
+                                                [ Html.col [ Html.Attributes.style "width" "30%" ] []
+                                                , Html.col [ Html.Attributes.style "width" "70%" ] []
+                                                ]
+                                            , thead []
+                                                [ tr []
+                                                    [ th [] [ text "Label" ]
+                                                    , th [] [ text "Address" ]
+                                                    ]
+                                                ]
+                                            , tbody []
+                                                (List.map
+                                                    (\contract ->
+                                                        tr []
+                                                            [ td []
+                                                                [ div
+                                                                    []
+                                                                    [ let
+                                                                        valid =
+                                                                            List.head (List.filter (\contractListMember -> contractListMember.address == contract.contract) contractList)
+                                                                      in
+                                                                      case valid of
+                                                                        Just record ->
+                                                                            text record.label
+
+                                                                        Nothing ->
+                                                                            text "Unknown"
+                                                                    ]
+                                                                ]
+                                                            , td []
+                                                                [ a
+                                                                    [ href ("https://finder.kujira.network/kaiyo-1/contract/" ++ contract.contract)
+                                                                    , target "_blank"
+                                                                    , Html.Attributes.style "text-decoration" "none"
+                                                                    , Html.Attributes.style "color" "#fff"
+                                                                    ]
+                                                                    [ text contract.contract ]
+                                                                ]
+                                                            ]
+                                                    )
+                                                    grantedContracts.grants
+                                                )
+                                            ]
+                                        ]
+
+                                GenericAuthorization msg ->
+                                    text msg.msg
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ]
+
+
 menutabs : Model -> List (Html Msg)
 menutabs model =
     [ a
@@ -1171,75 +1300,52 @@ menutabs model =
         [ img [ src "./assets/icons/contracts.svg" ] [], span [] [ text "Smart Contracts" ] ]
     , a
         [ class
-            (if model.currentRoute == AboutUs then
+            (if model.currentRoute == AuthzCheck then
                 "current"
 
              else
                 ""
             )
-        , onClick (Current AboutUs)
-        , href "/about"
+        , onClick (Current AuthzCheck)
+        , href "/authz"
         ]
-        [ img [ src "./assets/icons/info.svg" ] [], span [] [ text "About Us" ] ]
+        [ img [ src "./assets/icons/info.svg" ] [], span [] [ text "Authz" ] ]
     ]
 
 
-aboutView : Model -> Html Msg
-aboutView model =
-    div [ class "col-12 col-md-8 col-lg-9 col-xl-8 dashboard mt-4 mt-md-3 mb-2" ]
-        [ h1 [ class "text-md-left mb-3" ] [ text "About Us" ]
+authzView : Model -> Html Msg
+authzView model =
+    let
+        sortedGrants =
+            List.sortBy (\grant -> grant.expiration) model.grants
+    in
+    div [ class "col-12 col-md-8 col-lg-9 col-xl-8 mt-4 mt-md-3" ]
+        [ h1 [ class "" ] [ text "Check Authz Grants" ]
+        , h2 [ class "mb-2" ] [ text "Input your address to check your active grants. Grantees flagged with a warning are not whitelisted in our database." ]
+        , div [ class "md-row mb-3 pad" ]
+            [ div [ class "col-6" ]
+                [ div [ class "md-flex" ]
+                    [ div [ class "md-input md-input--nolabel condensed grow mr-1 md-input--light validator-search" ]
+                        [ input [ class "search", Html.Attributes.placeholder "Input your Kujira Address", value model.searchTerm, onInput Search ] []
+                        , button []
+                            [ img [ src "./assets/icons/search.svg" ] []
+                            ]
+                        ]
+                    , button [ class "md-button md-button--outline md-button--grey active", onClick (FetchGrants model.searchTerm) ]
+                        [ text "Search"
+                        ]
+                    , p [ class "my-a ml-2 condensed" ] [ text (String.fromInt (List.length model.grants) ++ " active Grants.") ]
+                    ]
+                ]
+            ]
         , div [ class "row" ]
-            [ div [ class "col-12 col-lg-8 col-fhd-4 " ]
-                [ section [ class "ValidatorBox box flex dir-c" ]
-                    [ p [ class "description" ] [ text "Rorcual Nodes is a project developed by two crypto enthusiasts that got hooked by the Kujira project. \n We aim to become one of the main validators in the Kujira Blockchain, adding value to the community and security to the Blockchain." ]
-                    ]
-                ]
-            ]
-        , div [ class "col-12 col-lg-12 col-fhd-4 mt-3 mb-4" ]
-            [ div [ class "row" ]
-                [ div
-                    [ class "col-12 col-lg-4 col-fhd-4 mt-3 flex"
-                    ]
-                    [ section [ class "flex ValidatorBox box" ]
-                        [ div []
-                            [ img [ src "./assets/icons/key.svg", alt "Icon", class "icon" ] []
-                            , h4 [ class "mt-1" ] [ text "Security" ]
-                            , p [ class "description mt-2" ] [ text "Security is our main priority. We are always evaluating the best technologies to prevent downtime and double signing. Rorcual is operated by a highly reduced and trusted team, so everything is always under control." ]
-                            ]
-                        ]
-                    ]
-                , div
-                    [ class "col-12 col-lg-4 col-fhd-4 mt-3 flex"
-                    ]
-                    [ section [ class "flex ValidatorBox box" ]
-                        [ div []
-                            [ img [ src "./assets/icons/share.svg", alt "Icon", class "icon" ] []
-                            , h4 [ class "mt-1" ] [ text "Communication" ]
-                            , p [ class "description mt-2" ] [ text "It is our focus to create a platform where all delegators are treated as investors in a company. Every important governance decision should be meditated and explained to the community so everyone can understand the evolution of Kujira Blockchain." ]
-                            ]
-                        ]
-                    ]
-                , div
-                    [ class "col-12 col-lg-4 col-fhd-4 mt-3 flex"
-                    ]
-                    [ section [ class "flex ValidatorBox box" ]
-                        [ div []
-                            [ img [ src "./assets/icons/link.svg", alt "Icon", class "icon" ] []
-                            , h4 [ class "mt-1" ] [ text "Decentralization" ]
-                            , p [ class "description mt-2" ] [ text "Our main and backup setups are separated geographically and on different providers, so availability of the nodes is guaranteed. By delegating to Rorcual, you are contributing to the decentralization and security of the Kujira network." ]
-                            ]
-                        ]
-                    ]
-                ]
-            ]
-        , a
-            [ href "https://forms.gle/GqqHFANaVbXDGQsJ6"
-            , target "_blank"
-            , Html.Attributes.style "text-decoration" "none"
-            ]
-            [ button [ class "md-button md-button--small md-button--reverse md-button--icon-right ml-2" ]
-                [ text "Send Us Feedback" ]
-            ]
+            (List.map
+                (grantView
+                    model
+                )
+                sortedGrants
+            )
+        , a [ class "scroll-to-top-button", onClick ScrollToTop, href "#" ] [ img [ src "./assets/icons/chevron-up.svg" ] [] ]
         ]
 
 
@@ -1314,6 +1420,36 @@ getContractParentName model contract =
                     Nothing
     in
     parentName
+
+
+getTeamFromGrantee : Maybe Grantee -> String
+getTeamFromGrantee maybeGrantee =
+    case maybeGrantee of
+        Just grantee ->
+            grantee.team
+
+        Nothing ->
+            "Unknown"
+
+
+getFunctionFromGrantee : Maybe Grantee -> String
+getFunctionFromGrantee maybeGrantee =
+    case maybeGrantee of
+        Just grantee ->
+            grantee.function
+
+        Nothing ->
+            "Unknown"
+
+
+getMonikerFromValidator : Maybe Validator -> String
+getMonikerFromValidator maybeValidator =
+    case maybeValidator of
+        Just validator ->
+            validator.description.moniker
+
+        Nothing ->
+            "Unknown"
 
 
 filterCategory : String -> String -> List Project -> List Project

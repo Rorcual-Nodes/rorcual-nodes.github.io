@@ -24,13 +24,15 @@ type alias Model =
     , popUp : Bool
     , exchangeRates : List Rates
     , rawData : String
+    , grants : List Grant
+    , validators : List Validator
     }
 
 
 type Route
     = Index
     | SmartContracts
-    | AboutUs
+    | AuthzCheck
     | Ecosystem
     | SubEcosystem String
     | SubContracts String
@@ -68,6 +70,64 @@ type alias Contract =
     , creator : String
     , admin : String
     , label : String
+    }
+
+
+type alias Grant =
+    { grantee : String
+    , authorization : Authorization
+    , expiration : String
+    }
+
+
+type alias Authorization =
+    { authztype : String
+    , body : AuthorBody
+    }
+
+
+type AuthorBody
+    = StakeAuthorization { allowList : AllowList }
+    | ContractExecutionAuthorization { grants : List GrantInfo }
+    | GenericAuthorization { msg : String }
+
+
+type alias AllowList =
+    { addresses : List String
+    }
+
+
+type alias GrantInfo =
+    { contract : String
+    }
+
+
+type alias Grantee =
+    { address : String
+    , function : String
+    , team : String
+    }
+
+
+type alias Validator =
+    { address : String
+    , description : Description
+    , restake : Maybe RestakeInfo
+    , image : Maybe String
+    }
+
+
+type alias RestakeInfo =
+    { address : String
+    }
+
+
+type alias Description =
+    { moniker : String
+    , identity : String
+    , website : String
+    , security_contract : String
+    , details : String
     }
 
 
@@ -129,6 +189,7 @@ type Msg
     | GotContracts (Result Http.Error (List Contract))
     | GotRates (Result Http.Error (List Rates))
     | GotContract (Result Http.Error String)
+    | GotValidators (Result Http.Error (List Validator))
     | Search String
     | TeamSelected String
     | Current Route
@@ -145,6 +206,8 @@ type Msg
     | HidePopUp
     | ScrollToTop
     | Back
+    | FetchGrants String
+    | GotGrants (Result Http.Error (List Grant))
 
 
 type Notification

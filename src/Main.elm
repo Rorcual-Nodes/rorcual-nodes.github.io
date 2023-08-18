@@ -6,6 +6,7 @@ import Browser.Navigation as Navigation exposing (Key)
 import Data exposing (..)
 import Delay
 import Dict
+import Html exposing (address)
 import Http
 import Json.Decode as Decode exposing (Decoder, field, string)
 import Json.Decode.Pipeline exposing (optional, required)
@@ -34,9 +35,6 @@ init flags url key =
         parsedUrl =
             parseUrlToRoute url
 
-        loadurl =
-            url
-
         newModel =
             { projects = []
             , searchTerm = ""
@@ -52,6 +50,8 @@ init flags url key =
             , popUp = False
             , exchangeRates = []
             , rawData = ""
+            , grants = []
+            , validators = []
             }
     in
     case parsedUrl of
@@ -61,6 +61,7 @@ init flags url key =
                 [ getProjects
                 , Routing.pushUrl key Index
                 , getRates
+                , getValidators
                 ]
             )
 
@@ -70,6 +71,7 @@ init flags url key =
                 [ getProjects
                 , Routing.pushUrl key Ecosystem
                 , getRates
+                , getValidators
                 ]
             )
 
@@ -79,6 +81,7 @@ init flags url key =
                 [ getProjects
                 , Routing.pushUrl key SmartContracts
                 , getRates
+                , getValidators
                 ]
             )
 
@@ -88,6 +91,7 @@ init flags url key =
                 [ getProjects
                 , Routing.pushUrl key (SubEcosystem project)
                 , getRates
+                , getValidators
                 ]
             )
 
@@ -97,15 +101,17 @@ init flags url key =
                 [ getProjects
                 , Routing.pushUrl key (SubContracts contract)
                 , getRates
+                , getValidators
                 ]
             )
 
-        AboutUs ->
+        AuthzCheck ->
             ( newModel
             , Cmd.batch
                 [ getProjects
-                , Routing.pushUrl key AboutUs
+                , Routing.pushUrl key AuthzCheck
                 , getRates
+                , getValidators
                 ]
             )
 
@@ -115,6 +121,7 @@ init flags url key =
                 [ getProjects
                 , Routing.pushUrl key Index
                 , getRates
+                , getValidators
                 ]
             )
 
@@ -238,6 +245,128 @@ ratesDecoder =
                 )
             )
         )
+
+
+
+-- Grants Utilities
+
+
+fetchGrants : String -> Cmd Msg
+fetchGrants address =
+    Http.get
+        { url = lcdUrl ++ "/cosmos/authz/v1beta1/grants/granter/" ++ address
+        , expect =
+            Http.expectJson
+                GotGrants
+                grantsDecoder
+        }
+
+
+grantsDecoder : Decode.Decoder (List Grant)
+grantsDecoder =
+    Decode.field "grants"
+        (Decode.list
+            (Decode.map3 Grant
+                (Decode.field "grantee" Decode.string)
+                (Decode.field "authorization"
+                    decodeAuthorization
+                )
+                (Decode.field "expiration" Decode.string)
+            )
+        )
+
+
+decodeAuthorization : Decoder Authorization
+decodeAuthorization =
+    Decode.map2 Authorization
+        (Decode.field "@type" Decode.string)
+        (field "@type" string |> Decode.andThen decodeAuthorizationType)
+
+
+decodeAuthorizationType : String -> Decoder AuthorBody
+decodeAuthorizationType authType =
+    case authType of
+        "/cosmos.staking.v1beta1.StakeAuthorization" ->
+            decodeStakeAuthorization
+
+        "/cosmwasm.wasm.v1.ContractExecutionAuthorization" ->
+            decodeContractExecutionAuthorization
+
+        "/cosmos.authz.v1beta1.GenericAuthorization" ->
+            decodeGenericAuthorization
+
+        _ ->
+            Decode.fail ("Unknown authorization type: " ++ authType)
+
+
+decodeStakeAuthorization : Decoder AuthorBody
+decodeStakeAuthorization =
+    Decode.map (\allowList -> StakeAuthorization { allowList = allowList })
+        (field "allow_list" decodeAllowList)
+
+
+decodeAllowList : Decoder AllowList
+decodeAllowList =
+    Decode.map AllowList (field "address" (Decode.list string))
+
+
+decodeContractExecutionAuthorization : Decoder AuthorBody
+decodeContractExecutionAuthorization =
+    Decode.map (\grants -> ContractExecutionAuthorization { grants = grants })
+        (field "grants" (Decode.list decodeGrantInfo))
+
+
+decodeGrantInfo : Decoder GrantInfo
+decodeGrantInfo =
+    Decode.map GrantInfo
+        (field "contract" string)
+
+
+decodeGenericAuthorization : Decoder AuthorBody
+decodeGenericAuthorization =
+    Decode.map (\msg -> GenericAuthorization { msg = msg })
+        (field "msg" Decode.string)
+
+
+
+-- Validator Utilities
+
+
+getValidators : Cmd Msg
+getValidators =
+    Http.get
+        { url = "https://validators.cosmos.directory/chains/kujira"
+        , expect =
+            Http.expectJson
+                GotValidators
+                validatorsDecoder
+        }
+
+
+validatorsDecoder : Decode.Decoder (List Validator)
+validatorsDecoder =
+    Decode.field "validators"
+        (Decode.list
+            (Decode.map4 Validator
+                (Decode.field "address" Decode.string)
+                (Decode.field "description"
+                    (Decode.map5 Description
+                        (Decode.field "moniker" Decode.string)
+                        (Decode.field "identity" Decode.string)
+                        (Decode.field "website" Decode.string)
+                        (Decode.field "security_contact" Decode.string)
+                        (Decode.field "details" Decode.string)
+                    )
+                )
+                (Decode.maybe (Decode.field "restake" restakeDecoder))
+                (Decode.maybe (Decode.field "image" Decode.string))
+            )
+        )
+
+
+restakeDecoder : Decode.Decoder RestakeInfo
+restakeDecoder =
+    Decode.map RestakeInfo (Decode.field "address" Decode.string)
 
 
 
@@ -459,6 +588,66 @@ update msg model =
 
         Back ->
             ( { model | searchTerm = "", dropDown = Close }, Navigation.back model.navigationKey 1 )
+
+        FetchGrants address ->
+            ( model, fetchGrants address )
+
+        GotGrants (Ok newGrants) ->
+            ( { model | grants = newGrants }, Cmd.none )
+
+        GotGrants (Err error) ->
+            let
+                errorMessage =
+                    case error of
+                        Http.Timeout ->
+                            "Request timed out"
+
+                        Http.NetworkError ->
+                            "Network error"
+
+                        Http.BadStatus response ->
+                            "Bad status: " ++ String.fromInt response
+
+                        Http.BadBody string ->
+                            "Bad response body: " ++ string
+
+                        Http.BadUrl url ->
+                            "Bad request URL: " ++ url
+
+                notification =
+                    Error errorMessage
+            in
+            ( model, showPopUp notification )
+
+        GotValidators (Ok newValidators) ->
+            ( { model | validators = newValidators }, Cmd.none )
+
+        GotValidators (Err error) ->
+            let
+                logs =
+                    Debug.toString error
+
+                errorMessage =
+                    case error of
+                        Http.Timeout ->
+                            "Request timed out"
+
+                        Http.NetworkError ->
+                            "Network error"
+
+                        Http.BadStatus response ->
+                            "Bad status: " ++ String.fromInt response
+
+                        Http.BadBody string ->
+                            "Bad response body: " ++ string
+
+                        Http.BadUrl url ->
+                            "Bad request URL: " ++ url
+
+                notification =
+                    Error errorMessage
+            in
+            ( model, showPopUp notification )
 
 
 
