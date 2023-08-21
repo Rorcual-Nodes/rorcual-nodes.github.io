@@ -350,6 +350,7 @@ granteeDict =
 whitelistGrantee : List ( String, Grantee )
 whitelistGrantee =
     [ ( "kujira1t29djm77sctjgjplduxgd7kgcgq7jtvrgwu4wd", Grantee "kujira1t29djm77sctjgjplduxgd7kgcgq7jtvrgwu4wd" "FIN Autowithdrawal" "Capybara Labs" )
+    , ( "kujira1f49xq0rmah39sk58aaxq6gnqcvupee7j09yvp9", Grantee "kujira1f49xq0rmah39sk58aaxq6gnqcvupee7j09yvp9" "Batch Claim Rewards" "Capybara Labs" )
     , ( "kujira10fmz64pwj95qy3rgjm0kud2uz62thp3s88ajca", Grantee "kujira10fmz64pwj95qy3rgjm0kud2uz62thp3s88ajca" "CALC Stake" "CALC Finance" )
     , ( "kujira1mgwn34mwe85jwnkjkfgl84ngde0vzlhjz43cw3", Grantee "kujira1mgwn34mwe85jwnkjkfgl84ngde0vzlhjz43cw3" "CALC Stake" "CALC Finance" )
     , ( "kujira15064722pe9p7dqxcu8g560ufw9ckcs48e2u4ng", Grantee "kujira15064722pe9p7dqxcu8g560ufw9ckcs48e2u4ng" "CALC Stake" "CALC Finance" )
