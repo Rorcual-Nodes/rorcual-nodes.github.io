@@ -624,9 +624,8 @@ update msg model =
 
         GotValidators (Err error) ->
             let
-                logs =
-                    Debug.toString error
-
+                -- logs =
+                --     -- Debug.toString error
                 errorMessage =
                     case error of
                         Http.Timeout ->

@@ -339,6 +339,8 @@ projectLogo =
     , ( "Blend Protocol", "blend.png" )
     , ( "Leap Wallet", "leap.svg" )
     , ( "XDEFI Wallet", "xdefi.svg" )
+    , ( "Ignition", "fuzion.png" )
+    , ( "Quark", "quark.svg" )
     ]
 
 
