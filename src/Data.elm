@@ -53,6 +53,8 @@ teamIcons =
     , ( "The Blend Builders", "blend.png" )
     , ( "Leap Cosmos", "leap.svg" )
     , ( "XDEFI Technologies", "xdefi.svg" )
+    , ( "Nami", "nami.png" )
+    , ( "Maya Protocol", "maya.png" )
     ]
 
 
@@ -341,6 +343,9 @@ projectLogo =
     , ( "XDEFI Wallet", "xdefi.svg" )
     , ( "Ignition", "fuzion.png" )
     , ( "Quark", "quark.svg" )
+    , ( "Unstake.fi", "unstake.png" )
+    , ( "Nami Protocol", "nami.png" )
+    , ( "Maya Protocol", "maya.png" )
     ]
 
 
