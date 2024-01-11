@@ -56,6 +56,7 @@ teamIcons =
     , ( "Nami", "nami.png" )
     , ( "Maya Protocol", "maya.png" )
     , ( "DAO DAO", "daodao.png" )
+    , ( "kujiDAO", "kujiDAO.jpg" )
     ]
 
 
@@ -351,6 +352,7 @@ projectLogo =
     , ( "Fuzion Bonds", "fuzion.png" )
     , ( "Fuzion Dustbuster", "fuzion.png" )
     , ( "Polytone", "daodao.png" )
+    , ( "KujiNews", "kujinews.jpg" )
     ]
 
 
