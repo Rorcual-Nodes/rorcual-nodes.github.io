@@ -264,7 +264,7 @@ latestContracts : Model -> List (Html Msg)
 latestContracts model =
     let
         contracts =
-            List.take 4 <| List.reverse (List.sortBy (\contract -> contract.createDate) (List.concatMap (\project -> project.contracts) model.projects))
+            List.take 4 <| List.filter (\contract -> contract.code_id /= 203) (List.reverse (List.sortBy (\contract -> contract.createDate) (List.concatMap (\project -> project.contracts) model.projects)))
     in
     [ h1 [ class "text-md-left mb-2" ] [ text "Latest Contracts" ]
     , div [ class "row" ]

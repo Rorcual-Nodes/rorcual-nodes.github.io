@@ -55,6 +55,7 @@ teamIcons =
     , ( "XDEFI Technologies", "xdefi.svg" )
     , ( "Nami", "nami.png" )
     , ( "Maya Protocol", "maya.png" )
+    , ( "DAO DAO", "daodao.png" )
     ]
 
 
@@ -346,6 +347,10 @@ projectLogo =
     , ( "Unstake.fi", "unstake.png" )
     , ( "Nami Protocol", "nami.png" )
     , ( "Maya Protocol", "maya.png" )
+    , ( "Fuzion Staking", "fuzion.png" )
+    , ( "Fuzion Bonds", "fuzion.png" )
+    , ( "Fuzion Dustbuster", "fuzion.png" )
+    , ( "Polytone", "daodao.png" )
     ]
 
 
