@@ -57,6 +57,7 @@ teamIcons =
     , ( "Maya Protocol", "maya.png" )
     , ( "DAO DAO", "daodao.png" )
     , ( "kujiDAO", "kujiDAO.jpg" )
+    , ( "BackBone Labs", "backbonelabs.svg" )
     ]
 
 
@@ -353,6 +354,7 @@ projectLogo =
     , ( "Fuzion Dustbuster", "fuzion.png" )
     , ( "Polytone", "daodao.png" )
     , ( "KujiNews", "kujinews.jpg" )
+    , ( "Gravedigger Kujira", "backbonelabs.svg" )
     ]
 
 
